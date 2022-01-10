@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <style>
+        p {
+            font-size: clamp(1em, 2 vwm, 2em);
+            line-height: 2rem;
+            text-align: justify;
+        }
+    </style>
+{% endblock head %}
+{% block content %}
+    <div class="container">
+        <h2> search your report </h2>
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-10">
+                <form action=".">
+                    {#        {% csrf_token %}#}
+
+
+                    <div class="form-outline">
+                          <label for="patient_number"> Enter Patient Number:</label>
+                        <input id="patient_number" name="patient_number" type="search"
+                                                                            placeholder="Enter your Patient Number."
+                                                                            class="form-control form-control-lg"
+                                                                            required
+                                                                            />
+
+
+                        <label for="pin_code"> Enter Pin Code</label>
+                        <input id="pin_code" name="pin_code" type="search"
+                                                                            placeholder="Enter Pin Code that we provided you"
+                                                                            class="form-control form-control-lg"
+                                                                            required
+                                                                            />
+                        <br>
+
+                     <button  type="submit" class="btn btn-primary btn-lg text-center" style="background-color: #03b0b1">Search</button>
+
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+        <br>
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading"> </div>
+
+            <div class="container">
+
+            <div class="panel-body">
+                <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Patient Name</th>
+                      <th scope="col">Patient Phone#</th>
+                      <th scope="col">Patient City</th>
+                    </tr>
+                  </thead>
+
+                 <tbody>
+                   {% if object_list %}
+
+
+                       {% for object_list in object_list %}
+
+                            <!-- code here to list the books -->
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>  {{ object_list.patient_name }} </td>
+                          <td>     {{ object_list.patient_phone_number }}</td>
+                          <td><a href="{{ object_list.patient_report.url }}" download> Download Document </a></td>
+                        </tr>
+                       {% empty %}
+                        {% endfor %}
+
+                   {% else %}
+                        <p> no result found, please provide correct patient number or pin-code.</p>
+                   {% endif %}
+
+                 </tbody>
+                </table>
+
+        </div>
+        </div>
+
+        </div>
+{% endblock content %}
