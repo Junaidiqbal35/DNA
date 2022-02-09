@@ -21,10 +21,10 @@ class Reports(models.Model):
     patient_report = models.FileField(upload_to='reports/')
     created_at = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def pin_code_str(self):
-        pin_code = str(self.pin_code)
-        return pin_code
+    # @property
+    # def pin_code_str(self):
+    #     pin_code = str(self.pin_code)
+    #     return pin_code
 
 
 @receiver(pre_save, sender=Reports)
