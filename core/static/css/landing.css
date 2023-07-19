@@ -1,9 +1,12 @@
-.navbar-custom {
-    background-color: #E3F7FF;
-}
-
-.nav {
-    background-color: #61e9de;
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+  body{
+    font-family: "Poppins", sans-serif;
+  }
+  .navbar{
+    padding: 0;
+  }
+i{
+    color: #025468
 }
 .nav1{
     background-color: #444444;
@@ -28,13 +31,14 @@ ul.nav a:hover {
 }
 
 .btn-outline {
-    background-color: #61e9de;
-    color: #fff;
+    background-color: #E3F7FF;
+    color: #3E4A5B;
     font-size: 20px;
+    font-weight: 500;
 }
 
 .btn-outline:hover {
-    background-color: #FBB540;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     color: #025468;
     font-weight: 700;
 }
@@ -128,13 +132,13 @@ li.leaf {
 }
 #head{
     font-size: 30px;
-    color: #61e9de;
+    color: #E3F7FF;
 }
 #end{
-    color: #61e9de;
+    color: #E3F7FF;
 }
 .btn-outline2 {
-    background-color: #61e9de;
+    background-color: #E3F7FF;
    
     border-color: #025468;
     border-radius: 5px;
@@ -143,7 +147,7 @@ li.leaf {
     background-color: #FBB540;
 }
 #explorebtn{
-    background-color: #61e9de;
+    background-color: #E3F7FF;
     color: #025468;
     font-weight: 600;
 }
@@ -153,14 +157,14 @@ background-color: #FBB540;
 font-size: 18px;
 }
 .price{
-    border-color: #61e9de; 
+    border-color: #E3F7FF; 
     background-color: #c0eeea; 
     color: #025468; 
     border-width: 2px;
   
 }
 .price:hover{
-    border-color: #61e9de;
+    border-color: #E3F7FF;
     background-color: #c0eeea; 
     color: #025468;
     font-weight: 600;

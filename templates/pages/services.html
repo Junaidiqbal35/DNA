@@ -1,12 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
  <title>{% block title %} Services|DNA {% endblock %}</title>
     {% block extrahead %}
-         <link rel="stylesheet" href={% static '/css/service.css' %}>
+         <link rel="stylesheet" href="{% static '/css/service.css' %}">
     {% endblock extrahead %}
-
-
 {% block content %}
 <div class="container-fluid">
      <br>
@@ -14,18 +11,24 @@
     <div class="row justify-content-center">
 
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <h6 class="center mb-3 text-muted">Paternity test</h6>
-            <img class="lef img-fluid" src="{% static  'images/3945183.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            <h4 class="center mb-3 text-muted">Paternity test</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s2.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <h6 class="center mb-3 text-muted">Legal DNA testing</h6>
-            <img class="lef img-fluid" src="{% static  'images/5326046.jpg' %}" alt="" style="width:350px; height:300px;  "><br>
+            <h4 class="center mb-3 text-muted">Legal DNA testing</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s3.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div><br>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <p class="center mb-3 text-muted" style="text-align: center;">Immigration DNA test</p>
-            <img class="lef img-fluid" src="{% static  'images/ab1.png' %}" alt="" style="width:350px; height:300px;  ">
+            <h4 class="center mb-3 text-muted" style="text-align: center;">Immigration DNA test</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s4.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div>
             <br>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
@@ -35,18 +38,24 @@
         <div class="row justify-content-center">
 
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <p class="center mb-3 text-muted">Prenatal testing</p>
-            <img class="lef img-fluid" src="{% static  'images/ab2.png' %}" alt="" style="width:350px; height:300px;  "> <br>
+            <h4 class="center mb-3 text-muted">Prenatal testing</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s5.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div> <br>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <p class="center mb-3 text-muted"> Sibling testing</p>
-            <img class="lef img-fluid" src="{% static  'images/ab3.png' %}" alt="" style="width:350px; height:300px;  "> <br>
+            <h4 class="center mb-3 text-muted"> Sibling testing</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s6.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div> <br>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
         <div class="col-sm-4 col-md-3 col-lg-3">
-            <p class="center mb-3 text-muted">Maternity testing</p>
-            <img class="lef img-fluid" src="{% static  'images/3945183.jpg' %}" alt="" style="width:350px; height:300px;  ">
+            <h4 class="center mb-3 text-muted">Maternity testing</h4>
+            <div class="container-fluid img-container">
+                <img class="lef img-fluid" src="{% static  'images/s1.jpg' %}" alt="" style="width:350px; height:300px;  "> <br>
+            </div>
             <br>
             <button onclick="window.location.href='https://dnalabpakistan.dukan.pk';" class="btn btn-outline btn-sm learn center mt-5" type="submit">Learn More</button>
         </div>
@@ -54,8 +63,8 @@
     </div>
 
 
-<div class="container-fluid py-5 mt-5" style="background-color: #025468; color: white;">
-    <h3 class="center">The Expert Authority You Can Trust</h3>
+<div class="container-fluid p-5 m-5 text-center expert">
+    <h3>The Expert Authority You Can Trust</h3>
 </div>
 
 <div class="container mt-5 top">
