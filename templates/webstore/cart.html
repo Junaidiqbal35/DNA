@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+ <title>{% block title %} Contact Us|DNA {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static '/css/cart.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12">
+
+        <div class="row mt-5" id="pheading">
+            <a href="#" id="back"><i class="bi bi-arrow-left-short"></i></a>
+            <p class="mt-2">Home  /  <b>Cart</b> </p>
+        </div>
+    </div>
+</div>
+
+<main>
+
+    <div class="basket">
+      <div class="basket-module">
+        <h6>My Cart</h6>
+      </div>
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Item</li>
+          <li class="price">Price</li>
+          <li class="quantity">Quantity</li>
+          <li class="subtotal">Subtotal</li>
+        </ul>
+      </div>
+      <div class="basket-product">
+        <div class="item">
+          <div class="product-image">
+            <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg" alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h1>Legal Siblings DNA Test- 2 Siblings</h1>
+          </div>
+        </div>
+        <div class="price">90,000</div>
+        <div class="quantity">
+          <input type="number" value="4" min="1" class="quantity-field">
+        </div>
+        <div class="subtotal">104.00</div>
+        <div class="remove">
+          <button><i class="bi bi-x-circle"></i></button>
+          <button><i class="bi bi-pencil"></i></button>
+        </div>
+      </div>
+   
+    </div>
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span>Order Summary</div>
+        <div class="summary-subtotal">
+          <div class="subtotal-title">Item (2)
+          </div>
+          <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
+        </div>
+        <div class="summary-subtotal1 mt-2">
+            <div class="subtotal-title">Subtotal</div>
+            <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
+            <div class="subtotal-title mt-2">Delivery Fee</div>
+            <div class="subtotal-value final-value mt-2" id="basket-subtotal">5</div>
+          </div>
+        <div class="summary-total mt-2">
+          <div class="total-title">Subtotal</div>
+          <div class="total-value final-value" id="basket-total">130.00</div>
+        </div>
+        <div class="summary-checkout">
+          <button class="checkout-cta">GO TO CHECKOUT</button>
+          <button class="checkout-cta mt-2" id="btn1">Continue Shopping</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+{% endblock content %}

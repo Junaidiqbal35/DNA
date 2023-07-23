@@ -27,5 +27,11 @@ hr.style5 {
     
 }
 .expert{
-    background-image: url("/core/static/images/1.png");
+    color:#025468;
+    padding: 50px;
+    margin-top: 50px;
+    background-color: #E3F7FF;
+}
+.service h1{
+    color: #025468;
 }

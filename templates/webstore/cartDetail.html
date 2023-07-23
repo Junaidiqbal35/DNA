@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+ <title>{% block title %} Details | DNA Testing Solutions {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static '/css/cartD.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="col-md-12">
+
+            <div class="row mt-5" id="pheading">
+
+                <a href="#" id="back"><i class="bi bi-arrow-left-short"></i></a>
+                <p>Home / <span>Product Detail</span> </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <img id="category-img" class="img-fluid"
+                    src="https://umbrella.data.naturalint.com/production/charts/uploads/photo/Header-The-10-Best-Paternity-Tests.20190826083642.jpg"
+                    alt="">
+
+            </div>
+            <div class="col-md-4 mt-3">
+                <h6 class="mt-2">Personal DNA Maternity Test (1M + 1C)</h6>
+                <p>RS 56,000 <del>60,000</del></p>
+                <div class=" dlink">
+                    <a href="#"><i class="px-2 bi bi-heart"></i>Add to Wishlist</a>
+                </div>
+                <hr>
+                <p><b>Quantity</b></p>
+                <div class="wrapper">
+                    <span class="minus">-</span>
+                    <span class="num">01</span>
+                    <span class="plus">+</span>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <a class="nav-link mt-3" id="btn2" href="#">Add to cart</a>
+                    </div>
+                    <div class="col-5">
+                        <a class="nav-link mt-3" id="btn1" href="#">Buy it now</a>
+                    </div>
+                </div>
+                <p class="mt-3"><b>Description</b></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias libero sunt dolorum recusandae?
+                    Quos sed quisquam, autem quis inventore voluptates eaque odio vel, omnis consequatur ipsa adipisci
+                    cumque ratione neque?</p>
+                <p><b>Share Product</b></p>
+                <div class="row cdicon">
+                    <div class="col-1">
+
+                        <a href="#"><i class=" bi bi-whatsapp"></i></a>
+                    </div>
+                    <div class="col-1">
+                        <a href="#"><i class=" bi bi-facebook"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<hr class="mx-4">
+    <h5 class="mx-4">Similar Products</h5>
+    <div class="row justify-content-evenly mt-4 mb-5">
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
+                    <p class="card-text">90,000</p>
+                    <p class="text-muted">DNA Testing Solutions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
+                    <p class="card-text">RS 75,000</p>
+                    <p class="text-muted">DNA Testing Solutions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
+                    <p class="card-text">RS 90,000</p>
+                    <p class="text-muted">DNA Testing Solutions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow" >
+                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
+                    <p class="card-text">RS 150,000</p>
+                    <p class="text-muted">DNA Testing Solutions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const plus = document.querySelector(".plus"),
+        minus = document.querySelector(".minus"),
+        num = document.querySelector(".num");
+    let a = 1;
+    plus.addEventListener("click", () => {
+        a++;
+        a = (a < 10) ? "0" + a : a;
+        num.innerText = a;
+    });
+
+    minus.addEventListener("click", () => {
+        if (a > 1) {
+            a--;
+            a = (a < 10) ? "0" + a : a;
+            num.innerText = a;
+        }
+    });
+</script>
+
+{% endblock content %}
