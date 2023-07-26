@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 
 from django.views.generic import TemplateView
 
+from cart.forms import CartAddProductForm
 from core.forms import ContactForm
 from core.models import Product
 
@@ -14,23 +15,20 @@ def home(request):
                   'pages/home.html')
 
 
-# def product_list(request):
-#     products = Product.objects.filter(available=True)
-#
-#     return render(request,
-#                   'shop/product/list.html',
-#                   {
-#                       'products': products})
-#
-#
-# def product_detail(request, id, slug):
-#     product = get_object_or_404(Product,
-#                                 id=id,
-#                                 slug=slug,
-#                                 available=True)
-#     return render(request,
-#                   'shop/product/detail.html',
-#                   {'product': product})
+def product_list(request):
+    products = Product.objects.filter(available=True)
+
+    return render(request, 'pages/index.html', {'products': products})
+
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product,
+                                slug=slug,
+                                available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request,
+                  'pages/product_detail.html',
+                  {'product': product, 'cart_product_form': cart_product_form})
 
 
 def contact_us(request):

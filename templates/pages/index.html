@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Home|DNA {% endblock %}</title>
+
+{% block content %}
+<div class="container-fluid">
+        <div class="row ">
+            <div class="col-3" style="background-color:  #dbeceb;">
+                <h6 class="mt-5 font"> --- Order a DNA Test</h6>
+                <h1 class="mt-2 font1"> Our Range of Confidential
+                    Services
+                </h1>
+            </div>
+            <div class="col-sm-9 col-md-9" style="background-color:  #c0eeea;">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <div class="container justify-content-center">
+                                <img src="{{ product.image.url }}" class="rounded-circle mt-5 center img-fluid test"
+                                    alt="Cinque Terre" height="150" width="300">
+                                <h6 class="mt-3 center text">{{ product.name }}</h6>
+                                <a href="{% url 'product_detail' product.slug %}"   class="btn btn-primary btn-sm center mb-3 price">
+                                    Rs {{ product.price | intcomma }}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="https://wa.me/923074561958" class="whatsapp_float" target="_blank"> <i
+            class="fa fa-whatsapp whatsapp-icon"></i></a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 bot">
+                <img src="{% static "images/design.png" %}" class="mt-5 py-5 img-fluid" alt="Cinque Terre">
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 mt-5 bot">
+                <h6 class="mt-5" style="color: #025468; font-size: 2vw; font-weight: 700;"> DNA Testing Facility ---</h6>
+                <h3 class="" style="color: rgb(54, 53, 53); font-size: 2vw;">Why Choose DNA LAB Pakistan</h3>
+                <ul class="text-muted">
+                    <li class="">Providing fast, satisfactory and accurate DNA test services at most affordable
+                        prices in Pakistan.</li>
+                    <li class="">Testing kits can be delivered to anywhere in UK, USA, Germany, Spain, Australia,
+                        Canada and Worldwide.</li>
+                    <li class="">Our in-house laboratory enables us to offer a fast turn around time and affordable
+                        testing for our clients.</li>
+                    <li class="">Our laboratory scientists handle your case and communicate with you throughout the
+                        entire process.</li>
+                    <li class="">Our client’s personal data and samples are handled with the utmost confidentiality
+                        and security throughout the entire process.</li>
+                    <li class=""> We have a broad portfolio of tests including DNA paternity testing, maternity
+                        testing, sibling testing,dead body identifications,
+                        organ transplant DNA testing and DNA profiling.</li>
+                    <li class="">If you are looking for a trusted and Certified DNA Laboratory that offers reliable
+                        DNA Testing Services.</li>
+                    <li class="">DNA LAB PAKISTAN holds accreditation from the National Association of Testing
+                        Authorities
+                        (NATA).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5" style="background-color: #dbeceb">
+        <h6 class="text-center top" style="color: #025468; font-family: 'Ubuntu Mono', monospace; font-weight: 600;">---
+            Easy Step Guide For DNA Testing ---
+        </h6>
+        <h1 class="text-center mb-5 top" style="color: rgb(54, 53, 53);">How it Works
+        </h1>
+        <div class="row lef">
+            <div class="col-sm-2 col-md-2  col-lg-2 ">
+                <img class="work img-fluid" src="{% static "images/1.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;">Select your test </h6>
+            </div>
+            <div class="col-sm-2 col-md-2  col-lg-2">
+                <img class="work img-fluid" src="{% static "images/2.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;">Complete one
+                    page order form</h6>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <img class="work img-fluid" src="{% static "images/3.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;">Receive testing kit
+                    from DNA Lab Pakistan</h6>
+            </div>
+            <div class="col-sm-2 col-md-2  col-lg-2">
+                <img class="work img-fluid" src="{% static "images/4.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;"> DNA LAB Pakistan receives sample
+                    for DNA testing</h6>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <img class="img-fluid" src="{% static "images/5.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;">DNA LAB Pakistan Completes
+                    requested DNA testing</h6>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <img class="img-fluid" src="{% static "images/6.png" %}" alt="">
+                <h6 style="text-align: center; font-size: small;">Results emailed in
+                    5 working days</h6>
+            </div>
+        </div>
+        <button class="btn btn-outline btn-sm center mt-5 bot" type="submit">ORDER NOW</button>
+    </div>
+
+    <section id="testimonial">
+        <div class="container mt-5 py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h6 class="text-center top" style="color: #025468; font-family: 'Ubuntu Mono', monospace; font-weight: 600;">---
+                            Trusted DNA Testing Specialists ---
+                        </h6>
+                        <h4 class="text-center mb-5 top" style="color: rgb(54, 53, 53); font-size: 30px">What our customers have to say
+                        </h4>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Slide Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#testimonialCarousel" data-slide-to="1"></li>
+                            <li data-target="#testimonialCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            <!-- Slide 1 -->
+                            <div class="carousel-item active">
+                                <div class="carousel-content">
+                                    <!-- <div class="client-img"><img src="images//user-img-1.jpg" alt="Testimonial Slider" /></div> -->
+                                    <p><i>We wanted to pass on our big thanks for all that you’ve done to expedite our DNA testing. A pleasure to work with you and we’ll be sure to recommend your services to the upcoming couples also coming to Kiev for surrogacy after us.</i></p>
+                                    <h3><span>-</span> Junaid Iqbal <span>-</span></h3>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <!-- <div class="client-img"><img src="images//user-img-2.jpg" alt="Testimonial Slider" /></div> -->
+                                    <p><i>My thanks to DNA LAB PAKISTAN for confirming I am the father of my children. It has given me peace of mind so I can move along with my life.</i></p>
+                                    <h3><span>-</span> Talal Haider <span>-</span></h3>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-item">
+                                <div class="carousel-content">
+                                    <!-- <div class="client-img"><img src="images//user-img-3.jpg" alt="Testimonial Slider" /></div> -->
+                                    <p><i>The all around time I waited for the test to come back was absolutely great and so precise. The pricing is very cheap for the fact that my daughter will grow up with her father by her side which is priceless.</i></p>
+                                    <h3><span>-</span> Farzana Baig <span>-</span></h3>
+                                </div>
+                            </div>
+                            <!-- Slider pre and next arrow -->
+                            <a class="carousel-control-prev text-black" href="#testimonialCarousel" role="button" data-slide="prev">
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                            <a class="carousel-control-next text-black" href="#testimonialCarousel" role="button" data-slide="next">
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="text-center mb-5 mt-5 bot" style="font-size: 30px; color: rgb(54, 53, 53); font-weight: 600;">WORLDWIDE ACCREDITED DNA LAB
+    </h2>
+    <p id="para" class="mx-5 bot">DNA Labs Pakistan delivers High Quality DNA Testing Services tailored to your needs. We
+        are
+        specialized testing provider for Paternity DNA Testing in Pakistan. We compare and select the most appropriate
+        DNA test with highest success rate at affordable cost at nearby your location.</p>
+
+    <img src="{% static "images/8.png" %}" alt="" class="img-fluid center py-5 bot" width="1000">
+
+    <div class="fluid-container py-5 mt-5 px-3" style="background-color: #dbeceb">
+        <div class="row bot">
+            <div class="col-sm-3">
+                <div class="row">
+                    <h5 class="txt">Sample Collection Services</h5>
+                    <p class="tt">Free Home Sampling</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <h5 class="txt">Doctor Trusted Lab</h5>
+                    <p class="tt">Ranked Most Trusted DNA Lab</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <h5 class="txt">Sample Tested in USA</h5>
+                    <p class="tt">All Samples Processed in USA</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <h5 class="txt">100% Assured Quality</h5>
+                    <p class="tt">Only Lab to Perform 24 maker DNA Test</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}

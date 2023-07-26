@@ -42,14 +42,14 @@
             <h1>{{ product.name }}</h1>
           </div>
         </div>
-        <div class="price">{% if product.discounted_price %} Rs: {{  product.discounted_price | intcomma  }} {% else %} {{ product.price | intcomma }} {% endif %}</div>
+        <div class="price">{% if product.discounted_price %} {{  product.discounted_price | intcomma  }} {% else %} {{ product.price | intcomma }} {% endif %}</div>
         <div class="quantity">
             {{ item.quantity }}
 {#          <input type="number" value="4" min="1" class="quantity-field">#}
         </div>
-        <div class="subtotal">104.00</div>
+        <div class="subtotal">{{ item.total_price }}</div>
         <div class="remove">
-            <form action="{% url "cart:cart_remove" product.id %}" method="post">
+            <form action="{% url "cart_remove" product.id %}" method="post">
                 <button type="submit" value="Remove"><i class="bi bi-x-circle"></i></button>
                 {% csrf_token %}
               </form>
@@ -59,7 +59,7 @@
       </div>
        {% endwith %}
       {% endfor %}
-   
+
     </div>
     <aside>
       <div class="summary">

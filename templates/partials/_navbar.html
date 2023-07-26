@@ -1,3 +1,4 @@
+{% load humanize %}
 {%  load static  %}
     <nav class="navbar navbar-custom">
         <div class="container-fluid">
@@ -22,7 +23,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">ABOUT US</a>
                 </li>
+
+                 <li class="nav-item">
+                  {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                      Your cart:
+                      <a class="nav-link"  href="{% url "cart_detail" %}">
+                        {{ total_items }} item{{ total_items|pluralize }},
+                        Rs: {{ cart.get_total_price |intcomma }}
+                      </a>
+                    {% else %}
+                      Your cart is empty.
+                    {% endif %}
+                  {% endwith %}
+
+                </li>
             </ul>
+
         </div>
     </nav>
     <ul class="nav justify-content-center sticky-top" style="background-color: #E3F7FF;">

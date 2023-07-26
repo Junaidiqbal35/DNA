@@ -10,7 +10,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)
     description = RichTextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.PositiveBigIntegerField()
+    discounted_price = models.PositiveBigIntegerField(blank=True, null=True)
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -28,7 +29,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('products:product_detail',
-                       args=[self.id, self.slug])
+                       args=[self.slug])
 
 
 class Contact(models.Model):
