@@ -3,9 +3,8 @@
 *.pyc
 __pycache__/
 local_settings.py
-/media
+
 venv
-/static
+
 .vscode
 .env
-db.sqlite3

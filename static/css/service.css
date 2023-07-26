@@ -1,0 +1,37 @@
+
+
+.img-container img {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+hr.style5 {
+    background-color: #fff;
+    border-top: 2px dashed #000000;
+}
+
+.jumbotron {
+    padding: 20px;
+    background-image: url("/core/static/images/1.png");
+    background-color: #E3F7FF;
+    height: 400;
+    text-align: center;
+    color: #025468;
+    
+}
+.expert{
+    color:#025468;
+    padding: 50px;
+    margin-top: 50px;
+    background-color: #E3F7FF;
+}
+.service h1{
+    color: #025468;
+}
