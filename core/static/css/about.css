@@ -4,4 +4,8 @@ h3{
 }
 .about-para p{
     text-align: right;
+    font-weight: 550;
+}
+.leader p{
+    font-weight: 550;
 }

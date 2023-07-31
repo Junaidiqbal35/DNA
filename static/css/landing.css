@@ -13,12 +13,10 @@ i{
     background-color: #444444;
 
 }
-
 /* Modify brand and text color */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text a {
     color:  #025468;
-    /* font-weight: 600; */
     font-size: 2vw;
     font-family: 'Ubuntu Mono', monospace;
     text-shadow: 0px 0px 3px #ababab;
