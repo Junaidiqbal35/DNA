@@ -1,65 +1,4 @@
-html,
-html a {
-  -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-}
 
-body {
-  background-color: #fff;
-  color: #666;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 62.5%;
-  margin: 0 auto;
-}
-
-a {
-  border: 0 none;
-  outline: 0;
-  text-decoration: none;
-}
-
-strong {
-  font-weight: bold;
-}
-
-p {
-  margin: 0.75rem 0 0;
-}
-
-h1 {
-  font-size: 0.75rem;
-  font-weight: normal;
-  margin: 0;
-  padding: 0;
-}
-
-input,
-button {
-  border: 0 none;
-  outline: 0 none;
-}
-
-button {
-  background-color: #025468 ;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 600;
-}
-#back{
-    background-color: #E3F7FF;
-    color: #025468;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    font-size: 20px;
-    border-radius: 100px;
-    padding-left: 5px;
-    padding-right: auto;
-}
-#pheading p{
-    width: 40%;
-    font-weight: 500;
-}
 button:hover{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -262,7 +201,7 @@ aside {
   width: 30%;
 }
 
-.summary {
+/* .summary {
 
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 1rem;
@@ -273,12 +212,12 @@ aside {
   box-sizing: border-box;
   border-radius: 2px;
   color: black;
-}
+} */
 
 .summary-total-items {
   
   font-size: 1rem;
-  
+  font-weight: 600;
 }
 
 .summary-subtotal,
@@ -346,11 +285,16 @@ aside {
 .checkout-cta {
   display: block;
   float: none;
-  font-size: 0.65rem;
+  font-size: 1rem;
   text-align: center;
   padding: 0.625rem 0;
   width: 100%;
   color: white;
+  background-color: #025468;
+}
+.checkout-cta:hover{
+  color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .summary-delivery-selection {

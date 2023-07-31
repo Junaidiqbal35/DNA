@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
- <title>{% block title %} Home|DNA {% endblock %}</title>
+ <title>{% block title %} Home | DNA LAB PAKISTAN {% endblock %}</title>
 
 {% block content %}
 <div class="container-fluid">
         <div class="row ">
-            <div class="col-3" style="background-color:  #dbeceb;">
+            <div class="col-3" style="background-color: #3E4A5B;">
                 <h6 class="mt-5 font"> --- Order a DNA Test</h6>
                 <h1 class="mt-2 font1"> Our Range of Confidential
                     Services
                 </h1>
             </div>
-            <div class="col-sm-9 col-md-9" style="background-color:  #c0eeea;">
+            <div class="col-sm-9 col-md-9" style="background-color: #E3F7FF;">
                 <div class="row">
                     {% for product in products %}
                         <div class="col-sm-6 col-md-4 col-lg-4">
@@ -20,7 +20,7 @@
                                 <img src="{{ product.image.url }}" class="rounded-circle mt-5 center img-fluid test"
                                     alt="Cinque Terre" height="150" width="300">
                                 <h6 class="mt-3 center text">{{ product.name }}</h6>
-                                <a href="{% url 'product_detail' product.slug %}"   class="btn btn-primary btn-sm center mb-3 price">
+                                <a href="{% url 'product_detail' product.slug %}"   class="btn btn-sm center mb-3 price1">
                                     Rs {{ product.price | intcomma }}</a>
                             </div>
                         </div>

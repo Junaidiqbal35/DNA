@@ -2,79 +2,80 @@
 {% load static %}
  <title>{% block title %} About Us|DNA {% endblock %}</title>
     {% block extrahead %}
-         <link rel="stylesheet" href={% static '/css/about.css' %}>
+         <link rel="stylesheet" href="{% static '/css/about.css' %}">
     {% endblock extrahead %}
 {% block content %}
-    <div class="container p-5 ">
-        <div class="col d-flex justify-content-center">
-            <h4 id="bold">
-                WHAT ARE WE?
-            </h4>
-
-        </div>
-        <p id="para">
+<h3 class="text-center mt-5">WHAT ARE WE?</h3>
+<div class="row about-para">
+    <div class="col-md-4">
+        <img src="{% static 'images/ab1.png'%}" alt="" class="img-fluid">
+    </div>
+    <div class="col-md-8">
+        <p class="mt-5 mx-3 text-right">
             DNA labs Pakistan is part of an ecosystem of solutions that support health care provider needs. We
             conduct more than 5000 tests ranging from relationship DNA Testing to Genetic Testing. With more than a
             decade in this industry, we have provided services to a many and hope to extend the same in the coming
             years. Our Testing Catalogue includes relationship testing such as Paternity, Maternity, Avuncular and
             Grandparent Testing. We conduct genetic tests using NGS method.
         </p>
-        <img src="{% static 'images/ab1.png'%}" alt="" height="500" width="600" class="center">
     </div>
-    <div class="container p-5 ">
-        <div class="col d-flex justify-content-center">
-            <h4 id="bold">
-                OUR JOURNEY BEGAN IN 2017
-            </h4>
-
-        </div>
-        <p id="para">
+   
+</div>
+<h3 class="text-center mt-5"> OUR JOURNEY BEGAN IN 2017</h3>
+<div class="row">
+ 
+    <div class="col-md-8">
+        <p class="mt-5 mx-3">
             A leader of precision healthcare Started with team of 5 in 2017 today we stand with presence in 9 countries
             catering to patients need for genomic testing. DNA labs Pakistan, is a privately held company providing
             complex molecular and specialized diagnostic tests to clinicians with a focus on clear,actionable results
             that enable informed medical decisions.
         </p>
-        <img src="{% static 'images/ab2.png'%}" alt="" height="400" width="500" class="end">
     </div>
-    <div class="container p-5 ">
-        <div class="col d-flex justify-content-center">
-            <h4 id="bold">
-                PATIENTS FIRST. PROVIDER FRIENDLY
-            </h4>
-
-        </div>
-        <p id="para">
+    <div class="col-md-4">
+        <img src="{% static 'images/ab2.png'%}" alt="" class="img-fluid">
+    </div>
+</div>
+<h3 class="text-center mt-5"> PATIENTS FIRST. PROVIDER FRIENDLY</h3>
+<div class="row about-para">
+    <div class="col-md-4">
+        <img src="{% static 'images/ab3.png'%}" alt="" class="img-fluid">
+    </div>
+    <div class="col-md-8">
+        <p class="mt-5 mx-3 text-right">
             With all the rapid advances taking place at DNA Labs Pakistan, our unwavering commitment to improving the
             health and care patients remains constant. We pledge ongoing support and resources for patients and
             providers. DNA Labs Pakistan, Genomic Diagnostics specializes in providing innovative precision medicine
             solutions, including diagnostic, analysis, and support services to clinicians, researchers, and patients.
         </p>
-        <img src="{% static 'images/ab3.png'%}" alt="" height="400" width="500" class="center">
     </div>
-    <div class="fluid-container py-3" style="background-color: #E3F7FF;">
-        <div class="row">
+   
+</div>
+  
+    <div class="container-fluid py-4 mt-5" style="background-color: #E3F7FF;">
+        <div class="row text-center">
             <div class="col-sm-3"> 
                 <div class="row">
-                    <h5 id="yell">Sample Collection Services</h5>
-                    <p id="blue">Free Home Sampling</p>
+                    <h5>Sample Collection Services</h5>
+                    <p>Free Home Sampling</p>
                 </div>
             </div>
             <div class="col-sm-3"> 
                 <div class="row">
-                    <h5 id="yell">Doctor Trusted Lab</h5>
-                    <p id="blue">Ranked Most Trusted DNA Lab</p>
+                    <h5>Doctor Trusted Lab</h5>
+                    <p>Ranked Most Trusted DNA Lab</p>
                 </div>
             </div>
             <div class="col-sm-3"> 
                 <div class="row">
-                    <h5 id="yell">Sample Tested in USA</h5>
-                    <p id="blue">All Samples Processed in USA</p>
+                    <h5>Sample Tested in USA</h5>
+                    <p>All Samples Processed in USA</p>
                 </div>
             </div>
             <div class="col-sm-3"> 
                 <div class="row">
-                    <h5 id="yell">100% Assured Quality</h5>
-                    <p id="blue">Only Lab to Perform 24 maker DNA Test</p>
+                    <h5>100% Assured Quality</h5>
+                    <p>Only Lab to Perform 24 maker DNA Test</p>
                 </div>
             </div>
         </div>

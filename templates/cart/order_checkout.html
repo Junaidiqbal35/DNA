@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Contact Us|DNA {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static '/css/cart.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12">
+
+        <div class="row mt-5" id="pheading">
+            <a href="#" id="back"><i class="bi bi-arrow-left-short"></i></a>
+            <p class="mt-2">Order Summary / <b>Checkout</b> </p>
+        </div>
+    </div>
+</div>
+<form action="." method="post">
+    {% csrf_token %}
+        <div class="row px-5">
+            <div class="col-md-8">
+                <div class="form-group my-3">
+                    <label for="usr">NAME:</label>
+                    <input type="text" name="name" class="form-control formborder" id="usr">
+                </div>
+          
+                <div class="form-group my-3">
+                    <label for="email">EMAIL:</label>
+                    <input name="email" type="email" class="form-control formborder" id="email">
+                </div>
+            <div class="form-group my-3">
+                <label for="phone">PHONE NO.:</label>
+                <input name="phone_number" type="phone" class="form-control formborder" id="phone">
+            </div>
+            <div class="form-group my-3">
+                <label for="city">CITY / PROVINCE:</label>
+                <input name="city" type="text" class="form-control formborder" id="city">
+            </div>
+            <div class="form-group my-3">
+                <label for="postal">POSTAL CODE:</label>
+                <input name="postal" type="number" class="form-control formborder" id="postal">
+            </div>
+            <div class="form-group my-3">
+                <label for="comment">ADDRESS 1</label>
+                <textarea name="message" class="form-control formborder" rows="3" id="comment"></textarea>
+            </div>
+            <div class="form-group my-3">
+                <label for="comment1">ADDRESS 2</label>
+                <textarea name="message1" class="form-control formborder" rows="3" id="comment1"></textarea>
+            </div>
+            <button type="submit" class="btn btn1">PLACE ORDER</button>
+            </div>
+        </div>
+       
+    </form>
+
+{% endblock content %}

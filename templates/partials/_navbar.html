@@ -1,45 +1,14 @@
 {% load humanize %}
 {%  load static  %}
     <nav class="navbar navbar-custom">
-        <div class="container-fluid">
-          <span><i class="bi bi-telephone-fill mx-2"></i><tel>+923074561958</tel></span>
-            <span class="mx-3"><i class="bi bi-envelope-fill mx-2"></i><a href="#">info@dnalabpakistan.com</a></span>
-            <ul class="nav">
-                <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home'  %}">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'product'  %}">DNA TEST LIST</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'reports:report'  %}">CHECK REPORTS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'service'  %}">OUR SERVICES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact' %}">CONTACT US</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">ABOUT US</a>
-                </li>
-
-                 <li class="nav-item">
-                  {% with total_items=cart|length %}
-                    {% if total_items > 0 %}
-                      Your cart:
-                      <a class="nav-link"  href="{% url "cart_detail" %}">
-                        {{ total_items }} item{{ total_items|pluralize }},
-                        Rs: {{ cart.get_total_price |intcomma }}
-                      </a>
-                    {% else %}
-                      Your cart is empty.
-                    {% endif %}
-                  {% endwith %}
-
-                </li>
-            </ul>
-
+        <div class="container-fluid py-2">
+          <div class="col-md-11 d-flex justify-content-left align-items-center">
+              <span><i class="bi bi-telephone-fill"></i><tel class="mx-2">+923074561958</tel></span>
+              <span><i class="bi bi-envelope-fill"><a class="mx-2" href="#">info@dnalabpakistan.com</a></i></span>
+          </div>
+          <div class="col d-flex justify-content-right align-items-center">
+            <a href="#"><i class="bi bi-cart4">0 items</i></a>
+        </div>
         </div>
     </nav>
     <ul class="nav justify-content-center sticky-top" style="background-color: #E3F7FF;">
@@ -49,9 +18,17 @@
         <li class="nav-item ">
             <a class="nav-link active" aria-current="page" href="{% url 'home'  %}">HOME</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'product'  %}">DNA TEST LIST</a>
-        </li>
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            DNA TEST LIST
+          </a>
+        
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Paternity Test</a></li>
+            <li><a class="dropdown-item" href="#">Siblings Test</a></li>
+            <li><a class="dropdown-item" href="#">Maternity Test</a></li>
+          </ul>
+        </div>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'reports:report'  %}">CHECK REPORTS</a>
         </li>
@@ -123,4 +100,3 @@
 
   </a>
 </div>
-

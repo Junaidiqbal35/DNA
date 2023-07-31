@@ -21,7 +21,7 @@
 
     <div class="basket">
       <div class="basket-module">
-        <h6>My Cart</h6>
+        <h3>My Cart</h3>
       </div>
       <div class="basket-labels">
         <ul>
@@ -39,7 +39,7 @@
             <img src="{{ product.image.url }}" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1>{{ product.name }}</h1>
+            <h4>{{ product.name }}</h4>
           </div>
         </div>
         <div class="price">{% if product.discounted_price %} {{  product.discounted_price | intcomma  }} {% else %} {{ product.price | intcomma }} {% endif %}</div>
@@ -75,8 +75,8 @@
           <div class="total-value final-value" id="basket-total"> {{ cart.get_total_price | intcomma }} </div>
         </div>
         <div class="summary-checkout">
-          <button class="checkout-cta">GO TO CHECKOUT</button>
-          <button class="checkout-cta mt-2" id="btn1">Continue Shopping</button>
+          <button class="btn checkout-cta">GO TO CHECKOUT</button>
+          <button class="btn checkout-cta mt-2">Continue Shopping</button>
         </div>
       </div>
     </aside>

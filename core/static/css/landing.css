@@ -22,6 +22,7 @@ i{
     font-size: 2vw;
     font-family: 'Ubuntu Mono', monospace;
     text-shadow: 0px 0px 3px #ababab;
+    
 }
 .navbar-custom a{
     text-decoration: none;
@@ -34,7 +35,9 @@ i{
 ul.nav a:hover {
     color: #FBB540 !important;
 }
-
+.btn:focus{
+    box-shadow: none;
+}
 .btn-outline {
     background-color: #E3F7FF;
     color: #3E4A5B;
@@ -69,19 +72,19 @@ ul.nav a:hover {
     width: 50%;
 }
 .test{
-border: 2px solid #aedfd6;
+border: 2px solid #3E4A5B;
 }
   /* img:hover{
     border: 3px solid #ffffff;
     box-shadow: 0 0 5px 4px #ffffff;
   } */
 .test:hover{
-    border: 2px solid #025468;
+    border: 2px solid white;
     box-shadow: 2px 0px 2px #ffffff;
 }
   .font{
       font-size: 16px;
-      color: #025468; 
+      color: #E3F7FF; 
       text-align: end;
       font-weight: 600;
       font-family: 'Ubuntu', sans-serif;
@@ -89,7 +92,7 @@ border: 2px solid #aedfd6;
   }
   .font1{
     font-size: 35px;
-    color: rgb(54, 53, 53); text-align: end;
+    color: #E3F7FF; text-align: end;
     font-family: 'Ubuntu', sans-serif;
     margin-right: 20px;
 }
@@ -161,15 +164,15 @@ color: #025468;
 background-color: #FBB540;
 font-size: 18px;
 }
-.price{
-    border-color: #E3F7FF; 
-    background-color: #c0eeea; 
-    color: #025468; 
+.price1{
+    background-color: #3E4A5B; 
+    color: white; 
     border-width: 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   
 }
-.price:hover{
-    border-color: #E3F7FF;
+.price1:hover{
+    border-color: #3E4A5B;
     background-color: #c0eeea; 
     color: #025468;
     font-weight: 600;
