@@ -8,6 +8,7 @@ urlpatterns = [
     # path('', TemplateView.as_view(template_name="pages/home.html"), name='home'),
     path('', views.product_list, name='home'),
     path('product/<str:slug>/', views.product_detail, name='product_detail'),
+    path('get/products/', views.get_product_list, name='product_name_partial'),
     path('services/', TemplateView.as_view(template_name="pages/services.html"), name='service'),
     path('product/', TemplateView.as_view(template_name="pages/product.html"), name='product'),
     path('about-us/', TemplateView.as_view(template_name="pages/aboutus.html"), name='about'),

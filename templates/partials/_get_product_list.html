@@ -1,0 +1,6 @@
+
+                 {% for product in products %}
+                        <li><a class="dropdown-item" href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></li>
+{#                        <li><a class="dropdown-item" href="#">Siblings Test</a></li>#}
+{#                        <li><a class="dropdown-item" href="#">Maternity Test</a></li>#}
+                {% endfor %}

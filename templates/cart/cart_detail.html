@@ -75,8 +75,8 @@
           <div class="total-value final-value" id="basket-total"> {{ cart.get_total_price | intcomma }} </div>
         </div>
         <div class="summary-checkout">
-          <button class="btn checkout-cta">GO TO CHECKOUT</button>
-          <button class="btn checkout-cta mt-2">Continue Shopping</button>
+          <a href="{% url 'order_checkout' %}" class="btn checkout-cta">GO TO CHECKOUT</a>
+          <a class="btn checkout-cta mt-2">Continue Shopping</a>
         </div>
       </div>
     </aside>

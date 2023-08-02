@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load humanize %}
 {% load static %}
  <title>{% block title %} Details | DNA Testing Solutions {% endblock %}</title>
     {% block extrahead %}
@@ -68,50 +69,24 @@
 <hr class="mx-4">
     <h5 class="mx-4">Similar Products</h5>
     <div class="row justify-content-evenly mt-4 mb-5">
-        <div class="col-md-3">
-            <div class="card shadow">
-                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
-                    <p class="card-text">90,000</p>
-                    <p class="text-muted">DNA Testing Solutions</p>
+        {% for product in  recommended_products  %}
+            <div class="col-md-3">
+                <div class="card shadow">
+                    <a href="{% url 'product_detail' product.slug %}">
+                    <img src="{{ product.image.url }}"
+                        class="card-img-top" alt="...">
+                      </a>
+                    <div class="card-body">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <p class="card-text">Rs: {{ product.price |intcomma }}</p>
+                        <p class="text-muted">DNA Testing Solutions</p>
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow">
-                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg" class="card-img-top"
-                    alt="...">
-                <div class="card-body">
-                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
-                    <p class="card-text">RS 75,000</p>
-                    <p class="text-muted">DNA Testing Solutions</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow">
-                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
-                    <p class="card-text">RS 90,000</p>
-                    <p class="text-muted">DNA Testing Solutions</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow" >
-                <img src="https://www.abc.net.au/reslib/201001/r504044_2681020.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h6 class="card-title">Legal Siblings DNA Test- 2 Siblings </h6>
-                    <p class="card-text">RS 150,000</p>
-                    <p class="text-muted">DNA Testing Solutions</p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+
+
     </div>
 </div>
 

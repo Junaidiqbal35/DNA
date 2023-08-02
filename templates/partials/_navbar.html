@@ -23,10 +23,8 @@
             DNA TEST LIST
           </a>
         
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Paternity Test</a></li>
-            <li><a class="dropdown-item" href="#">Siblings Test</a></li>
-            <li><a class="dropdown-item" href="#">Maternity Test</a></li>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" hx-get="{% url 'product_name_partial' %}"  hx-trigger="load, contactListChanged from:body">
+
           </ul>
         </div>
         <li class="nav-item">
