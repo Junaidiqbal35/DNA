@@ -9,7 +9,25 @@ button:hover{
 #btn1:hover{
     box-shadow: none;
 }
-
+.dropdown-toggle{
+  margin-top: 10px;
+}
+.checkout_form label{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.navbar-brand{
+  margin-top: 10px;
+}
+.btn1{
+  background-color: #3E4A5B;
+  color: #E3F7FF;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.btn1:hover{
+  background-color: #FBB540;
+}
 img,
 .basket-module,
 .basket-labels,

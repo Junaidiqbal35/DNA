@@ -124,13 +124,19 @@ color: #025468;
     text-align: center;
     padding-top: 5px;
 }
-.dlink a{
-    margin-left: 60%;
-    padding-top: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: black;
+.callorder a{
+  padding: 10px;
+  color: white;
+    background-color: #00C738;
     text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+.callorder i{
+  color: white;
+}
+.callorder a:hover{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 ul{
     list-style: none;
