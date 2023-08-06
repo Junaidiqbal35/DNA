@@ -25,12 +25,12 @@
                     alt="">
 
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-md-4  mt-3">
                 <h6 class="mt-2">{{ product.name }}</h6>
                 <p> {% if product.discounted_price %} Rs {{ product.discounted_price|intcomma }} <del>Rs{{ product.price|intcomma }}</del> {% else %} RS {{ product.price|intcomma }} {% endif %}</p>
                 <div class="callorder col">
-                    <a href="#"><i class="px-2 bi bi-telephone-fill "></i>Call 03074561958</a>
-                    <a href="#" class="mx-3"><i class="px-2 bi bi-cart4"></i>Order Now</a>
+                    <a href="#"><i class="px-2 bi bi-telephone-fill "></i>Call Now +923074561958</a>
+{#                    <a href="#" class="mx-3"><i class="px-2 bi bi-cart4"></i>Order Now</a>#}
                 </div>
                 <hr>
                 <div class="row">
@@ -53,17 +53,17 @@
                 </div>
                 <p class="mt-3"><b>Description</b></p>
                 <p>{{ product.description | safe }}</p>
-                <p><b>Share Product</b></p>
-                <div class="row cdicon">
-                    <div class="col-1">
-
-                        <a href="#"><i class=" bi bi-whatsapp"></i></a>
-                    </div>
-                    <div class="col-1">
-                        <a href="#"><i class=" bi bi-facebook"></i></a>
-
-                    </div>
-                </div>
+{#                <p><b>Share Product</b></p>#}
+{#                <div class="row cdicon">#}
+{#                    <div class="col-1">#}
+{##}
+{#                        <a href="#"><i class=" bi bi-whatsapp"></i></a>#}
+{#                    </div>#}
+{#                    <div class="col-1">#}
+{#                        <a href="#"><i class=" bi bi-facebook"></i></a>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
             </div>
         </div>
     </div>

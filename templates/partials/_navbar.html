@@ -5,12 +5,22 @@
           <div class="col-md-11 d-flex justify-content-left align-items-center">
               <span><i class="bi bi-telephone-fill"></i><tel class="mx-2">+923074561958</tel></span>
               <span><i class="bi bi-envelope-fill"><a class="mx-2" href="#">info@dnalabpakistan.com</a></i></span>
-              <span><i class="bi bi-facebook"><a class="mx-2" href="#"></a></i></span>
-              <span><i class="bi bi-instagram"><a class="mx-2" href="#"></a></i></span>
-              <span><i class="bi bi-twitter"><a class="mx-2" href="#"></a></i></span>
+              <span><a class="mx-2" href="https://www.facebook.com/dnalabpakistan"><i class="bi bi-facebook"></i></a></span>
+              <span class="text-center"><p> Due To Currency Fluctuation Please call before placing order. </p></span>
           </div>
           <div class="col d-flex justify-content-right align-items-center">
-            <a href="#"><i class="bi bi-cart4">0 items</i></a>
+
+                  {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+
+                      <a href="{% url "cart_detail" %}">
+                          <i class="bi bi-cart4"></i>{{ total_items }} item{{ total_items|pluralize }}
+                      </a>
+
+                    {% else %}
+                        <i class="bi bi-cart4"></i>
+                    {% endif %}
+                  {% endwith %}
         </div>
         </div>
     </nav>
