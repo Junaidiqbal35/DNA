@@ -34,7 +34,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6 bot">
-                <img src="{% static "images/design.png" %}" class="mt-5 py-5 img-fluid" alt="Cinque Terre">
+                <img src="{% static 'images/design.png' %}" class="mt-5 py-5 img-fluid" alt="Cinque Terre">
             </div>
             <div class="col-sm-6 col-md-4 col-lg-4 mt-5 bot">
                 <h6 class="mt-5" style="color: #025468; font-size: 2vw; font-weight: 700;"> DNA Testing Facility ---</h6>
@@ -84,82 +84,82 @@
                     from DNA Lab Pakistan</h6>
             </div>
             <div class="col-sm-2 col-md-2  col-lg-2">
-                <img class="work img-fluid" src="{% static "images/4.png" %}" alt="">
+                <img class="work img-fluid" src="{% static 'images/4.png' %}" alt="">
                 <h6 style="text-align: center; font-size: small;"> DNA LAB Pakistan receives sample
                     for DNA testing</h6>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <img class="img-fluid" src="{% static "images/5.png" %}" alt="">
+                <img class="img-fluid" src="{% static 'images/5.png' %}" alt="">
                 <h6 style="text-align: center; font-size: small;">DNA LAB Pakistan Completes
                     requested DNA testing</h6>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <img class="img-fluid" src="{% static "images/6.png" %}" alt="">
+                <img class="img-fluid" src="{% static 'images/6.png' %}" alt="">
                 <h6 style="text-align: center; font-size: small;">Results emailed in
                     5 working days</h6>
             </div>
         </div>
         <button class="btn btn-outline btn-sm center mt-5 bot" type="submit">ORDER NOW</button>
     </div>
-
-    <section id="testimonial">
-        <div class="container mt-5 py-5">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h6 class="text-center top" style="color: #025468; font-family: 'Ubuntu Mono', monospace; font-weight: 600;">---
-                            Trusted DNA Testing Specialists ---
-                        </h6>
-                        <h4 class="text-center mb-5 top" style="color: rgb(54, 53, 53); font-size: 30px">What our customers have to say
-                        </h4>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Slide Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#testimonialCarousel" data-slide-to="1"></li>
-                            <li data-target="#testimonialCarousel" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            <!-- Slide 1 -->
-                            <div class="carousel-item active">
-                                <div class="carousel-content">
-                                    <!-- <div class="client-img"><img src="images//user-img-1.jpg" alt="Testimonial Slider" /></div> -->
-                                    <p><i>We wanted to pass on our big thanks for all that you’ve done to expedite our DNA testing. A pleasure to work with you and we’ll be sure to recommend your services to the upcoming couples also coming to Kiev for surrogacy after us.</i></p>
-                                    <h3><span>-</span> Junaid Iqbal <span>-</span></h3>
-                                </div>
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="carousel-item">
-                                <div class="carousel-content">
-                                    <!-- <div class="client-img"><img src="images//user-img-2.jpg" alt="Testimonial Slider" /></div> -->
-                                    <p><i>My thanks to DNA LAB PAKISTAN for confirming I am the father of my children. It has given me peace of mind so I can move along with my life.</i></p>
-                                    <h3><span>-</span> Talal Haider <span>-</span></h3>
-                                </div>
-                            </div>
-                            <!-- Slide 3 -->
-                            <div class="carousel-item">
-                                <div class="carousel-content">
-                                    <!-- <div class="client-img"><img src="images//user-img-3.jpg" alt="Testimonial Slider" /></div> -->
-                                    <p><i>The all around time I waited for the test to come back was absolutely great and so precise. The pricing is very cheap for the fact that my daughter will grow up with her father by her side which is priceless.</i></p>
-                                    <h3><span>-</span> Farzana Baig <span>-</span></h3>
-                                </div>
-                            </div>
-                            <!-- Slider pre and next arrow -->
-                            <a class="carousel-control-prev text-black" href="#testimonialCarousel" role="button" data-slide="prev">
-                                <i class="fa fa-chevron-left"></i>
-                            </a>
-                            <a class="carousel-control-next text-black" href="#testimonialCarousel" role="button" data-slide="next">
-                                <i class="fa fa-chevron-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <section id="testim" class="testim">
+        <div class="col-12">
+            <div class="section-title">
+                <h6 class="text-center top mt-5" style="color: #025468; font-family: 'Ubuntu Mono', monospace; font-weight: 600;">---
+                    Trusted DNA Testing Specialists ---
+                </h6>
+                <h4 class="text-center top" style="color: rgb(54, 53, 53); font-size: 30px">What our customers have to say
+                </h4>
             </div>
         </div>
-    </section>
+        <div class="testim-cover">
+           <div class="wrap">
+
+               <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
+               <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
+               <ul id="testim-dots" class="dots">
+                   <li class="dot active"></li><!--
+                   --><li class="dot"></li><!--
+                   --><li class="dot"></li><!--
+                   --><li class="dot"></li><!--
+                   --><li class="dot"></li>
+               </ul>
+               <div id="testim-content" class="cont">
+                   
+                   <div class="active">
+                       
+                       <h2>Junaid Iqbal</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                   </div>
+
+                   <div>
+    
+                       <h2>Mr. Lorem Ipsum</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                   </div>
+
+                   <div>
+                    
+                       <h2>Lorem Ipsum</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                   </div>
+
+                   <div>
+                       
+                       <h2>Lorem De Ipsum</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                   </div>
+
+                   <div>
+                       
+                       <h2>Ms. Lorem R. Ipsum</h2>
+                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>                    
+                   </div>
+
+               </div>
+
+           </div>
+        </div>
+   </section>
 
     <h2 class="text-center mb-5 mt-5 bot" style="font-size: 30px; color: rgb(54, 53, 53); font-weight: 600;">WORLDWIDE ACCREDITED DNA LAB
     </h2>
@@ -199,6 +199,116 @@
         </div>
     </div>
 
+<script>
+    // vars
+'use strict'
+var	testim = document.getElementById("testim"),
+		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+    testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
+    testimLeftArrow = document.getElementById("left-arrow"),
+    testimRightArrow = document.getElementById("right-arrow"),
+    testimSpeed = 4500,
+    currentSlide = 0,
+    currentActive = 0,
+    testimTimer,
+		touchStartPos,
+		touchEndPos,
+		touchPosDiff,
+		ignoreTouch = 30;
+;
 
+window.onload = function() {
+
+    // Testim Script
+    function playSlide(slide) {
+        for (var k = 0; k < testimDots.length; k++) {
+            testimContent[k].classList.remove("active");
+            testimContent[k].classList.remove("inactive");
+            testimDots[k].classList.remove("active");
+        }
+
+        if (slide < 0) {
+            slide = currentSlide = testimContent.length-1;
+        }
+
+        if (slide > testimContent.length - 1) {
+            slide = currentSlide = 0;
+        }
+
+        if (currentActive != currentSlide) {
+            testimContent[currentActive].classList.add("inactive");            
+        }
+        testimContent[slide].classList.add("active");
+        testimDots[slide].classList.add("active");
+
+        currentActive = currentSlide;
+    
+        clearTimeout(testimTimer);
+        testimTimer = setTimeout(function() {
+            playSlide(currentSlide += 1);
+        }, testimSpeed)
+    }
+
+    testimLeftArrow.addEventListener("click", function() {
+        playSlide(currentSlide -= 1);
+    })
+
+    testimRightArrow.addEventListener("click", function() {
+        playSlide(currentSlide += 1);
+    })    
+
+    for (var l = 0; l < testimDots.length; l++) {
+        testimDots[l].addEventListener("click", function() {
+            playSlide(currentSlide = testimDots.indexOf(this));
+        })
+    }
+
+    playSlide(currentSlide);
+
+    // keyboard shortcuts
+    document.addEventListener("keyup", function(e) {
+        switch (e.keyCode) {
+            case 37:
+                testimLeftArrow.click();
+                break;
+                
+            case 39:
+                testimRightArrow.click();
+                break;
+
+            case 39:
+                testimRightArrow.click();
+                break;
+
+            default:
+                break;
+        }
+    })
+		
+		testim.addEventListener("touchstart", function(e) {
+				touchStartPos = e.changedTouches[0].clientX;
+		})
+	
+		testim.addEventListener("touchend", function(e) {
+				touchEndPos = e.changedTouches[0].clientX;
+			
+				touchPosDiff = touchStartPos - touchEndPos;
+			
+				console.log(touchPosDiff);
+				console.log(touchStartPos);	
+				console.log(touchEndPos);	
+
+			
+				if (touchPosDiff > 0 + ignoreTouch) {
+						testimLeftArrow.click();
+				} else if (touchPosDiff < 0 - ignoreTouch) {
+						testimRightArrow.click();
+				} else {
+					return;
+				}
+			
+		})
+}
+</script>
 
 {% endblock content %}
