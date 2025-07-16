@@ -5,69 +5,140 @@
          <link rel="stylesheet" href="{% static '/css/contactus.css' %}">
     {% endblock extrahead %}
 {% block content %}
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-blue-900/50"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-20">
+                    <div class="inline-flex items-center px-4 py-2 bg-cyan-500/20 rounded-full border border-cyan-500/30 mb-6">
+                        <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-cyan-300 text-sm font-medium">Get Started</span>
+                    </div>
+                    
+                    <h2 class="text-5xl md:text-6xl font-black mb-8">
+                        <span class="gradient-text">Start Your DNA Journey</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Ready to unlock your genetic insights? Contact our expert team to schedule your DNA test and begin your journey of discovery.
+                    </p>
+                </div>
 
-<div class="d-flex justify-content-center py-3 mt-3">
-    <h4 id="bold">
-        WE ARE HERE TO SERVE YOU
-    </h4>
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="space-y-8">
+                        <div class="space-y-8">
+                            <div class="flex items-center space-x-6 group">
+                                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-emerald-400 transition-colors">Phone</h3>
+                                    <p class="text-gray-300 text-lg">+92 307 456 1958</p>
+                                    <p class="text-gray-400 text-sm">Available 24/7 for emergencies</p>
+                                </div>
+                            </div>
 
-</div>
-<form action="." method="post">
-{% csrf_token %}
-    <div class="row px-5">
-        <div class="col-md-8">
-            <div class="form-group my-3">
-                <label for="usr">NAME:</label>
-                <input type="text" name="name" class="form-control formborder" id="usr">
-            </div>
-      
-            <div class="form-group my-3">
-                <label for="email">EMAIL:</label>
-                <input name="email" type="email" class="form-control formborder" id="email">
-            </div>
-        <div class="form-group my-3">
-            <label for="phone">PHONE NO.:</label>
-            <input name="phone_number" type="phone" class="form-control formborder" id="phone">
-        </div>
-        <div class="form-group my-3">
-            <label for="comment">HOW WE CAN HELP YOU?</label>
-            <textarea name="message" class="form-control formborder" rows="5" id="comment"></textarea>
-        </div>
-        <button type="submit" class="btn btn1">SEND</button>
-        </div>
-        <div class="col-md-4 mt-5">
-            <img class="img-fluid" src="{% static 'images/contact.png' %}" alt="">
-        </div>
-    </div>
-   
-</form>
-    <h4 class="text-center mt-5 mb-3">
-        You can Directly Contact us on WhatsApp
-    </h4>
+                            <div class="flex items-center space-x-6 group">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-blue-400 transition-colors">Email</h3>
+                                    <p class="text-gray-300 text-lg">info@dnalabpakistan.com</p>
+                                    <p class="text-gray-400 text-sm">Response within 1 hour</p>
+                                </div>
+                            </div>
 
-<div class="d-flex justify-content-center py-3">
-    <button type="button" class="btn btn-lg btn-block btn2">
-        <div class="row">
-            <div class="col mt-2">
-                <h4>+923074561958</h4>
-            </div>
-            <div class="col">
-                <img src="{% static 'images/whatsapp.png' %}" alt="" srcset="">
+                            <div class="flex items-center space-x-6 group">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-purple-400 transition-colors">Address</h3>
+                                    <p class="text-gray-300 text-lg">First Floor, Building# 33-D, Shop #3, Main PIA Main Boulevard, Lahore, 54770</p>
+                                    <p class="text-gray-400 text-sm">State-of-the-art facility</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 hover-lift">
+                            <h3 class="text-2xl font-bold mb-6 gradient-text">Business Hours</h3>
+                            <div class="space-y-4 text-gray-300">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium">Monday - Friday</span>
+                                    <span class="text-emerald-400 font-bold">9:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium">Saturday</span>
+                                    <span class="text-emerald-400 font-bold">9:00 AM - 2:00 PM</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-medium">Sunday</span>
+                                    <span class="text-red-400 font-bold">Closed</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-2 border-t border-white/10">
+                                    <span class="font-medium">Emergency Service</span>
+                                    <span class="text-blue-400 font-bold">24/7 Available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-3xl p-8 hover-lift">
+                        <h3 class="text-3xl font-bold mb-8 gradient-text text-center">Schedule Your Test</h3>
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold mb-3 text-gray-300">First Name</label>
+                                    <input type="text" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold mb-3 text-gray-300">Last Name</label>
+                                    <input type="text" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">Email Address</label>
+                                <input type="email" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">Phone Number</label>
+                                <input type="tel" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">Test Package</label>
+                                <select class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                                    <option value="">Select a package</option>
+                                    <option value="essential">Essential Package - PKR 15,000</option>
+                                    <option value="premium">Premium Package - PKR 28,000</option>
+                                    <option value="professional">Professional Package - PKR 50,000</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">Additional Information</label>
+                                <textarea rows="4" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white" placeholder="Tell us about your specific requirements..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform pulse-glow">
+                                Schedule DNA Test
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </button>
-</div>
-
-<div class="col px-5 mt-5">
-    <h3>DNA LAB PAKISTAN</h3>
-</div>
-<div class="row px-5 mb-5">
-    <i class="bi bi-hospital"> 572,Block #3 Sector C-1, Near Umer Chowk
-        Masjid Stop, Township Lahore</i>
-    <i class="bi bi-telephone-fill"> 03074561958</i>
-    <i class="bi bi-envelope-fill"> info@dnalabpakistan.com</i>
-    
-</div>
-<!-- <img class="img-fluid py-5" src="{% static 'images/Rectangle.png' %}" alt="" height="100"> -->
+    </section>
 
 {% endblock content %}

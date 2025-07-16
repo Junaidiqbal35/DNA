@@ -1,0 +1,109 @@
+{% load humanize %}
+{%  load static  %}
+  <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-delayed {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(180deg); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 3s infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 50px rgba(16, 185, 129, 0.6), 0 0 100px rgba(59, 130, 246, 0.4);
+                transform: scale(1.05);
+            }
+        }
+        .morph {
+            animation: morph 8s ease-in-out infinite;
+        }
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        .text-shadow {
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+    </style>
+<nav class="fixed top-0 w-full z-50 glass-dark transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                
+                        <div >
+                            <img src="{% static 'images/dnalogo.png' %}" height="40px" width="40px">
+                        </div>
+                    
+                    <div>
+                        <span class="text-2xl font-bold gradient-text">DTS</span>
+                        <div class="text-xs text-emerald-400 font-medium">DNA Testing Solutions</div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{% url 'home'  %}" class="relative group">
+                        <span class="text-white hover:text-emerald-400 transition-colors">Home</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{% url 'service'  %}" class="relative group">
+                        <span class="text-white hover:text-emerald-400 transition-colors">Services</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#products" class="relative group">
+                        <span class="text-white hover:text-emerald-400 transition-colors">Products</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{% url 'about'  %}" class="relative group">
+                        <span class="text-white hover:text-emerald-400 transition-colors">About</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{% url 'contact'  %}" class="relative group">
+                        <span class="text-white hover:text-emerald-400 transition-colors">Contact</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                
+                <button class="bg-gradient-to-r from-emerald-500 to-blue-500 px-6 py-2 rounded-full hover:scale-105 transition-transform font-semibold">
+                    Book Test
+                </button>
+            </div>
+        </div>
+    </nav>
+    
