@@ -93,17 +93,17 @@
     }
 </style>
 <nav class="fixed top-0 w-full z-50 glass-dark transition-all duration-300">
-    <div class="container mx-auto px-6 py-4">
+    <div class="container mx-auto px-6 ">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
 
-                <div>
-                    <img src="{% static 'images/dnalogo.png' %}" height="40px" width="40px">
-                </div>
+                <!-- <div>
+                    <img src="{% static 'images/dnalogo1.png' %}" height="40px" width="40px">
+                </div> -->
 
                 <div>
-                    <span class="text-2xl font-bold gradient-text">DTS</span>
-                    <div class="text-xs text-emerald-400 font-medium">DNA Testing Solutions</div>
+                    <span class=" font-bold gradient-text"><img src="{% static 'images/dnalogo1.png' %}" height="120px" width="120px"></span>
+                    <!-- <div class="text-xs text-emerald-400 font-medium">DNA Testing Solutions</div> -->
                 </div>
             </div>
 
@@ -113,13 +113,18 @@
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
                 </a>
-                <a href="{% url 'service'  %}" class="relative group">
-                    <span class="text-white hover:text-emerald-400 transition-colors">Services</span>
+                <a href="{% url 'dnatestlist'  %}" class="relative group">
+                    <span class="text-white hover:text-emerald-400 transition-colors">DNA Test List</span>
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
                 </a>
-                <a href="https://dnalab.store/shop" class="relative group">
-                    <span class="text-white hover:text-emerald-400 transition-colors">Products</span>
+                <a href="{% url 'checkreports'  %}" class="relative group">
+                    <span class="text-white hover:text-emerald-400 transition-colors">Check Reports</span>
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="{% url 'service'  %}" class="relative group">
+                    <span class="text-white hover:text-emerald-400 transition-colors">Services</span>
                     <span
                         class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
                 </a>
@@ -137,7 +142,7 @@
 
             <a href="https://dnalab.store/"
                 class="bg-gradient-to-r from-emerald-500 to-blue-500 px-6 py-2 rounded-full hover:scale-105 transition-transform font-semibold text-white inline-block">
-                Book Test
+                Web Store
             </a>
 
         </div>
