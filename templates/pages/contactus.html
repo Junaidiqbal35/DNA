@@ -1,144 +1,881 @@
 {% extends 'base.html' %}
 {% load static %}
- <title>{% block title %} Contact Us|DNA {% endblock %}</title>
-    {% block extrahead %}
-         <link rel="stylesheet" href="{% static '/css/contactus.css' %}">
-    {% endblock extrahead %}
+<title>{% block title %} Contact Us|DNA {% endblock %}</title>
+{% block extrahead %}
+<link rel="stylesheet" href="{% static '/css/contactus.css' %}">
+<style>
+    /* DTS Color Scheme Variables */
+    :root {
+        --dts-primary: #00A693;
+        --dts-primary-dark: #006B5C;
+        --dts-primary-light: #00C7A8;
+        --dts-secondary: #0B7C6A;
+        --dts-accent: #14A085;
+        --dts-dark: #2D3748;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-light {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 166, 147, 0.2);
+    }
+
+    .glass-dark {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, var(--dts-primary), var(--dts-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-dts-gradient {
+        background: linear-gradient(135deg, var(--dts-primary), var(--dts-accent));
+    }
+
+    .bg-dts-gradient-dark {
+        background: linear-gradient(135deg, var(--dts-primary-dark), var(--dts-secondary));
+    }
+
+    .text-dts-primary {
+        color: var(--dts-primary);
+    }
+
+    .text-dts-accent {
+        color: var(--dts-accent);
+    }
+
+    .border-dts-primary {
+        border-color: var(--dts-primary);
+    }
+
+    .dts-animated-bg {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+    }
+
+    .lab-bg {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+    }
+
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .hover-lift {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+
+    .floating {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-delayed {
+        animation: float 6s ease-in-out infinite;
+        animation-delay: -3s;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+
+    .pulse-glow {
+        animation: pulse-glow 3s infinite;
+    }
+
+    @keyframes pulse-glow {
+
+        0%,
+        100% {
+            box-shadow: 0 0 20px rgba(0, 166, 147, 0.3);
+        }
+
+        50% {
+            box-shadow: 0 0 40px rgba(0, 166, 147, 0.5);
+        }
+    }
+
+    .lab-image {
+        transition: all 0.4s ease;
+        overflow: hidden;
+    }
+
+    .lab-image:hover img {
+        transform: scale(1.1);
+    }
+
+    .lab-image img {
+        transition: transform 0.4s ease;
+    }
+
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .stats-counter {
+        font-variant-numeric: tabular-nums;
+    }
+
+    .map-container {
+        height: 400px;
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+        .parallax {
+            background-attachment: scroll;
+        }
+
+        .map-container {
+            height: 300px;
+        }
+    }
+
+    .facility-card {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+    }
+
+    .facility-card:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock extrahead %}
 {% block content %}
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-blue-900/50"></div>
-        
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-20">
-                    <div class="inline-flex items-center px-4 py-2 bg-cyan-500/20 rounded-full border border-cyan-500/30 mb-6">
-                        <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse"></span>
-                        <span class="text-cyan-300 text-sm font-medium">Get Started</span>
+
+<!-- DNA Testing Hero Section -->
+<section class="dts-animated-bg py-20 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0">
+        <div class="floating absolute top-20 left-10 w-32 h-32 rounded-full opacity-20"
+            style="background: linear-gradient(135deg, var(--dts-primary), var(--dts-accent));"></div>
+        <div class="floating-delayed absolute bottom-20 right-10 w-24 h-24 rounded-full opacity-20"
+            style="background: linear-gradient(135deg, var(--dts-accent), var(--dts-secondary));"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-6 py-3 rounded-full border mb-8"
+                style="background: rgba(0, 166, 147, 0.2); border-color: rgba(0, 166, 147, 0.3);">
+                <svg class="w-5 h-5 mr-3 text-dts-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v9a2 2 0 002 2z" />
+                </svg>
+                <span class="text-dts-accent font-medium">State-of-the-Art Laboratory</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight text-white">
+                <span class="gradient-text">DNA Testing</span>
+            </h1>
+
+            <p class="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+                Reliable solutions for paternity, immigration, and genomic testing services.
+            </p>
+
+            <div class="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-white mb-2 stats-counter">99.9%</div>
+                    <div class="text-gray-300 text-sm font-medium">Accuracy Rate</div>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-white mb-2 stats-counter">15K+</div>
+                    <div class="text-gray-300 text-sm font-medium">Tests Completed</div>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-white mb-2 stats-counter">24h</div>
+                    <div class="text-gray-300 text-sm font-medium">Express Results</div>
+                </div>
+                <div class="glass rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-white mb-2 stats-counter">5.0★</div>
+                    <div class="text-gray-300 text-sm font-medium">Customer Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Laboratory Showcase Section -->
+<section class="py-20 lab-bg relative">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-gray-800">
+                Our <span class="gradient-text">Advanced Laboratory</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Experience cutting-edge DNA analysis technology with our state-of-the-art laboratory facilities,
+                operated by certified professionals following international standards.
+            </p>
+        </div>
+
+        <!-- Lab Images Grid -->
+        <div class="grid lg:grid-cols-2 gap-8 mb-16">
+            <!-- Large Featured Image -->
+            <div class="lg:row-span-2">
+                <div class="lab-image glass-light rounded-3xl p-4 h-full hover-lift">
+                    <div class="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
+
+                        <!-- ✅ Background image -->
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+     style="background-image: url('{% static "images/dnalab2.jpg" %}');">
+</div>
+
+                        <!-- Optional: semi-transparent overlay -->
+                        <div class="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+
+                        <div class="w-full h-full rounded-2xl flex items-center justify-center relative z-10">
+                            <div class="text-center p-8">
+                                <div
+                                    class="w-20 h-20 bg-dts-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Professional Sample Collection</h3>
+                                <p class="text-gray-600">Trained medical professionals ensure proper sample collection
+                                    with full safety protocols and sterile equipment.</p>
+                                <div class="flex justify-center space-x-4 mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <svg class="w-4 h-4 mr-1 text-dts-primary" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Sterile Environment
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <svg class="w-4 h-4 mr-1 text-dts-primary" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        Certified Staff
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
-                    <h2 class="text-5xl md:text-6xl font-black mb-8">
-                        <span class="gradient-text">Start Your DNA Journey</span>
-                    </h2>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                        Ready to unlock your genetic insights? Contact our expert team to schedule your DNA test and begin your journey of discovery.
-                    </p>
+                </div>
+            </div>
+
+
+            <!-- Smaller Images Grid -->
+            <div class="space-y-8">
+                <div class="lab-image glass-light rounded-3xl p-4 hover-lift">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+     style="background-image: url('{% static "images/dnalab1.jpg" %}');">
+</div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <div
+                                    class="w-16 h-16 bg-dts-gradient-dark rounded-xl flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M19.428 15.428l-3.714-3.714V5a1 1 0 00-2 0v7.5l4.25 4.25a1 1 0 001.464-1.336z" />
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-gray-800 mb-1">Precise Sample Handling</h4>
+                                <p class="text-sm text-gray-600">Expert technicians handle samples with precision using
+                                    specialized tools and equipment.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-16">
-                    <div class="space-y-8">
-                        <div class="space-y-8">
-                            <div class="flex items-center space-x-6 group">
-                                <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div class="lab-image glass-light rounded-3xl p-4 hover-lift">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20"></div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <div
+                                    class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary-dark rounded-xl flex items-center justify-center mx-auto mb-3">
                                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                        <path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
                                     </svg>
                                 </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-emerald-400 transition-colors">Phone</h3>
-                                    <p class="text-gray-300 text-lg">+92 307 456 1958</p>
-                                    <p class="text-gray-400 text-sm">Available 24/7 for emergencies</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center space-x-6 group">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-blue-400 transition-colors">Email</h3>
-                                    <p class="text-gray-300 text-lg">info@dnalabpakistan.com</p>
-                                    <p class="text-gray-400 text-sm">Response within 1 hour</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center space-x-6 group">
-                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1 group-hover:text-purple-400 transition-colors">Address</h3>
-                                    <p class="text-gray-300 text-lg">First Floor, Building# 33-D, Shop #3, Main PIA Main Boulevard, Lahore, 54770</p>
-                                    <p class="text-gray-400 text-sm">State-of-the-art facility</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl p-6 hover-lift">
-                            <h3 class="text-2xl font-bold mb-6 gradient-text">Business Hours</h3>
-                            <div class="space-y-4 text-gray-300">
-                                <div class="flex justify-between items-center">
-                                    <span class="font-medium">Monday - Friday</span>
-                                    <span class="text-emerald-400 font-bold">9:00 AM - 6:00 PM</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-medium">Saturday</span>
-                                    <span class="text-emerald-400 font-bold">9:00 AM - 2:00 PM</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-medium">Sunday</span>
-                                    <span class="text-red-400 font-bold">Closed</span>
-                                </div>
-                                <div class="flex justify-between items-center pt-2 border-t border-white/10">
-                                    <span class="font-medium">Emergency Service</span>
-                                    <span class="text-blue-400 font-bold">24/7 Available</span>
-                                </div>
+                                <h4 class="font-bold text-gray-800 mb-1">Advanced DNA Analysis</h4>
+                                <p class="text-sm text-gray-600">Cutting-edge genetic analysis software provides
+                                    detailed and accurate DNA profiling results.</p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="glass rounded-3xl p-8 hover-lift">
-                        <h3 class="text-3xl font-bold mb-8 gradient-text text-center">Schedule Your Test</h3>
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-bold mb-3 text-gray-300">First Name</label>
-                                    <input type="text" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+            <div class="space-y-8">
+                <div class="lab-image glass-light rounded-3xl p-4 hover-lift">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/20 to-orange-500/20"></div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <div
+                                    class="w-16 h-16 bg-dts-gradient rounded-xl flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                                    </svg>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-bold mb-3 text-gray-300">Last Name</label>
-                                    <input type="text" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                                <h4 class="font-bold text-gray-800 mb-1">Global Standards</h4>
+                                <p class="text-sm text-gray-600">Our laboratory follows international protocols ensuring
+                                    worldwide acceptance of results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-image glass-light rounded-3xl p-4 hover-lift">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-teal-500/20 to-cyan-500/20"></div>
+                        <div
+                            class="w-full h-full bg-gradient-to-br from-teal-100 to-cyan-100 rounded-2xl flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <div
+                                    class="w-16 h-16 bg-dts-gradient-dark rounded-xl flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M5 12V7a1 1 0 011-1h1a1 1 0 011 1v5a1 1 0 01-1 1H6a1 1 0 01-1-1zm4 0V9a1 1 0 011-1h1a1 1 0 011 1v3a1 1 0 01-1 1h-1a1 1 0 01-1-1zm4-3V7a1 1 0 011-1h1a1 1 0 011 1v2a1 1 0 01-1 1h-1a1 1 0 01-1-1zm4 3V7a1 1 0 011-1h1a1 1 0 011 1v5a1 1 0 01-1 1h-1a1 1 0 01-1-1z" />
+                                    </svg>
                                 </div>
+                                <h4 class="font-bold text-gray-800 mb-1">Quality Assurance</h4>
+                                <p class="text-sm text-gray-600">Rigorous quality control processes ensure accuracy and
+                                    reliability in every test result.</p>
                             </div>
-                            
-                            <div>
-                                <label class="block text-sm font-bold mb-3 text-gray-300">Email Address</label>
-                                <input type="email" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-bold mb-3 text-gray-300">Phone Number</label>
-                                <input type="tel" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-bold mb-3 text-gray-300">Test Package</label>
-                                <select class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
-                                    <option value="">Select a package</option>
-                                    <option value="essential">Essential Package - PKR 15,000</option>
-                                    <option value="premium">Premium Package - PKR 28,000</option>
-                                    <option value="professional">Professional Package - PKR 50,000</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-bold mb-3 text-gray-300">Additional Information</label>
-                                <textarea rows="4" class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white" placeholder="Tell us about your specific requirements..."></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform pulse-glow">
-                                Schedule DNA Test
-                            </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Lab Features -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="facility-card rounded-3xl p-8 text-center">
+                <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Secure & Confidential</h3>
+                <p class="text-gray-600">All samples and results are handled with complete confidentiality and secure
+                    protocols.</p>
+            </div>
+
+            <div class="facility-card rounded-3xl p-8 text-center">
+                <div class="w-16 h-16 bg-dts-gradient-dark rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Fast Turnaround</h3>
+                <p class="text-gray-600">Quick processing times with express options available for urgent requirements.
+                </p>
+            </div>
+
+            <div class="facility-card rounded-3xl p-8 text-center">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Certified Results</h3>
+                <p class="text-gray-600">All results are internationally certified and legally admissible worldwide.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Office Location Section -->
+<section class="py-20 dts-animated-bg relative overflow-hidden">
+    <div class="absolute inset-0">
+        <div class="floating absolute top-10 right-20 w-24 h-24 rounded-full opacity-20"
+            style="background: linear-gradient(135deg, var(--dts-primary), var(--dts-accent));"></div>
+        <div class="floating-delayed absolute bottom-20 left-20 w-32 h-32 rounded-full opacity-20"
+            style="background: linear-gradient(135deg, var(--dts-accent), var(--dts-secondary));"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-6 py-3 rounded-full border mb-8"
+                style="background: rgba(0, 166, 147, 0.2); border-color: rgba(0, 166, 147, 0.3);">
+                <svg class="w-5 h-5 mr-3 text-dts-accent" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                </svg>
+                <span class="text-dts-accent font-medium">Visit Our Office</span>
+            </div>
+
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-white">
+                Our <span class="gradient-text">Offices</span>
+            </h2>
+
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Conveniently located in the heart of Lahore, our main office provides easy access
+                for consultations, sample collection, and result discussions.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <!-- Office Information -->
+            <div class="space-y-8">
+                <div class="glass rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-dts-accent" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        Head Office (Main Branch)
+                    </h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">DNA Labs Pakistan</h4>
+                                <p class="text-gray-300">
+                                    33-D, Office #3, First Floor, Main PIA Boulevard,<br>
+                                    Johar Town, Lahore
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-dts-gradient-dark rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Contact Information</h4>
+                                <div class="text-gray-300 space-y-1">
+                                    <p>Phone: +92 42 1234 5678</p>
+                                    <p>WhatsApp: +92 300 1234567</p>
+                                    <p>Email: info@dtspakistan.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-dts-secondary to-dts-primary-dark rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Operating Hours</h4>
+                                <div class="text-gray-300 space-y-1">
+                                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                    <p>Saturday: 10:00 AM - 4:00 PM</p>
+                                    <p>Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Google Reviews</h4>
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex space-x-1">
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-white font-bold">5.0</span>
+                                    <span class="text-gray-400">•</span>
+                                    <span class="text-gray-300">75 reviews</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="bg-dts-gradient px-6 py-3 rounded-xl text-white font-bold hover:scale-105 transition-transform flex items-center justify-center pulse-glow">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            </svg>
+                            Get Directions
+                        </button>
+                        <button
+                            class="glass px-6 py-3 rounded-xl text-white font-semibold hover:bg-white/20 transition-colors border-dts-primary flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Call Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Maps Embed -->
+            <div class="glass rounded-3xl p-4">
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.3687779942167!2d74.27641831508034!3d31.469181981395644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190376c1a5cae7%3A0x8c5b2b7b2b7b2b7b!2sMain%20PIA%20Boulevard%2C%20Johar%20Town%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1625000000000!5m2!1sen!2sus"
+                        width="100%" height="100%" style="border:0; border-radius: 1rem;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <p class="text-gray-300 text-sm">
+                        Located in the heart of Johar Town, easily accessible by all major transportation routes
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-blue-900/50"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <div
+                    class="inline-flex items-center px-4 py-2 bg-cyan-500/20 rounded-full border border-cyan-500/30 mb-6">
+                    <span class="w-2 h-2 bg-cyan-400 rounded-full mr-3 animate-pulse"></span>
+                    <span class="text-cyan-300 text-sm font-medium">Get Started</span>
+                </div>
+
+                <h2 class="text-5xl md:text-6xl font-black mb-8">
+                    <span class="gradient-text">Start Your DNA Journey</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Ready to unlock your genetic insights? Contact our expert team to schedule your DNA test and begin
+                    your journey of discovery.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-8">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-6 group">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1 group-hover:text-emerald-400 transition-colors">Phone
+                                </h3>
+                                <p class="text-gray-300 text-lg">+92 307 456 1958</p>
+                                <p class="text-gray-400 text-sm">Available 24/7 for emergencies</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 group">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1 group-hover:text-blue-400 transition-colors">Email
+                                </h3>
+                                <p class="text-gray-300 text-lg">info@dnalabpakistan.com</p>
+                                <p class="text-gray-400 text-sm">Response within 1 hour</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 group">
+                            <div
+                                class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1 group-hover:text-purple-400 transition-colors">
+                                    Address</h3>
+                                <p class="text-gray-300 text-lg">First Floor, Building# 33-D, Shop #3, Main PIA Main
+                                    Boulevard, Lahore, 54770</p>
+                                <p class="text-gray-400 text-sm">State-of-the-art facility</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-6 hover-lift">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">Business Hours</h3>
+                        <div class="space-y-4 text-gray-300">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Monday - Friday</span>
+                                <span class="text-emerald-400 font-bold">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Saturday</span>
+                                <span class="text-emerald-400 font-bold">9:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Sunday</span>
+                                <span class="text-red-400 font-bold">Closed</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2 border-t border-white/10">
+                                <span class="font-medium">Emergency Service</span>
+                                <span class="text-blue-400 font-bold">24/7 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-8 hover-lift">
+                    <h3 class="text-3xl font-bold mb-8 gradient-text text-center">Schedule Your Test</h3>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">First Name</label>
+                                <input type="text"
+                                    class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-3 text-gray-300">Last Name</label>
+                                <input type="text"
+                                    class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-3 text-gray-300">Email Address</label>
+                            <input type="email"
+                                class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-3 text-gray-300">Phone Number</label>
+                            <input type="tel"
+                                class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-3 text-gray-300">Test Package</label>
+                            <select
+                                class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white">
+                                <option value="">Select a package</option>
+                                <option value="essential">Essential Package - PKR 15,000</option>
+                                <option value="premium">Premium Package - PKR 28,000</option>
+                                <option value="professional">Professional Package - PKR 50,000</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold mb-3 text-gray-300">Additional Information</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-4 bg-slate-800/50 border border-white/20 rounded-xl focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 transition-all text-white"
+                                placeholder="Tell us about your specific requirements..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform pulse-glow">
+                            Schedule DNA Test
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Professional Standards Section -->
+<section class="py-20 lab-bg relative">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 text-gray-800">
+                Why Choose <span class="gradient-text">DTS Pakistan</span>?
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                We combine cutting-edge technology with expert knowledge to deliver reliable,
+                accurate, and legally admissible DNA testing results.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="facility-card rounded-2xl p-6 text-center">
+                <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white font-bold text-xl">ISO</span>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-2">ISO Certified</h3>
+                <p class="text-sm text-gray-600">International standards compliance for quality assurance</p>
+            </div>
+
+            <div class="facility-card rounded-2xl p-6 text-center">
+                <div class="w-16 h-16 bg-dts-gradient-dark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white font-bold text-lg">24/7</span>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-2">Round the Clock</h3>
+                <p class="text-sm text-gray-600">Emergency services and support available anytime</p>
+            </div>
+
+            <div class="facility-card rounded-2xl p-6 text-center">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary-dark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-2">Privacy Protected</h3>
+                <p class="text-sm text-gray-600">Complete confidentiality and secure data handling</p>
+            </div>
+
+            <div class="facility-card rounded-2xl p-6 text-center">
+                <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 mb-2">Global Acceptance</h3>
+                <p class="text-sm text-gray-600">Results accepted by embassies and courts worldwide</p>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Animate stats counter
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current).toLocaleString();
+        }, 20);
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0) scale(1)';
+
+                // Animate counters
+                const counters = entry.target.querySelectorAll('.stats-counter');
+                counters.forEach(counter => {
+                    const text = counter.textContent;
+                    if (text.includes('15K+')) {
+                        animateCounter(counter, 15000);
+                    } else if (text.includes('99.9%')) {
+                        counter.textContent = '99.9%';
+                    } else if (text.includes('24h')) {
+                        counter.textContent = '24h';
+                    } else if (text.includes('5.0★')) {
+                        counter.textContent = '5.0★';
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.hover-lift, .facility-card, .lab-image').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px) scale(0.95)';
+        element.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        observer.observe(element);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
 
 {% endblock content %}
