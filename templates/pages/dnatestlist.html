@@ -1,0 +1,972 @@
+{% extends 'base.html' %}
+{% load static %}
+ <title>{% block title %} Test Lists|DNA {% endblock %}</title>
+{% block content %}
+  <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="inline-flex items-center px-6 py-3 rounded-full border mb-8" style="background: rgba(0, 166, 147, 0.2); border-color: rgba(0, 166, 147, 0.3);">
+                    <svg class="w-5 h-5 mr-3 text-dts-accent" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-dts-accent font-medium">Worldwide Accredited Laboratory</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                    <span class="gradient-text">Choose Your</span><br>
+                    <span class="text-white">Perfect DNA Test</span>
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-3xl mx-auto">
+                    Find the ideal DNA test for your needs with our interactive questionnaire and explore our comprehensive range of internationally certified genetic analysis services.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#questionnaire" class="bg-dts-gradient px-8 py-4 rounded-2xl text-lg font-bold hover:scale-105 transition-transform pulse-glow">
+                        Find My Test
+                    </a>
+                    <a href="#tests" class="glass px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/20 transition-colors border-dts-primary">
+                        View All Tests
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accreditation Section -->
+    <section id="accreditation" class="py-16 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="gradient-text">Worldwide Accredited Laboratory</span>
+                </h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Our laboratory meets the highest international standards and is certified by leading global organizations
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-lg">ISO</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">ISO 15189:2012</div>
+                        <div class="text-xs text-gray-400">Medical Laboratories</div>
+                    </div>
+                </div>
+                
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient-dark rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-lg">CAP</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">CAP Accredited</div>
+                        <div class="text-xs text-gray-400">College of Pathologists</div>
+                    </div>
+                </div>
+                
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-sm">CLIA</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">CLIA Certified</div>
+                        <div class="text-xs text-gray-400">Lab Standards</div>
+                    </div>
+                </div>
+                
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient-dark rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-sm">AABB</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">AABB Certified</div>
+                        <div class="text-xs text-gray-400">Blood Banks</div>
+                    </div>
+                </div>
+                
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-sm">FDA</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">FDA Approved</div>
+                        <div class="text-xs text-gray-400">Pakistan</div>
+                    </div>
+                </div>
+                
+                <div class="accreditation-badge glass rounded-2xl p-6 hover-lift">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-dts-gradient-dark rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white font-bold text-sm">GLP</span>
+                        </div>
+                        <div class="text-sm font-semibold text-white">GLP Certified</div>
+                        <div class="text-xs text-gray-400">Good Lab Practice</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Questionnaire -->
+    <section id="questionnaire" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        <span class="gradient-text">Find Your Perfect Test</span>
+                    </h2>
+                    <p class="text-xl text-gray-300">
+                        Answer a few questions to get personalized DNA test recommendations
+                    </p>
+                </div>
+                
+                <div class="glass rounded-3xl p-8">
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-gray-300">Progress</span>
+                            <span class="text-sm font-medium text-dts-accent" id="progress-text">1/5</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="progress-bar bg-dts-gradient h-2 rounded-full" id="progress-bar" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 1: Purpose -->
+                    <div class="questionnaire-step active" id="step-1">
+                        <h3 class="text-2xl font-bold mb-6 text-white">What's your main purpose for DNA testing?</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="paternity">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white mb-2">Paternity/Relationship</h4>
+                                        <p class="text-gray-300 text-sm">Confirm biological relationships</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="ancestry">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-dts-gradient-dark rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white mb-2">Ancestry & Heritage</h4>
+                                        <p class="text-gray-300 text-sm">Discover your genetic origins</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="health">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white mb-2">Health & Wellness</h4>
+                                        <p class="text-gray-300 text-sm">Genetic health predispositions</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="legal">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-dts-gradient-dark rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M3 6l3 1.5L9 6l3 1.5L15 6l3 1.5L21 6v12l-3-1.5L15 18l-3-1.5L9 18l-3-1.5L3 18V6zM8 8v1h8V8H8z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white mb-2">Legal/Immigration</h4>
+                                        <p class="text-gray-300 text-sm">Court-admissible results</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2: Urgency -->
+                    <div class="questionnaire-step" id="step-2">
+                        <h3 class="text-2xl font-bold mb-6 text-white">How quickly do you need results?</h3>
+                        <div class="space-y-4">
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="urgent">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-white">Rush Service (24 Hours)</h4>
+                                            <p class="text-gray-300 text-sm">Fastest possible results</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-red-400 font-bold">+50% Fee</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="standard">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Standard Service (3-5 Days)</h4>
+                                        <p class="text-gray-300 text-sm">Most popular option</p>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="economy">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white">Economy Service (7-10 Days)</h4>
+                                        <p class="text-gray-300 text-sm">Budget-friendly option</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3: Sample Type -->
+                    <div class="questionnaire-step" id="step-3">
+                        <h3 class="text-2xl font-bold mb-6 text-white">What sample collection method do you prefer?</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="home">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-bold text-white mb-2">Home Collection Kit</h4>
+                                    <p class="text-gray-300 text-sm">Simple cheek swab at home</p>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all" data-value="clinic">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-dts-gradient-dark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="font-bold text-white mb-2">Lab Collection</h4>
+                                    <p class="text-gray-300 text-sm">Professional sample collection</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4: Budget -->
+                    <div class="questionnaire-step" id="step-4">
+                        <h3 class="text-2xl font-bold mb-6 text-white">What's your budget range?</h3>
+                        <div class="space-y-4">
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="premium">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-white">Premium Range</h4>
+                                            <p class="text-gray-300 text-sm">Comprehensive analysis with all features</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-yellow-400 font-bold">PKR 40,000+</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="standard">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-dts-gradient rounded-xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-white">Standard Range</h4>
+                                            <p class="text-gray-300 text-sm">Essential testing with good coverage</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-dts-accent font-bold">PKR 20,000-40,000</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-6 text-left hover-lift transition-all w-full" data-value="budget">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-white">Budget Range</h4>
+                                            <p class="text-gray-300 text-sm">Basic testing at affordable prices</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-green-400 font-bold">PKR 15,000-25,000</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5: Additional Services -->
+                    <div class="questionnaire-step" id="step-5">
+                        <h3 class="text-2xl font-bold mb-6 text-white">Any additional services needed?</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <button class="option-btn glass rounded-2xl p-4 text-left hover-lift transition-all" data-value="consultation">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-white">Genetic Counseling</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-4 text-left hover-lift transition-all" data-value="expedited">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-white">Express Shipping</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-4 text-left hover-lift transition-all" data-value="storage">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-dts-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-white">Sample Storage</span>
+                                </div>
+                            </button>
+                            
+                            <button class="option-btn glass rounded-2xl p-4 text-left hover-lift transition-all" data-value="none">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gray-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium text-white">No Additional Services</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Results -->
+                    <div class="questionnaire-step" id="results">
+                        <div class="text-center mb-8">
+                            <h3 class="text-3xl font-bold mb-4">
+                                <span class="gradient-text">Your Recommended Tests</span>
+                            </h3>
+                            <p class="text-gray-300">Based on your answers, here are the best DNA tests for you:</p>
+                        </div>
+                        
+                        <div id="recommended-tests" class="space-y-6">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <button onclick="restartQuiz()" class="glass px-6 py-3 rounded-xl text-white font-semibold hover:bg-white/20 transition-colors mr-4">
+                                Start Over
+                            </button>
+                            <button class="bg-dts-gradient px-8 py-3 rounded-xl text-white font-bold hover:scale-105 transition-transform">
+                                Book My Test
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-8" id="nav-buttons">
+                        <button id="prev-btn" class="glass px-6 py-3 rounded-xl text-white font-semibold hover:bg-white/20 transition-colors" onclick="previousStep()" style="display: none;">
+                            Previous
+                        </button>
+                        <button id="next-btn" class="bg-dts-gradient px-6 py-3 rounded-xl text-white font-semibold hover:scale-105 transition-transform ml-auto" onclick="nextStep()" disabled>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DNA Tests Catalog -->
+    <section id="tests" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="gradient-text">Our DNA Tests</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive range of DNA testing services with worldwide accreditation and guaranteed accuracy
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+                <!-- Test 1: Paternity Test -->
+                <div class="test-card glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-6h3v7c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-7h3v6h13v-6c0-1.1-.9-2-2-2h-1l-1-2h-1l-1 2H9l-1-2H7l-1 2H5c-1.1 0-2 .9-2 2v6H0v3h24v-3H4z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">Paternity Test</h3>
+                    <p class="text-gray-300 mb-6">Determine biological relationships with 99.9% accuracy. Court-admissible results available.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">99.9% Accuracy</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">3-5 Day Results</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Home Collection Kit</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Legal Documentation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-white mb-2">PKR 18,000</div>
+                        <div class="text-sm text-gray-400">Starting price</div>
+                    </div>
+                    
+                    <button class="w-full bg-dts-gradient py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                        Select Test
+                    </button>
+                </div>
+
+                <!-- Test 2: Ancestry Test -->
+                <div class="test-card glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-dts-gradient-dark rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium">Comprehensive</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">Ancestry & Heritage</h3>
+                    <p class="text-gray-300 mb-6">Discover your genetic origins and build your family tree with detailed regional analysis.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">1000+ Regions</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Migration Patterns</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Family Tree Builder</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">DNA Relative Matching</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-white mb-2">PKR 25,000</div>
+                        <div class="text-sm text-gray-400">Starting price</div>
+                    </div>
+                    
+                    <button class="w-full bg-dts-gradient-dark py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                        Select Test
+                    </button>
+                </div>
+
+                <!-- Test 3: Health Screening -->
+                <div class="test-card glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary-dark rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-medium">Premium</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">Health & Wellness</h3>
+                    <p class="text-gray-300 mb-6">Comprehensive genetic health analysis with personalized recommendations and risk assessments.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">300+ Health Conditions</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Personalized Reports</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Nutrition Analysis</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Fitness Optimization</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-white mb-2">PKR 35,000</div>
+                        <div class="text-sm text-gray-400">Starting price</div>
+                    </div>
+                    
+                    <button class="w-full py-3 rounded-xl font-bold hover:scale-105 transition-transform" style="background: linear-gradient(135deg, var(--dts-secondary), var(--dts-primary-dark));">
+                        Select Test
+                    </button>
+                </div>
+
+                <!-- Test 4: Legal/Immigration -->
+                <div class="test-card glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-dts-gradient rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 6l3 1.5L9 6l3 1.5L15 6l3 1.5L21 6v12l-3-1.5L15 18l-3-1.5L9 18l-3-1.5L3 18V6z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm font-medium">Legal</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">Legal/Immigration</h3>
+                    <p class="text-gray-300 mb-6">Court-admissible DNA testing for legal proceedings, immigration, and visa applications.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Court Admissible</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Chain of Custody</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Embassy Accepted</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Notarized Results</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-white mb-2">PKR 30,000</div>
+                        <div class="text-sm text-gray-400">Starting price</div>
+                    </div>
+                    
+                    <button class="w-full bg-dts-gradient py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                        Select Test
+                    </button>
+                </div>
+
+                <!-- Test 5: NIFTY Test -->
+                <div class="test-card glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2c1.1 0 2 .9 2 2v3.17l3.71-3.71a.996.996 0 111.41 1.41L15.41 8.59C16.86 9.96 17.75 11.85 17.75 14c0 .55-.45 1-1 1s-1-.45-1-1c0-1.54-.62-2.93-1.63-3.94L12 12.18 9.88 10.06C8.87 11.07 8.25 12.46 8.25 14c0 .55-.45 1-1 1s-1-.45-1-1c0-2.15.89-4.04 2.34-5.41L5.88 4.88a.996.996 0 111.41-1.41L11 7.17V4c0-1.1.9-2 2-2z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium">Prenatal</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">NIFTY Prenatal Test</h3>
+                    <p class="text-gray-300 mb-6">Non-invasive prenatal testing for chromosomal abnormalities. Safe for mother and baby from 10 weeks.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Non-invasive</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">From 10 Weeks</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">99% Accuracy</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Gender Detection</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg text-gray-400 line-through">PKR 110,000</span>
+                            <span class="text-3xl font-bold text-white">PKR 85,000</span>
+                        </div>
+                        <div class="text-sm text-gray-400">Special offer</div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-pink-500 to-rose-500 py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                        Select Test
+                    </button>
+                </div>
+
+                <!-- Test 6: Comprehensive Package -->
+                <div class="test-card recommended glass rounded-3xl p-8 hover-lift">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-dts-primary to-dts-accent rounded-2xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <span class="bg-dts-primary/20 text-dts-accent px-3 py-1 rounded-full text-sm font-medium">Best Value</span>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-white">Complete DNA Package</h3>
+                    <p class="text-gray-300 mb-6">All-in-one DNA analysis including paternity, ancestry, health screening, and personalized recommendations.</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">All Tests Included</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Priority Processing</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Free Consultation</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <svg class="w-4 h-4 text-dts-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-300">Lifetime Updates</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg text-gray-400 line-through">PKR 98,000</span>
+                            <span class="text-3xl font-bold text-white">PKR 65,000</span>
+                        </div>
+                        <div class="text-sm text-dts-accent font-medium">Save PKR 33,000</div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-dts-primary to-dts-accent py-3 rounded-xl font-bold hover:scale-105 transition-transform pulse-glow">
+                        Select Package
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentStep = 1;
+        let totalSteps = 5;
+        let answers = {};
+
+        // Option selection handlers
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.option-btn')) {
+                const btn = e.target.closest('.option-btn');
+                const step = btn.closest('.questionnaire-step');
+                
+                // Remove selection from all buttons in this step
+                step.querySelectorAll('.option-btn').forEach(button => {
+                    button.classList.remove('border-dts-primary', 'bg-dts-primary/10');
+                });
+                
+                // Add selection to clicked button
+                btn.classList.add('border-dts-primary', 'bg-dts-primary/10');
+                
+                // Store answer
+                const stepNum = step.id.split('-')[1];
+                answers[`step${stepNum}`] = btn.dataset.value;
+                
+                // Enable next button
+                document.getElementById('next-btn').disabled = false;
+                document.getElementById('next-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                
+                currentStep++;
+                
+                // Show next step
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                
+                // Update progress
+                updateProgress();
+                
+                // Show/hide navigation buttons
+                document.getElementById('prev-btn').style.display = 'block';
+                if (currentStep === totalSteps) {
+                    document.getElementById('next-btn').textContent = 'Get Results';
+                    document.getElementById('next-btn').onclick = showResults;
+                } else {
+                    document.getElementById('next-btn').disabled = true;
+                    document.getElementById('next-btn').classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                
+                currentStep--;
+                
+                // Show previous step
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                
+                // Update progress
+                updateProgress();
+                
+                // Show/hide navigation buttons
+                if (currentStep === 1) {
+                    document.getElementById('prev-btn').style.display = 'none';
+                }
+                
+                document.getElementById('next-btn').textContent = 'Next';
+                document.getElementById('next-btn').onclick = nextStep;
+                document.getElementById('next-btn').disabled = false;
+                document.getElementById('next-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `${currentStep}/${totalSteps}`;
+        }
+
+        function showResults() {
+            // Hide current step and nav buttons
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById('nav-buttons').style.display = 'none';
+            
+            // Show results
+            document.getElementById('results').classList.add('active');
+            
+            // Generate recommendations based on answers
+            generateRecommendations();
+        }
+
+        function generateRecommendations() {
+            const resultsContainer = document.getElementById('recommended-tests');
+            let recommendations = [];
+
+            // Logic to determine recommendations based on answers
+            if (answers.step1 === 'paternity') {
+                recommendations.push({
+                    name: 'Paternity Test',
+                    description: 'Perfect for determining biological relationships with 99.9% accuracy',
+                    price: 'PKR 18,000',
+                    features: ['99.9% Accuracy', '3-5 Day Results', 'Court Admissible', 'Home Collection']
+                });
+            }
+
+            if (answers.step1 === 'ancestry') {
+                recommendations.push({
+                    name: 'Ancestry & Heritage Test',
+                    description: 'Discover your genetic origins and build your family tree',
+                    price: 'PKR 25,000',
+                    features: ['1000+ Regions', 'Migration Patterns', 'Family Tree Builder', 'DNA Relative Matching']
+                });
+            }
+
+            if (answers.step1 === 'health') {
+                recommendations.push({
+                    name: 'Health & Wellness Test',
+                    description: 'Comprehensive genetic health analysis with personalized recommendations',
+                    price: 'PKR 35,000',
+                    features: ['300+ Health Conditions', 'Personalized Reports', 'Nutrition Analysis', 'Fitness Optimization']
+                });
+            }
+
+            if (answers.step1 === 'legal') {
+                recommendations.push({
+                    name: 'Legal/Immigration Test',
+                    description: 'Court-admissible DNA testing for legal proceedings and visa applications',
+                    price: 'PKR 30,000',
+                    features: ['Court Admissible', 'Chain of Custody', 'Embassy Accepted', 'Notarized Results']
+                });
+            }
+
+            // If budget allows, suggest comprehensive package
+            if (answers.step4 === 'premium') {
+                recommendations.push({
+                    name: 'Complete DNA Package',
+                    description: 'All-in-one DNA analysis with priority processing and consultation',
+                    price: 'PKR 65,000',
+                    originalPrice: 'PKR 98,000',
+                    features: ['All Tests Included', 'Priority Processing', 'Free Consultation', 'Lifetime Updates'],
+                    recommended: true
+                });
+            }
+
+            // Render recommendations
+            resultsContainer.innerHTML = recommendations.map(test => `
+                <div class="test-card glass rounded-3xl p-6 ${test.recommended ? 'recommended' : ''}">
+                    <div class="flex items-start justify-between mb-4">
+                        <h4 class="text-xl font-bold text-white">${test.name}</h4>
+                        ${test.recommended ? '<span class="bg-dts-primary/20 text-dts-accent px-3 py-1 rounded-full text-sm font-medium">Recommended</span>' : ''}
+                    </div>
+                    <p class="text-gray-300 mb-4">${test.description}</p>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        ${test.features.map(feature => `
+                            <div class="flex items-center text-sm">
+                                <svg class="w-4 h-4 text-dts-primary mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-gray-300">${feature}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            ${test.originalPrice ? `<span class="text-sm text-gray-400 line-through">${test.originalPrice}</span>` : ''}
+                            <div class="text-2xl font-bold text-white">${test.price}</div>
+                        </div>
+                        <button class="bg-dts-gradient px-6 py-2 rounded-xl font-semibold hover:scale-105 transition-transform">
+                            Select
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function restartQuiz() {
+            currentStep = 1;
+            answers = {};
+            
+            // Hide results and show first step
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+            
+            // Reset nav buttons
+            document.getElementById('nav-buttons').style.display = 'flex';
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').textContent = 'Next';
+            document.getElementById('next-btn').onclick = nextStep;
+            document.getElementById('next-btn').disabled = true;
+            document.getElementById('next-btn').classList.add('opacity-50', 'cursor-not-allowed');
+            
+            // Reset progress
+            updateProgress();
+            
+            // Clear all selections
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('border-dts-primary', 'bg-dts-primary/10');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock content %}

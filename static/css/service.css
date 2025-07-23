@@ -1,37 +1,152 @@
+/* DNA Animated Background Styles */
 
-
-.img-container img {
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+/* DNA Helix Animation */
+.dna-helix {
+    animation: rotateHelix 20s linear infinite;
 }
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+@keyframes rotateHelix {
+    0% { transform: rotate(0deg) translateY(0px); }
+    50% { transform: rotate(180deg) translateY(-20px); }
+    100% { transform: rotate(360deg) translateY(0px); }
 }
 
-hr.style5 {
-    background-color: #fff;
-    border-top: 2px dashed #000000;
+/* Floating DNA Particles */
+.dna-particle {
+    animation: float 8s ease-in-out infinite;
 }
 
-.jumbotron {
-    padding: 20px;
-    background-image: url("/core/static/images/1.png");
-    background-color: #E3F7FF;
-    height: 400;
-    text-align: center;
-    color: #025468;
-    
+.dna-particle:nth-child(2) { animation-delay: -2s; }
+.dna-particle:nth-child(3) { animation-delay: -4s; }
+.dna-particle:nth-child(4) { animation-delay: -6s; }
+.dna-particle:nth-child(5) { animation-delay: -1s; }
+.dna-particle:nth-child(6) { animation-delay: -3s; }
+.dna-particle:nth-child(7) { animation-delay: -5s; }
+.dna-particle:nth-child(8) { animation-delay: -7s; }
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg); 
+        opacity: 0.3;
+    }
+    25% { 
+        transform: translateY(-30px) translateX(20px) rotate(90deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateY(-60px) translateX(0px) rotate(180deg); 
+        opacity: 0.5;
+    }
+    75% { 
+        transform: translateY(-30px) translateX(-20px) rotate(270deg); 
+        opacity: 0.8;
+    }
 }
-.expert{
-    color:#025468;
-    padding: 50px;
-    margin-top: 50px;
-    background-color: #E3F7FF;
+
+/* Molecular Structure Animation */
+.molecule {
+    animation: pulse 4s ease-in-out infinite;
 }
-.service h1{
-    color: #025468;
+
+.molecule:nth-child(odd) { animation-delay: -2s; }
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% { 
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+/* DNA Base Pairs Moving */
+.base-pair {
+    animation: basePairMove 6s ease-in-out infinite;
+}
+
+.base-pair:nth-child(1) { animation-delay: 0s; }
+.base-pair:nth-child(2) { animation-delay: -1s; }
+.base-pair:nth-child(3) { animation-delay: -2s; }
+.base-pair:nth-child(4) { animation-delay: -3s; }
+
+@keyframes basePairMove {
+    0%, 100% { 
+        transform: translateX(0px) scaleX(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateX(10px) scaleX(1.1);
+        opacity: 1;
+    }
+}
+
+/* Gradient Background Animation */
+.services-animated-background {
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #0c4a6e, #164e63, #065f46);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* DNA Spiral Animation */
+.dna-spiral {
+    animation: spiral 25s linear infinite;
+}
+
+@keyframes spiral {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Glowing Effect */
+.glow {
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+}
+
+/* DNA Chain Animation */
+.dna-chain {
+    animation: chain 12s ease-in-out infinite;
+}
+
+@keyframes chain {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    33% { 
+        transform: translateY(-40px) rotate(120deg);
+        opacity: 0.7;
+    }
+    66% { 
+        transform: translateY(-20px) rotate(240deg);
+        opacity: 0.5;
+    }
+}
+
+/* Services specific background container */
+.services-background-container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.services-background-overlay {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.services-content {
+    position: relative;
+    z-index: 10;
 }

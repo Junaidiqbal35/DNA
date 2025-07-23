@@ -1,62 +1,101 @@
 {% load static %}
 
-    <footer class="py-5" style="background-color: #444444">
-        <div class="row mx-3 bot">
-            <h5 id="head">DNA LAB PAKISTAN</h5>
-            <div id="end" class="col-sm-4 col-md-3 my-3">
-                <h5>Collection Center</h5>
-                <ul class="nav nav1 flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Lahore</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Karachi</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Islamabad</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Multan</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Peshawar</a></li>
-                </ul>
+<footer class="bg-slate-900/90 py-16 border-t border-white/10 relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/10 to-blue-900/10"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="grid md:grid-cols-4 gap-12">
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <!-- <div
+                        class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center transform rotate-45">
+                        <div class="transform -rotate-45">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L12 22M6 8L18 16M6 16L18 8" />
+                            </svg>
+                        </div>
+                    </div> -->
+                    <div>
+                    <span class=" font-bold gradient-text"><img src="{% static 'images/dnalogo1.png' %}" height="120px" width="120px"></span>
+                    <!-- <div class="text-xs text-emerald-400 font-medium">DNA Testing Solutions</div> -->
+                </div>
+                </div>
+                <p class="text-gray-400 leading-relaxed">
+                    Pakistan's most advanced DNA testing laboratory, delivering precision genetic analysis with
+                    unwavering commitment to accuracy and privacy.
+                </p>
+                <div class="flex space-x-4">
+                    <div
+                        class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center hover:bg-blue-500/30 transition-colors cursor-pointer">
+                        <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M22 12a10 10 0 1 0-11.5 9.87v-7H8v-3h2.5V9.5c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12H17l-.5 3h-2v7A10 10 0 0 0 22 12z" />
+                        </svg>
+                    </div>
+                    <div
+                        class="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center hover:bg-pink-500/30 transition-colors cursor-pointer">
+                        <svg class="w-5 h-5 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1.13 1.13 0 1 1-2.25 0 1.13 1.13 0 0 1 2.25 0z" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            <div id="end" class="col-sm-4 col-md-3 my-3">
-                <h5>About Us</h5>
-                <ul class="nav nav1 flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">No. 1 DNA LAB in Pakistan</a>
-                    </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Find How?</a></li>
-                </ul>
+            <div>
+                <h3 class="text-xl font-bold mb-6 gradient-text">Services</h3>
+                <div class="space-y-3 text-gray-400">
+                    <div class="hover:text-emerald-400 transition-colors cursor-pointer">Paternity Testing</div>
+                    <div class="hover:text-emerald-400 transition-colors cursor-pointer">Immigration Testing</div>
+                    <div class="hover:text-emerald-400 transition-colors cursor-pointer">Health Screening</div>
+                </div>
             </div>
 
-            <div id="end" class="col-sm-4 col-md-3  my-3">
-                <h5>Contact Us</h5>
-                <ul class="nav nav1 flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Phone +923074561958</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Email
-                            info@dnalabpakistan.com</a></li>
-
-                </ul>
+            <div>
+                <h3 class="text-xl font-bold mb-6 gradient-text">Company</h3>
+                <div class="space-y-3 text-gray-400">
+                    <div class="hover:text-blue-400 transition-colors cursor-pointer">About Us</div>
+                    <div class="hover:text-blue-400 transition-colors cursor-pointer">Certifications</div>
+                    <div class="hover:text-blue-400 transition-colors cursor-pointer">Privacy Policy</div>
+                    <div class="hover:text-blue-400 transition-colors cursor-pointer">Terms of Service</div>
+                    <div class="hover:text-blue-400 transition-colors cursor-pointer">Careers</div>
+                </div>
             </div>
 
-            <div id="end" class="col-sm-4 col-md-3 my-3">
-{#                <form>#}
-{#                    <h5>Email Us</h5>#}
-{#                    <p>For any query </p>#}
-{#                    <div class="d-flex w-100 gap-2">#}
-{#                        <label for="newsletter1" class="visually-hidden">Enter your email</label>#}
-{#                        <input id="newsletter1" type="text" class="form-control" placeholder="Enter your email">#}
-{#                        <button class="btn-outline2" type="button">#}
-{##}
-{#                            <img src="{% static 'images/send.png' %}" alt="..." width="20" height="20">#}
-{#                        </button>#}
-{##}
-{#                    </div>#}
-{#                </form>#}
+            <div>
+                <h3 class="text-xl font-bold mb-6 gradient-text">Contact Info</h3>
+                <div class="space-y-4 text-gray-400">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        <span>+92 307 456 1958</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        <span>info@dnalabpakistan.com</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>First Floor, Building# 33-D, Shop #3, Main PIA Main Boulevard, Lahore, 54770</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div id="end" class="d-flex justify-content-between py-4 border-top mx-3">
-            <p>© 2023 DNA LAB Pakistan. All rights reserved.</p>
-            <ul class="list-unstyled d-flex">
-
-                <li class="ms-3"><a class="link-light" href="https://www.facebook.com/dnalabpakistan"><svg class="bi" width="24" height="24">
-                            <use xlink:href="https://www.facebook.com/dnalabpakistan"></use>
-                        </svg>Facebook</a></li>
-            </ul>
+        <div class="border-t border-white/10 mt-12 pt-8 text-center">
+            <p class="text-gray-400">
+                &copy; 2025 DTS Pakistan. All rights reserved. Licensed DNA Testing Laboratory.
+                <span class="text-emerald-400 font-medium">ISO 15189:2012 Certified</span>
+            </p>
         </div>
-    </footer>
+    </div>
+</footer>
