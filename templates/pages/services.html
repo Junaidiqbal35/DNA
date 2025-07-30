@@ -1,324 +1,894 @@
 {% extends 'base.html' %}
 {% load static %}
-<title>{% block title %} Services|DNA {% endblock %}</title>
-{% block extrahead %}
-<link rel="stylesheet" href="{% static '/css/service.css' %}">
-{% endblock extrahead %}
+
+{% block extra_css %}
+<style>
+    /* Service-specific styles */
+    .service-category {
+        display: none;
+    }
+    
+    .service-category.active {
+        display: block;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .tab-button {
+        transition: all 0.3s ease;
+    }
+    
+    .tab-button.active {
+        background: #123524;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(18, 53, 36, 0.3);
+    }
+    
+    .tab-button:hover:not(.active) {
+        background: rgba(18, 53, 36, 0.1);
+        transform: translateY(-1px);
+    }
+    
+    .service-card {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .service-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .popular-badge {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    }
+    
+    .comparison-table th {
+        background: linear-gradient(135deg, #123524, #00A693);
+    }
+    
+    .faq-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .faq-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 25px rgba(0, 166, 147, 0.1);
+    }
+    
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        padding: 0 2rem;
+    }
+    
+    .faq-content.active {
+        max-height: 200px;
+        padding: 0 2rem 1.5rem 2rem;
+    }
+    
+    .faq-icon {
+        transition: transform 0.3s ease;
+    }
+    
+    .faq-icon.active {
+        transform: rotate(180deg);
+    }
+    
+    /* Floating objects positioning */
+    .floating-object {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .float-left-1 { top: 10%; left: 5%; animation: float 8s ease-in-out infinite; }
+    .float-left-2 { top: 30%; left: 8%; animation: float 10s ease-in-out 2s infinite; }
+    .float-left-3 { top: 60%; left: 3%; animation: float 7s ease-in-out 4s infinite; }
+    .float-left-4 { top: 80%; left: 6%; animation: float 9s ease-in-out 1s infinite; }
+    
+    .float-right-1 { top: 15%; right: 5%; animation: float 11s ease-in-out 3s infinite; }
+    .float-right-2 { top: 45%; right: 8%; animation: float 6s ease-in-out infinite; }
+    .float-right-3 { top: 70%; right: 4%; animation: float 8s ease-in-out 2s infinite; }
+    .float-right-4 { top: 85%; right: 7%; animation: float 12s ease-in-out 5s infinite; }
+    
+    .molecule {
+        width: 40px;
+        height: 40px;
+        background: radial-gradient(circle, #00A693, #10b981);
+        border-radius: 50%;
+        position: relative;
+    }
+    
+    .molecule::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 2px solid rgba(0, 166, 147, 0.3);
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
+    }
+    
+    @keyframes float-reverse {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(20px) rotate(-5deg); }
+    }
+    
+    @keyframes wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        75% { transform: rotate(-5deg); }
+    }
+    
+    .animate-wiggle {
+        animation: wiggle 2s ease-in-out infinite;
+    }
+    .popular-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.service-card {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading animation for buttons */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
+}
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="services-background-container services-animated-background">
-
-    <!-- Animated DNA Background -->
-    <div class="services-background-overlay">
-
-        <!-- Large DNA Helix - Left Side -->
-        <div class="absolute -left-20 top-10 dna-helix opacity-20">
-            <svg width="200" height="800" viewBox="0 0 200 800">
-                <defs>
-                    <linearGradient id="helixGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#10b981" />
-                        <stop offset="100%" style="stop-color:#3b82f6" />
-                    </linearGradient>
-                </defs>
-
-                <!-- Left Strand -->
-                <path
-                    d="M 50 0 Q 100 50 50 100 Q 0 150 50 200 Q 100 250 50 300 Q 0 350 50 400 Q 100 450 50 500 Q 0 550 50 600 Q 100 650 50 700 Q 0 750 50 800"
-                    stroke="url(#helixGrad1)" stroke-width="4" fill="none" class="glow" />
-
-                <!-- Right Strand -->
-                <path
-                    d="M 150 0 Q 100 50 150 100 Q 200 150 150 200 Q 100 250 150 300 Q 200 350 150 400 Q 100 450 150 500 Q 200 550 150 600 Q 100 650 150 700 Q 200 750 150 800"
-                    stroke="url(#helixGrad1)" stroke-width="4" fill="none" class="glow" />
-
-                <!-- Base Pairs -->
-                <g class="base-pair">
-                    <line x1="50" y1="50" x2="150" y2="50" stroke="#10b981" stroke-width="2" />
-                    <line x1="50" y1="150" x2="150" y2="150" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="250" x2="150" y2="250" stroke="#10b981" stroke-width="2" />
-                    <line x1="50" y1="350" x2="150" y2="350" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="450" x2="150" y2="450" stroke="#10b981" stroke-width="2" />
-                    <line x1="50" y1="550" x2="150" y2="550" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="650" x2="150" y2="650" stroke="#10b981" stroke-width="2" />
-                </g>
-            </svg>
+<!-- Service Categories -->
+<section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+            <h2 class="text-5xl font-bold text-phthalo mb-6">Complete DNA Testing Solutions</h2>
+            <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                From paternity and immigration testing to comprehensive health and ancestry analysis, 
+                we provide the most advanced DNA testing services in Pakistan.
+            </p>
         </div>
 
-        <!-- Large DNA Helix - Right Side -->
-        <div class="absolute -right-20 bottom-10 dna-helix opacity-20" style="animation-delay: -10s;">
-            <svg width="200" height="800" viewBox="0 0 200 800">
-                <defs>
-                    <linearGradient id="helixGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#3b82f6" />
-                        <stop offset="100%" style="stop-color:#8b5cf6" />
-                    </linearGradient>
-                </defs>
-
-                <path
-                    d="M 50 0 Q 100 50 50 100 Q 0 150 50 200 Q 100 250 50 300 Q 0 350 50 400 Q 100 450 50 500 Q 0 550 50 600 Q 100 650 50 700 Q 0 750 50 800"
-                    stroke="url(#helixGrad2)" stroke-width="4" fill="none" class="glow" />
-
-                <path
-                    d="M 150 0 Q 100 50 150 100 Q 200 150 150 200 Q 100 250 150 300 Q 200 350 150 400 Q 100 450 150 500 Q 200 550 150 600 Q 100 650 150 700 Q 200 750 150 800"
-                    stroke="url(#helixGrad2)" stroke-width="4" fill="none" class="glow" />
-
-                <g class="base-pair">
-                    <line x1="50" y1="100" x2="150" y2="100" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="200" x2="150" y2="200" stroke="#8b5cf6" stroke-width="2" />
-                    <line x1="50" y1="300" x2="150" y2="300" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="400" x2="150" y2="400" stroke="#8b5cf6" stroke-width="2" />
-                    <line x1="50" y1="500" x2="150" y2="500" stroke="#3b82f6" stroke-width="2" />
-                    <line x1="50" y1="600" x2="150" y2="600" stroke="#8b5cf6" stroke-width="2" />
-                    <line x1="50" y1="700" x2="150" y2="700" stroke="#3b82f6" stroke-width="2" />
-                </g>
-            </svg>
+        <!-- Service Tabs -->
+        <div class="flex flex-wrap justify-center mb-16 gap-4">
+            <button class="tab-button active px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('paternity')">
+                Paternity & Relationship
+            </button>
+            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('legal')">
+                Legal & Immigration
+            </button>
+            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('health')">
+                Health & Wellness
+            </button>
+            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('ancestry')">
+                Ancestry & Genealogy
+            </button>
         </div>
-
-        <!-- Floating DNA Particles -->
-        <div
-            class="dna-particle absolute top-10 left-1/4 w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full opacity-60 glow">
+<!-- Paternity & Relationship Services -->
+<div id="paternity" class="service-category active">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {% for test in paternity_tests %}
+        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
+            <!-- Popular Badge -->
+            {% if test.is_popular %}
+            <div class="popular-badge">Most Popular</div>
+            {% endif %}
+            
+            <!-- Test Icon -->
+            <div class="w-20 h-20 bg-gradient-to-br from-phthalo to-dts-accent rounded-3xl flex items-center justify-center mb-6">
+                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
+            </div>
+            
+            <!-- Test Name -->
+            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
+            
+            <!-- Description -->
+            <p class="text-gray-600 leading-relaxed mb-6">
+                {{ test.short_description }}
+            </p>
+            
+            <!-- Features List -->
+            <div class="space-y-3 mb-6">
+                {% for feature in test.features %}
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="fas fa-check text-dts-accent mr-3"></i>
+                    <span>{{ feature }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pricing -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="text-3xl font-bold text-phthalo">PKR {{ test.price|floatformat:0 }}</div>
+                {% if test.original_price %}
+                <div class="text-sm text-gray-500 line-through">PKR {{ test.original_price|floatformat:0 }}</div>
+                {% endif %}
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+                <!-- Main CTA Button - Links to Product Detail -->
+                <a href="{{ test.get_absolute_url }}" 
+                   class="block w-full bg-phthalo text-white py-4 rounded-xl font-semibold hover:bg-phthalo-light transition-colors text-center">
+                    View Details & Order
+                </a>
+                
+                <!-- Quick Add to Cart Button (Optional) -->
+                <button onclick="quickAddToCart('{{ test.id }}', '{{ test.name }}', '{{ test.price }}')" 
+                        class="w-full border-2 border-phthalo text-phthalo py-3 rounded-xl font-semibold hover:bg-phthalo hover:text-white transition-colors">
+                    <i class="fas fa-cart-plus mr-2"></i>
+                    Quick Add to Cart
+                </button>
+            </div>
         </div>
-        <div
-            class="dna-particle absolute top-32 right-1/3 w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-50 glow">
+        {% empty %}
+        <!-- Fallback if no tests found -->
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-flask text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-500">No tests available in this category</p>
         </div>
-        <div
-            class="dna-particle absolute bottom-40 left-1/3 w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full opacity-40 glow">
-        </div>
-        <div
-            class="dna-particle absolute bottom-20 right-1/4 w-4 h-4 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full opacity-70 glow">
-        </div>
-        <div
-            class="dna-particle absolute top-1/2 left-10 w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full opacity-30 glow">
-        </div>
-        <div
-            class="dna-particle absolute top-3/4 right-10 w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full opacity-60 glow">
-        </div>
-        <div
-            class="dna-particle absolute top-16 left-2/3 w-5 h-5 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-50 glow">
-        </div>
-        <div
-            class="dna-particle absolute bottom-1/3 left-1/2 w-9 h-9 bg-gradient-to-br from-cyan-500 to-emerald-500 rounded-full opacity-45 glow">
-        </div>
-
-        <!-- Molecular Structures -->
-        <div class="molecule absolute top-20 left-1/2 transform -translate-x-1/2">
-            <svg width="80" height="80" viewBox="0 0 80 80">
-                <circle cx="20" cy="20" r="8" fill="#10b981" opacity="0.6" />
-                <circle cx="60" cy="20" r="6" fill="#3b82f6" opacity="0.6" />
-                <circle cx="40" cy="60" r="7" fill="#8b5cf6" opacity="0.6" />
-                <line x1="20" y1="20" x2="60" y2="20" stroke="#ffffff" stroke-width="1" opacity="0.3" />
-                <line x1="60" y1="20" x2="40" y2="60" stroke="#ffffff" stroke-width="1" opacity="0.3" />
-                <line x1="40" y1="60" x2="20" y2="20" stroke="#ffffff" stroke-width="1" opacity="0.3" />
-            </svg>
-        </div>
-
-        <div class="molecule absolute bottom-1/4 left-1/4">
-            <svg width="60" height="60" viewBox="0 0 60 60">
-                <circle cx="15" cy="15" r="6" fill="#3b82f6" opacity="0.5" />
-                <circle cx="45" cy="15" r="5" fill="#10b981" opacity="0.5" />
-                <circle cx="30" cy="45" r="7" fill="#8b5cf6" opacity="0.5" />
-                <line x1="15" y1="15" x2="45" y2="15" stroke="#ffffff" stroke-width="1" opacity="0.2" />
-                <line x1="45" y1="15" x2="30" y2="45" stroke="#ffffff" stroke-width="1" opacity="0.2" />
-                <line x1="30" y1="45" x2="15" y2="15" stroke="#ffffff" stroke-width="1" opacity="0.2" />
-            </svg>
-        </div>
-
-        <!-- DNA Spiral Structure -->
-        <div class="absolute top-1/4 left-1/3 dna-spiral opacity-20">
-            <svg width="150" height="150" viewBox="0 0 150 150">
-                <defs>
-                    <linearGradient id="spiralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#10b981" />
-                        <stop offset="50%" style="stop-color:#3b82f6" />
-                        <stop offset="100%" style="stop-color:#8b5cf6" />
-                    </linearGradient>
-                </defs>
-
-                <circle cx="75" cy="75" r="60" fill="none" stroke="url(#spiralGrad)" stroke-width="2" opacity="0.4" />
-                <circle cx="75" cy="75" r="40" fill="none" stroke="url(#spiralGrad)" stroke-width="1.5" opacity="0.6" />
-                <circle cx="75" cy="75" r="20" fill="none" stroke="url(#spiralGrad)" stroke-width="1" opacity="0.8" />
-                <circle cx="75" cy="75" r="3" fill="#10b981" opacity="0.8" />
-            </svg>
-        </div>
-
-        <!-- DNA Chain Structures -->
-        <div
-            class="dna-chain absolute top-12 right-1/3 w-3 h-20 bg-gradient-to-b from-emerald-400 to-transparent rounded-full opacity-40">
-        </div>
-        <div class="dna-chain absolute bottom-12 left-1/3 w-2 h-16 bg-gradient-to-b from-blue-400 to-transparent rounded-full opacity-50"
-            style="animation-delay: -4s;"></div>
-        <div class="dna-chain absolute top-1/2 right-12 w-4 h-24 bg-gradient-to-b from-purple-400 to-transparent rounded-full opacity-35"
-            style="animation-delay: -8s;"></div>
+        {% endfor %}
     </div>
-
-    <!-- Original Services Content -->
-    <section id="services" class="py-24 relative services-content">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-20">
-                <div
-                    class="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full border border-blue-500/30 mb-6">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-blue-300 text-sm font-medium">Reliable DNA Testing Service</span>
-                </div>
-
-                <h2 class="text-5xl md:text-6xl font-black mb-8">
-                    <span class="gradient-text">Our Services</span>
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                    At DTS®, we are dedicated to providing comprehensive DNA testing resources that are accessible and
-                    affordable for everyone. Understanding the complexity of DNA testing choices can be overwhelming,
-                    but we
-                    aim to eliminate that confusion. Our platform offers a clear overview of the various forensic tests
-                    available, outlined with detailed explanations of each testing option's benefits
-                </p>
-            </div>
-            <div class="mt-20 px-4 py-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-                <!-- CARD 1 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=861,fit=scale-down/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1751727055234-f639db2328bdc95eac4bf54b6e285a29.png"
-                        alt="NIFTY Test"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">BEST SELLER</span>
-                        <h3 class="text-xl font-bold mt-2">NIFTY Non-invasive Fetal Trisomy Test</h3>
-                        <p class="text-sm text-gray-300 mt-1">Safe screening | Down’s Syndrome | From 10+ weeks</p>
-                        <div class="mt-2 flex items-center gap-2">
-                            <span class="text-sm line-through text-gray-300">Rs 140000</span>
-                            <span class="text-lg font-bold text-red-400">Rs 110000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=576,h=720,fit=crop,q=100/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1746543153904-top-product-images-800x800px_paternity-dna-1.webp"
-                        alt="Paternity Test"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">NON LEGAL</span>
-                        <h3 class="text-xl font-bold mt-2">DNA Paternity Test (Duo)</h3>
-                        <p class="text-sm text-gray-300 mt-1">1 Father + 1 Child | 24 markers</p>
-                        <div class="mt-2">
-                            <span class="text-lg font-bold text-red-400">Rs 30000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=576,h=720,fit=crop,q=100/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1741063331972-whatsappimage2025-03-04at9.40.49am.jpeg"
-                        alt="BioAge Test"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">NEW</span>
-                        <h3 class="text-xl font-bold mt-2">BioAge Test</h3>
-                        <p class="text-sm text-gray-300 mt-1">Cellular Age | Biomarkers</p>
-                        <div class="mt-2 flex items-center gap-2">
-                            <span class="text-sm line-through text-gray-300">Rs 45000</span>
-                            <span class="text-lg font-bold text-red-400">Rs 35000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-
-                <!-- CARD 4 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=576,h=720,fit=crop,q=100/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1740147794407-WhatsAppImage2025-02-21at7.08.37PM.jpeg"
-                        alt="BioAge Test"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">NEW</span>
-                        <h3 class="text-xl font-bold mt-2">BioAge Test</h3>
-                        <p class="text-sm text-gray-300 mt-1">Cellular Age | Biomarkers</p>
-                        <div class="mt-2 flex items-center gap-2">
-                            <span class="text-sm line-through text-gray-300">Rs 45000</span>
-                            <span class="text-lg font-bold text-red-400">Rs 35000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-
-                <!-- CARD 5 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift hover:shadow-2xl group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=576,h=720,fit=crop,q=100/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1735398578974-legaldna.jpg"
-                        alt="Legal Paternity"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">LEGAL</span>
-                        <h3 class="text-xl font-bold mt-2">Court Admissible DNA Test</h3>
-                        <p class="text-sm text-gray-300 mt-1">1 Alleged Father + Child</p>
-                        <div class="mt-2">
-                            <span class="text-lg font-bold text-red-400">Rs 120000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-
-                <!-- CARD 6 -->
-                <div class="h-[400px] relative rounded-2xl overflow-hidden shadow-lg hover-lift group">
-                    <img src="https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=576,h=720,fit=crop,q=100/cdn-ecommerce/store_01JDYQ3J6TBTD8TNDMZKDZ45QM%2Fassets%2F1735398578974-legaldna.jpg"
-                        alt="Personal Test"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 p-4 text-white">
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">PERSONAL</span>
-                        <h3 class="text-xl font-bold mt-2">DNA Test Duo - 46 Markers</h3>
-                        <p class="text-sm text-gray-300 mt-1">1 Alleged Father + Child</p>
-                        <div class="mt-2">
-                            <span class="text-sm line-through text-gray-300">Rs 110000</span>
-                            <span class="text-lg font-bold text-red-400">Rs 90000</span>
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-2 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">Book
-                            Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
+<!-- Legal & Immigration Services -->
+<div id="legal" class="service-category">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {% for test in legal_tests %}
+        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
+            <!-- Embassy Approved Badge -->
+            {% if test.test_type == 'immigration' %}
+            <div class="popular-badge">Embassy Approved</div>
+            {% endif %}
+            
+            <div class="w-20 h-20 bg-gradient-to-br from-phthalo to-dts-accent rounded-3xl flex items-center justify-center mb-6">
+                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
+            
+            <p class="text-gray-600 leading-relaxed mb-6">
+                {{ test.short_description }}
+            </p>
+            
+            <div class="space-y-3 mb-6">
+                {% for feature in test.features %}
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="fas fa-check text-dts-accent mr-3"></i>
+                    <span>{{ feature }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
+            
+            <a href="{{ test.get_absolute_url }}" 
+               class="block w-full bg-gradient-to-r from-phthalo to-dts-accent text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                View Details & Order
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-gavel text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-500">No legal tests available</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Health & Wellness Services -->
+<div id="health" class="service-category">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {% for test in health_tests %}
+        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
+            {% if test.test_type == 'health' %}
+            <div class="popular-badge">Comprehensive</div>
+            {% endif %}
+            
+            <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-3xl flex items-center justify-center mb-6">
+                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
+            
+            <p class="text-gray-600 leading-relaxed mb-6">
+                {{ test.short_description }}
+            </p>
+            
+            <div class="space-y-3 mb-6">
+                {% for feature in test.features %}
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="fas fa-check text-dts-accent mr-3"></i>
+                    <span>{{ feature }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
+            
+            {% if test.test_type == 'health' %}
+            <a href="{{ test.get_absolute_url }}" 
+               class="block w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                View Details & Order
+            </a>
+            {% else %}
+            <a href="{{ test.get_absolute_url }}" 
+               class="block w-full bg-purple-500 text-white py-4 rounded-xl font-semibold hover:bg-purple-600 transition-colors text-center">
+                View Details & Order
+            </a>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-heartbeat text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-500">No health tests available</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Ancestry & Genealogy Services -->
+<div id="ancestry" class="service-category">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {% for test in ancestry_tests %}
+        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
+            <div class="popular-badge">Best Value</div>
+            
+            <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-3xl flex items-center justify-center mb-6">
+                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
+            
+            <p class="text-gray-600 leading-relaxed mb-6">
+                {{ test.short_description }}
+            </p>
+            
+            <div class="space-y-3 mb-6">
+                {% for feature in test.features %}
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="fas fa-check text-dts-accent mr-3"></i>
+                    <span>{{ feature }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
+            
+            <a href="{{ test.get_absolute_url }}" 
+               class="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
+                View Details & Order
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center py-12">
+            <i class="fas fa-globe text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-500">No ancestry tests available</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Service Comparison Table -->
+<section id="pricing" class="py-20 gradient-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold text-phthalo mb-6">Service Comparison</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose the right DNA test for your needs. All tests include our 99.9% accuracy guarantee and professional support.
+            </p>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="comparison-table w-full bg-white rounded-3xl overflow-hidden shadow-2xl">
+                <thead>
+                    <tr class="text-white">
+                        <th class="px-6 py-4 text-left">Service</th>
+                        <th class="px-6 py-4 text-center">Accuracy</th>
+                        <th class="px-6 py-4 text-center">Turnaround</th>
+                        <th class="px-6 py-4 text-center">Sample Type</th>
+                        <th class="px-6 py-4 text-center">Legal Use</th>
+                        <th class="px-6 py-4 text-center">Price (PKR)</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Paternity Test</td>
+                        <td class="px-6 py-4 text-center">99.9%</td>
+                        <td class="px-6 py-4 text-center">24-48h</td>
+                        <td class="px-6 py-4 text-center">Cheek Swab</td>
+                        <td class="px-6 py-4 text-center">✓</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">25,000</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Immigration DNA</td>
+                        <td class="px-6 py-4 text-center">99.9%</td>
+                        <td class="px-6 py-4 text-center">3-5 days</td>
+                        <td class="px-6 py-4 text-center">Cheek Swab</td>
+                        <td class="px-6 py-4 text-center">✓</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">35,000</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Prenatal Test</td>
+                        <td class="px-6 py-4 text-center">99.9%</td>
+                        <td class="px-6 py-4 text-center">5-7 days</td>
+                        <td class="px-6 py-4 text-center">Blood Sample</td>
+                        <td class="px-6 py-4 text-center">✗</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">95,000</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Ancestry Test</td>
+                        <td class="px-6 py-4 text-center">99.5%</td>
+                        <td class="px-6 py-4 text-center">4-6 weeks</td>
+                        <td class="px-6 py-4 text-center">Cheek Swab</td>
+                        <td class="px-6 py-4 text-center">✗</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">18,000</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Health & Wellness</td>
+                        <td class="px-6 py-4 text-center">99.5%</td>
+                        <td class="px-6 py-4 text-center">3-4 weeks</td>
+                        <td class="px-6 py-4 text-center">Cheek Swab</td>
+                        <td class="px-6 py-4 text-center">✗</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">28,000</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 font-semibold text-phthalo">Relationship Test</td>
+                        <td class="px-6 py-4 text-center">95-99%</td>
+                        <td class="px-6 py-4 text-center">3-5 days</td>
+                        <td class="px-6 py-4 text-center">Cheek Swab</td>
+                        <td class="px-6 py-4 text-center">✓</td>
+                        <td class="px-6 py-4 text-center font-bold text-phthalo">30,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Services -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold text-phthalo mb-6">Additional Services</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Enhance your DNA testing experience with our premium add-on services and support options.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Express Processing -->
+            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
+                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-bolt text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-phthalo mb-3">Express Processing</h3>
+                <p class="text-gray-600 mb-4">Get your results in 12-24 hours with our express service.</p>
+                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 10,000</div>
+                <button class="w-full bg-yellow-500 text-white py-3 rounded-xl font-semibold hover:bg-yellow-600 transition-colors">
+                    Add Service
+                </button>
+            </div>
+
+            <!-- Home Collection -->
+            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-home text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-phthalo mb-3">Home Collection</h3>
+                <p class="text-gray-600 mb-4">Professional sample collection at your location.</p>
+                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 5,000</div>
+                <button class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-600 transition-colors">
+                    Add Service
+                </button>
+            </div>
+
+            <!-- Genetic Counseling -->
+            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-user-md text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-phthalo mb-3">Genetic Counseling</h3>
+                <p class="text-gray-600 mb-4">Professional consultation to understand your results.</p>
+                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 7,500</div>
+                <button class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-colors">
+                    Add Service
+                </button>
+            </div>
+
+            <!-- Additional Participants -->
+            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-users text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-phthalo mb-3">Extra Participants</h3>
+                <p class="text-gray-600 mb-4">Add additional participants to your DNA test.</p>
+                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 8,000</div>
+                <button class="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold hover:bg-purple-600 transition-colors">
+                    Add Service
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 gradient-bg relative overflow-hidden">
+     <!-- Left Side Floating Objects -->
+    <div class="floating-object float-left-1">
+        <div class="w-16 h-16 bg-gradient-to-br from-phthalo to-dts-accent rounded-full opacity-20 flex items-center justify-center">
+            <i class="fas fa-dna text-white text-2xl"></i>
+        </div>
+    </div>
+    
+    <div class="floating-object float-left-2">
+        <div class="dna-helix opacity-15">
+            <div class="dna-strand"></div>
+            <div class="dna-strand"></div>
+        </div>
+    </div>
+    
+    <div class="floating-object float-left-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-dts-secondary to-dts-accent rounded-lg opacity-25 flex items-center justify-center animate-spin-slow">
+            <i class="fas fa-microscope text-white"></i>
+        </div>
+    </div>
+    
+    <div class="floating-object float-left-4">
+        <div class="molecule opacity-20"></div>
+    </div>
+    
+    <!-- Right Side Floating Objects -->
+    <div class="floating-object float-right-1">
+        <div class="w-14 h-14 bg-gradient-to-br from-dts-accent to-phthalo rounded-full opacity-25 flex items-center justify-center animate-pulse-slow">
+            <i class="fas fa-flask text-white text-xl"></i>
+        </div>
+    </div>
+    
+    <div class="floating-object float-right-2">
+        <div class="w-20 h-20 bg-gradient-to-br from-buttersmoke to-white rounded-full opacity-30 flex items-center justify-center shadow-lg">
+            <i class="fas fa-certificate text-phthalo text-2xl animate-wiggle"></i>
+        </div>
+    </div>
+    
+    <div class="floating-object float-right-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-dts-primary to-dts-secondary rounded-full opacity-20 animate-bounce-slow"></div>
+    </div>
+    
+    <div class="floating-object float-right-4">
+        <div class="dna-helix opacity-10" style="transform: scale(0.7);">
+            <div class="dna-strand"></div>
+            <div class="dna-strand"></div>
+        </div>
+    </div>
+    
+    <!-- Additional scattered floating elements -->
+    <div class="floating-object" style="top: 5%; left: 25%; animation: float 10s ease-in-out 3s infinite;">
+        <div class="w-6 h-6 bg-dts-accent rounded-full opacity-15"></div>
+    </div>
+    
+    <div class="floating-object" style="top: 85%; right: 30%; animation: float-reverse 12s ease-in-out infinite;">
+        <div class="w-8 h-8 bg-phthalo rounded-full opacity-10"></div>
+    </div>
+    
+    <div class="floating-object" style="top: 60%; left: 20%; animation: float 14s ease-in-out 2s infinite;">
+        <div class="w-4 h-4 bg-dts-secondary rounded-full opacity-20"></div>
+    </div>
+    
+    <div class="floating-object" style="top: 20%; right: 25%; animation: float-delayed 11s ease-in-out infinite;">
+        <div class="w-5 h-5 bg-dts-primary rounded-full opacity-15"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold text-phthalo mb-6">Frequently Asked Questions</h2>
+            <p class="text-xl text-gray-600">
+                Get answers to common questions about our DNA testing services.
+            </p>
+        </div>
+        
+        <div class="space-y-6">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(1)">
+                    <span class="text-lg font-semibold text-phthalo">How accurate are your DNA tests?</span>
+                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-1"></i>
+                </button>
+                <div class="faq-content" id="faq-content-1">
+                    <p class="text-gray-600 leading-relaxed">
+                        Our DNA tests achieve 99.9% accuracy for paternity testing and 99.5% for ancestry testing. We use the latest SNP-based technology and strict quality control measures to ensure reliable results.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(2)">
+                    <span class="text-lg font-semibold text-phthalo">How long does it take to get results?</span>
+                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-2"></i>
+                </button>
+                <div class="faq-content" id="faq-content-2">
+                    <p class="text-gray-600 leading-relaxed">
+                        Turnaround times vary by test type: Paternity tests take 24-48 hours, Immigration DNA takes 3-5 days, Prenatal testing takes 5-7 days, and Ancestry testing takes 4-6 weeks.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(3)">
+                    <span class="text-lg font-semibold text-phthalo">Is my information kept confidential?</span>
+                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-3"></i>
+                </button>
+                <div class="faq-content" id="faq-content-3">
+                    <p class="text-gray-600 leading-relaxed">
+                        Yes, we maintain strict confidentiality protocols. Your personal information and test results are protected by advanced security measures and are never shared without your explicit consent.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(4)">
+                    <span class="text-lg font-semibold text-phthalo">Are your tests accepted by courts and embassies?</span>
+                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-4"></i>
+                </button>
+                <div class="faq-content" id="faq-content-4">
+                    <p class="text-gray-600 leading-relaxed">
+                        Yes, our legal DNA tests are AABB-accredited and accepted by courts, embassies, and immigration authorities worldwide. We follow strict chain of custody procedures for legal testing.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
+                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(5)">
+                    <span class="text-lg font-semibold text-phthalo">What if I'm not satisfied with the service?</span>
+                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-5"></i>
+                </button>
+                <div class="faq-content" id="faq-content-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        We offer a 100% satisfaction guarantee. If you're not completely satisfied with our service, we'll work to resolve any issues or provide a full refund according to our terms and conditions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% block extra_js %}
 <script>
-    // Add interactive mouse tracking
-    document.addEventListener('mousemove', function (e) {
-        const particles = document.querySelectorAll('.dna-particle');
-        const molecules = document.querySelectorAll('.molecule');
-
-        particles.forEach((particle, index) => {
-            const speed = (index + 1) * 0.00005;
-            const x = (e.clientX * speed);
-            const y = (e.clientY * speed);
-
-            particle.style.transform += ` translate(${x}px, ${y}px)`;
+    // Service Category Tab Functionality
+    function showCategory(categoryName) {
+        // Hide all service categories
+        const categories = document.querySelectorAll('.service-category');
+        categories.forEach(category => {
+            category.classList.remove('active');
         });
-
-        molecules.forEach((molecule, index) => {
-            const speed = (index + 1) * 0.00003;
-            const x = (e.clientX * speed);
-            const y = (e.clientY * speed);
-
-            molecule.style.transform += ` translate(${x}px, ${y}px)`;
+        
+        // Remove active class from all tab buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+        });
+        
+        // Show selected category
+        const selectedCategory = document.getElementById(categoryName);
+        if (selectedCategory) {
+            selectedCategory.classList.add('active');
+        }
+        
+        // Add active class to clicked button
+        const clickedButton = event.target;
+        clickedButton.classList.add('active');
+    }
+    
+    // FAQ Toggle Functionality
+    function toggleFAQ(index) {
+        const content = document.getElementById(`faq-content-${index}`);
+        const icon = document.getElementById(`faq-icon-${index}`);
+        
+        if (content && icon) {
+            // Close all other FAQs
+            const allContents = document.querySelectorAll('.faq-content');
+            const allIcons = document.querySelectorAll('.faq-icon');
+            
+            allContents.forEach((otherContent, i) => {
+                if (otherContent !== content && otherContent.classList.contains('active')) {
+                    otherContent.classList.remove('active');
+                    if (allIcons[i]) {
+                        allIcons[i].classList.remove('active');
+                    }
+                }
+            });
+            
+            // Toggle current FAQ
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+    }
+    
+    // Initialize page functionality when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards and other elements for animations
+        document.querySelectorAll('.service-card, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Add hover effects to floating objects
+        document.querySelectorAll('.floating-object').forEach(obj => {
+            obj.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            obj.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
         });
     });
+    // Quick add to cart functionality (without going to product detail page)
+function quickAddToCart(productId, productName, price) {
+    // Show loading state
+    event.target.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Adding...';
+    event.target.disabled = true;
+    
+    fetch('{% url "service" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+        body: JSON.stringify({
+            product_id: productId,
+            quantity: 1
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update cart count in navigation
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                cartCount.textContent = data.cart_count;
+            }
+            
+            // Show success state
+            event.target.innerHTML = '<i class="fas fa-check mr-2"></i>Added!';
+            event.target.classList.remove('border-phthalo', 'text-phthalo', 'hover:bg-phthalo', 'hover:text-white');
+            event.target.classList.add('bg-green-500', 'text-white');
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                event.target.innerHTML = '<i class="fas fa-cart-plus mr-2"></i>Quick Add to Cart';
+                event.target.classList.remove('bg-green-500', 'text-white');
+                event.target.classList.add('border-phthalo', 'text-phthalo', 'hover:bg-phthalo', 'hover:text-white');
+                event.target.disabled = false;
+            }, 2000);
+            
+            // Optional: Show toast notification
+            showQuickToast(`${productName} added to cart!`, 'success');
+        } else {
+            // Show error state
+            event.target.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Error';
+            event.target.classList.add('bg-red-500', 'text-white');
+            
+            setTimeout(() => {
+                event.target.innerHTML = '<i class="fas fa-cart-plus mr-2"></i>Quick Add to Cart';
+                event.target.classList.remove('bg-red-500', 'text-white');
+                event.target.disabled = false;
+            }, 2000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        event.target.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Error';
+        event.target.disabled = false;
+    });
+}
+
+// Toast notification for quick actions
+function showQuickToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `fixed top-20 right-4 z-50 px-6 py-4 rounded-lg text-white font-semibold transform transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+    }`;
+    toast.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Enhanced hover effects for service cards
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
 </script>
-{% endblock content %}
+{% endblock %}
+{% endblock %}
+

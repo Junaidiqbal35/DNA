@@ -1,110 +1,108 @@
 {% extends 'base.html' %}
 {% load static %}
- <title>{% block title %} About Us|DNA {% endblock %}</title>
+<title>{% block title %} About Us|DNA {% endblock %}</title>
 {% block content %}
-  <!-- About Section -->
-    <section id="about" class="py-24 relative">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <div class="inline-flex items-center px-4 py-2 bg-purple-500/20 rounded-full border border-purple-500/30 mb-6">
-                        <span class="w-2 h-2 bg-purple-400 rounded-full mr-3 animate-pulse"></span>
-                        <span class="text-purple-300 text-sm font-medium">About DTS</span>
-                    </div>
-                    
-                    <h2 class="text-5xl md:text-6xl font-black leading-tight">
-                        <span class="gradient-text">Why Choose</span><br>
-                        <span class="text-white">DTS Pakistan?</span>
-                    </h2>
-                    
-                    <p class="text-xl text-gray-300 leading-relaxed">
-                        We are Pakistan's premier DNA testing laboratory, combining cutting-edge international technology with local expertise to deliver the most accurate and reliable genetic analysis services in the region.
+<section id="about" class="py-20 gradient-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 my-8">
+                <div>
+                    <h2 class="text-4xl font-bold text-phthalo mb-6">About DTS Lab Pakistan</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        We are Pakistan's leading digital transformation laboratory, specializing in cutting-edge
+                        software development, comprehensive testing solutions, and innovative digital strategies.
                     </p>
-                    
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-6 group">
-                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">ISO Certified Excellence</h3>
-                                <p class="text-gray-300 leading-relaxed">International quality standards with state-of-the-art equipment and rigorous quality control processes ensuring maximum accuracy.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-6 group">
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">Complete Privacy Protection</h3>
-                                <p class="text-gray-300 leading-relaxed">Your genetic information is secured with military-grade encryption. We follow strict privacy protocols and never share data without explicit consent.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-6 group">
-                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Lightning Fast Results</h3>
-                                <p class="text-gray-300 leading-relaxed">Advanced automation and AI-powered analysis deliver your results in 24-48 hours without compromising accuracy or quality.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        With years of experience and a passion for technology, we help businesses across Pakistan
+                        transform their operations, improve efficiency, and achieve sustainable growth in the digital
+                        age.
+                    </p>
                 </div>
 
-                <div class="relative">
-                    <div class="glass rounded-3xl p-8 hover-lift">
-                        <div class="grid grid-cols-2 gap-6 mb-8">
-                            <div class="text-center group">
-                                <div class="text-5xl font-black gradient-text mb-3 group-hover:scale-110 transition-transform">99.9%</div>
-                                <div class="text-gray-300 font-medium">Accuracy Rate</div>
-                            </div>
-                            <div class="text-center group">
-                                <div class="text-5xl font-black gradient-text mb-3 group-hover:scale-110 transition-transform">15K+</div>
-                                <div class="text-gray-300 font-medium">Tests Completed</div>
-                            </div>
-                            <div class="text-center group">
-                                <div class="text-5xl font-black gradient-text mb-3 group-hover:scale-110 transition-transform">24h</div>
-                                <div class="text-gray-300 font-medium">Average Turnaround</div>
-                            </div>
-                            <div class="text-center group">
-                                <div class="text-5xl font-black gradient-text mb-3 group-hover:scale-110 transition-transform">5★</div>
-                                <div class="text-gray-300 font-medium">Customer Rating</div>
-                            </div>
+                <!-- Key Features -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
                         </div>
-
-                        <div class="bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-2xl p-6 border border-white/10">
-                            <h3 class="text-2xl font-bold mb-6 text-center gradient-text">Laboratory Certifications</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300 font-medium">ISO 15189:2012</span>
-                                    <span class="text-emerald-400 font-bold">✓ Certified</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300 font-medium">CAP Accreditation</span>
-                                    <span class="text-emerald-400 font-bold">✓ Certified</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300 font-medium">CLIA Licensed</span>
-                                    <span class="text-emerald-400 font-bold">✓ Certified</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-300 font-medium">Pakistan FDA Approved</span>
-                                    <span class="text-emerald-400 font-bold">✓ Certified</span>
-                                </div>
-                            </div>
+                        <span class="text-gray-700 font-medium">Expert Team of Developers & Testers</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
                         </div>
+                        <span class="text-gray-700 font-medium">Latest Technology Stack</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">Comprehensive Testing Solutions</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-sm"></i>
+                        </div>
+                        <span class="text-gray-700 font-medium">24/7 Support & Maintenance</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Image placeholder -->
+            <!-- <div class="relative">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl">
+                        <div class="aspect-square bg-gradient-to-br from-phthalo to-green-500 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-white text-6xl"></i>
+                        </div>
+                    </div>
+                </div> -->
+            <div class="relative px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl max-w-5xl mx-auto">
+                    <div class="w-full h-[350px] rounded-2xl overflow-hidden">
+                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                            <source src="{% static 'videos/dna_about.mp4'%}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </section>
+    </div>
+</section>
+<section class="py-20">
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight text-black">
+                <span class="gradient-text">DNA Testing</span>
+            </h1>
+
+            <p class="text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-12">
+                Reliable solutions for paternity, immigration, and genomic testing services.
+            </p>
+
+            <div class="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-black mb-2 stats-counter">99.9%</div>
+                    <div class="text-gray-500 text-sm font-medium">Accuracy Rate</div>
+                </div>
+                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-black mb-2 stats-counter">15K+</div>
+                    <div class="text-gray-500 text-sm font-medium">Tests Completed</div>
+                </div>
+                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-black mb-2 stats-counter">24h</div>
+                    <div class="text-gray-500 text-sm font-medium">Express Results</div>
+                </div>
+                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
+                    <div class="text-3xl font-black text-black mb-2 stats-counter">5.0★</div>
+                    <div class="text-gray-500 text-sm font-medium">Customer Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 {% endblock content %}
