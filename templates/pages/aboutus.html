@@ -2,7 +2,7 @@
 {% load static %}
 <title>{% block title %} About Us|DNA {% endblock %}</title>
 {% block content %}
-<section id="about" class="py-20 gradient-bg">
+<section id="about" class="py-20 gradient-bg mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-8 my-8">
@@ -71,38 +71,129 @@
         </div>
     </div>
 </section>
-<section class="py-20">
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight text-black">
-                <span class="gradient-text">DNA Testing</span>
-            </h1>
-
-            <p class="text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-12">
-                Reliable solutions for paternity, immigration, and genomic testing services.
-            </p>
-
-            <div class="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
-                    <div class="text-3xl font-black text-black mb-2 stats-counter">99.9%</div>
-                    <div class="text-gray-500 text-sm font-medium">Accuracy Rate</div>
-                </div>
-                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
-                    <div class="text-3xl font-black text-black mb-2 stats-counter">15K+</div>
-                    <div class="text-gray-500 text-sm font-medium">Tests Completed</div>
-                </div>
-                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
-                    <div class="text-3xl font-black text-black mb-2 stats-counter">24h</div>
-                    <div class="text-gray-500 text-sm font-medium">Express Results</div>
-                </div>
-                <div class="glass-dark rounded-2xl p-6 text-center hover-lift">
-                    <div class="text-3xl font-black text-black mb-2 stats-counter">5.0★</div>
-                    <div class="text-gray-500 text-sm font-medium">Customer Rating</div>
+<!-- Lab Excellence Section -->
+    <section class="relative py-14 bg-cover bg-center bg-fixed" style="background-image: url('{%static 'images/dnalab2.jpg'%}');">
+        <!-- Overlay for text readability -->
+        <div class="absolute inset-0 bg-phthalo bg-opacity-40"></div>
+            <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+                <div class="floating">
+                    <h2 class="text-5xl font-bold text-white mb-8">
+                        State-of-the-Art <span class="text-butterscotch">Laboratory</span>
+                    </h2>
+                    <p class="text-xl text-gray-200 mb-12 leading-relaxed">
+                        Our world-class facility in Karachi combines cutting-edge technology with the expertise 
+                        of internationally trained geneticists and laboratory technicians. Every sample is processed 
+                        with the highest standards of precision and care.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
+                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-microscope text-phthalo text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Advanced Equipment</h3>
+                            <p class="text-gray-200">Latest DNA sequencing technology and automated processing systems</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
+                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-user-md text-phthalo text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Expert Team</h3>
+                            <p class="text-gray-200">PhD geneticists and certified laboratory professionals</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
+                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-shield-alt text-phthalo text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Quality Assurance</h3>
+                            <p class="text-gray-200">Rigorous quality control and international accreditation standards</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-gradient-to-br from-buttersmoke to-white text-phthalo px-8 py-4 rounded-full hover:bg-yellow-600 font-semibold text-lg">
+                            <i class="fas fa-calendar-alt mr-2"></i>Schedule Lab Visit
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-phthalo font-semibold text-lg">
+                            <i class="fas fa-download mr-2"></i>Lab Certifications
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        
+    </section>
+<section class="gradient-bg p-20">
+     <!-- Laboratory Partners Section -->
+            <div class="text-center mb-16">
+                <h3 class="text-5xl font-bold gradient-text mb-8">Our Trusted Laboratory Partners</h3>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    We collaborate with internationally recognized laboratories to ensure the highest quality standards 
+                    and deliver accurate, reliable results that you can trust for all your DNA testing needs.
+                </p>
+            </div>
 
+            <!-- Enhanced Partners Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 mb-12">
+                <!-- BGI -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <!-- <div class="text-2xl font-bold text-gray-700 mb-1">BGI</div> -->
+                         <img src="{% static 'images/bgi_logo.png' %}" alt="BGI Logo" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Universal Forensics -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/universal-forensics-logo.png' %}" alt="Universal" class=" mx-auto mb-1 transition-transform group-hover:scale-105">           
+                    </div>
+                </div>
+
+                <!-- Dynamic DNA -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/dynamic.png' %}" alt="Dynamic" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                        <!-- <div class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Testing</div> -->
+                    </div>
+                </div>
+
+                <!-- Eurofins -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/Eurofins_Scientific_logo.png' %}" alt="Eurofins" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Endeavor DNA -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/endeavor.png' %}" alt="Endeavor" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- D.N.A.Q -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/dnaq.png' %}" alt="DNAQ" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Alpha Biolabs -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/alphabiolabs-logo.png' %}" alt="Alpha" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+
+                <!-- Cenata -->
+                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
+                    <div class="text-center">
+                        <img src="{% static 'images/cenata.png' %}" alt="Cenata" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
+                    </div>
+                </div>
+            </div>
+</section>
 
 {% endblock content %}

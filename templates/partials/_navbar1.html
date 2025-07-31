@@ -1,101 +1,136 @@
 {% load humanize %}
 {% load static %}
-   <nav class="fixed w-full top-0 z-50 glass-effect border-b border-phthalo/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="{% url 'home' %}" class="text-2xl font-bold text-phthalo tracking-tight hover:text-phthalo-light transition-colors">
-                        DTS Lab Pakistan
+<nav class="fixed w-full top-0 z-50 glass-effect border-b border-phthalo/10">
+    <div class="bg-phthalo-light text-white text-sm px-4 py-2 flex justify-between items-center">
+        <div>
+            <span class="mr-2">🌐</span> 
+            Pakistan's Leading DNA Lab: AABB, CAP, SCC, ISO 17025 Accredited, CLIA Certified
+            <a href="{% url 'about' %}" class="underline ml-2">→ Learn More</a>
+        </div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-globe"></i>
+            <span>Pakistan</span>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="{% url 'home' %}"
+                    class="text-2xl font-bold text-phthalo tracking-tight hover:text-phthalo-light transition-colors">
+                    DTS Lab Pakistan
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-center space-x-8">
+                    <a href="{% url 'home' %}"
+                        class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
+                        Home
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{% url 'about'  %}"
+                        class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
+                        About
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="{% url 'service'  %}"
+                        class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
+                        Services
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+
+                    <!-- Test Types Dropdown -->
+                    <div class="relative dropdown">
+                        <button
+                            class="text-gray-700 hover:text-phthalo font-medium transition-colors flex items-center space-x-1 relative group">
+                            <span>Test Types</span>
+                            <i
+                                class="fas fa-chevron-down text-xs transform group-hover:rotate-180 transition-transform"></i>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                        </button>
+                        <div
+                            class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2">
+                            <a href="#"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
+                                <i class="fas fa-baby mr-3 text-phthalo"></i>
+                                Paternity Testing
+                            </a>
+                            <a href="#"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
+                                <i class="fas fa-passport mr-3 text-phthalo"></i>
+                                Immigration DNA
+                            </a>
+                            <a href="#"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
+                                <i class="fas fa-person-pregnant mr-3 text-phthalo"></i>
+                                Prenatal Testing
+                            </a>
+                            <a href="#"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
+                                <i class="fas fa-search mr-3 text-phthalo"></i>
+                                Ancestry Testing
+                            </a>
+                            <a href="#"
+                                class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
+                                <i class="fas fa-heart mr-3 text-phthalo"></i>
+                                Health & Wellness
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="{% url 'contact' %}"
+                        class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
+                        Contact
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#contact"
+                        class="bg-phthalo text-white px-6 py-2 rounded-full hover:bg-phthalo-light transition-all duration-300 hover:shadow-lg transform hover:scale-105">
+                        Web Store
                     </a>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-8">
-                        <a href="{% url 'home' %}" class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
-                            Home
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
-                        </a>
-                        <a href="{% url 'about'  %}" class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
-                            About
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
-                        </a>
-                        <a href="{% url 'service'  %}" class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
-                            Services
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
-                        </a>
-                        
-                        <!-- Test Types Dropdown -->
-                        <div class="relative dropdown">
-                            <button class="text-gray-700 hover:text-phthalo font-medium transition-colors flex items-center space-x-1 relative group">
-                                <span>Test Types</span>
-                                <i class="fas fa-chevron-down text-xs transform group-hover:rotate-180 transition-transform"></i>
-                                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
-                            </button>
-                            <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2">
-                                <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
-                                    <i class="fas fa-baby mr-3 text-phthalo"></i>
-                                    Paternity Testing
-                                </a>
-                                <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
-                                    <i class="fas fa-passport mr-3 text-phthalo"></i>
-                                    Immigration DNA
-                                </a>
-                                <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
-                                    <i class="fas fa-person-pregnant mr-3 text-phthalo"></i>
-                                    Prenatal Testing
-                                </a>
-                                <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
-                                    <i class="fas fa-search mr-3 text-phthalo"></i>
-                                    Ancestry Testing
-                                </a>
-                                <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
-                                    <i class="fas fa-heart mr-3 text-phthalo"></i>
-                                    Health & Wellness
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <a href="{% url 'contact' %}" class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
-                            Contact
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
-                        </a>
-                        <a href="#contact" class="bg-phthalo text-white px-6 py-2 rounded-full hover:bg-phthalo-light transition-all duration-300 hover:shadow-lg transform hover:scale-105">
-                            Web Store
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button class="text-gray-700 hover:text-phthalo" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button class="text-gray-700 hover:text-phthalo" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{% url 'home' %}" class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Home</a>
-                <a href="{% url 'about' %}" class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">About</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Services</a>
-                <div class="px-3 py-2">
-                    <button onclick="toggleMobileDropdown()" class="flex items-center justify-between w-full text-gray-700 hover:text-phthalo">
-                        <span>Test Types</span>
-                        <i class="fas fa-chevron-down text-xs" id="mobile-dropdown-icon"></i>
-                    </button>
-                    <div id="mobile-dropdown" class="hidden mt-2 ml-4 space-y-1">
-                        <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Paternity Testing</a>
-                        <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Immigration DNA</a>
-                        <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Prenatal Testing</a>
-                        <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Ancestry Testing</a>
-                        <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Health & Wellness</a>
-                    </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="{% url 'home' %}"
+                class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Home</a>
+            <a href="{% url 'about' %}"
+                class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">About</a>
+            <a href="#"
+                class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Services</a>
+            <div class="px-3 py-2">
+                <button onclick="toggleMobileDropdown()"
+                    class="flex items-center justify-between w-full text-gray-700 hover:text-phthalo">
+                    <span>Test Types</span>
+                    <i class="fas fa-chevron-down text-xs" id="mobile-dropdown-icon"></i>
+                </button>
+                <div id="mobile-dropdown" class="hidden mt-2 ml-4 space-y-1">
+                    <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Paternity Testing</a>
+                    <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Immigration DNA</a>
+                    <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Prenatal Testing</a>
+                    <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Ancestry Testing</a>
+                    <a href="#" class="block py-2 text-sm text-gray-600 hover:text-phthalo">Health & Wellness</a>
                 </div>
-                <a href="{% url 'contact' %}" class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Contact</a>
             </div>
+            <a href="{% url 'contact' %}"
+                class="block px-3 py-2 text-gray-700 hover:text-phthalo hover:bg-gray-50 rounded-md">Contact</a>
         </div>
-    </nav>
+    </div>
+</nav>

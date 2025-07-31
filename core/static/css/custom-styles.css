@@ -9,9 +9,8 @@
 .glass-effect {
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
 }
-
 .glass-dark {
     backdrop-filter: blur(20px);
     background: rgba(18, 53, 36, 0.05);

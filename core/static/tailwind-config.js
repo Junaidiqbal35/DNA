@@ -9,6 +9,7 @@ tailwind.config = {
                 'dts-primary': '#00A693',
                 'dts-accent': '#10b981',
                 'dts-secondary': '#0891b2',
+                'butterscotch': '#DAA520',
             },
             fontFamily: {
                 'inter': ['Inter', 'sans-serif'],

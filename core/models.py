@@ -31,6 +31,25 @@ class Product(models.Model):
         return reverse('products:product_detail',
                        args=[self.slug])
 
+    @property
+    def discount_amount(self):
+        """Calculate the discount amount if discounted_price exists"""
+        if self.discounted_price and self.discounted_price < self.price:
+            return self.price - self.discounted_price
+        return 0
+
+    @property
+    def discount_percentage(self):
+        """Calculate the discount percentage"""
+        if self.discounted_price and self.discounted_price < self.price:
+            return round(((self.price - self.discounted_price) / self.price) * 100)
+        return 0
+
+    @property
+    def effective_price(self):
+        """Return the effective price (discounted if available, otherwise regular price)"""
+        return self.discounted_price if self.discounted_price else self.price
+
 
 class Contact(models.Model):
     name = models.CharField(max_length=255)

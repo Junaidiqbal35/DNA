@@ -22,6 +22,13 @@ def product_list(request):
     return render(request, 'pages/index.html', {'products': products})
 
 
+def product_list_dynamic(request):
+    """New view for index2.html with dynamic product loading"""
+    products = Product.objects.filter(available=True).order_by('-created')
+
+    return render(request, 'pages/index2.html', {'products': products})
+
+
 def get_product_list(request):
     products = Product.objects.filter(available=True)
 
@@ -32,7 +39,7 @@ def product_detail(request, slug):
     product = get_object_or_404(Product,
                                 slug=slug,
                                 available=True)
-    recommended_products = Product.objects.all().exclude(id=product.id)[:4]
+    recommended_products = Product.objects.filter(available=True).exclude(id=product.id)[:4]
     cart_product_form = CartAddProductForm()
     return render(request,
                   'pages/product_detail.html',
@@ -44,8 +51,8 @@ def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form = form.save(commit=False)
-            body = f' {form.message} \n Email: {form.email} \n Contact Phone Number: {form.phone_number}.'
+            contact_instance = form.save(commit=False)
+            body = f'{contact_instance.message}\n\nEmail: {contact_instance.email}\nContact Phone Number: {contact_instance.phone_number}.'
             send_mail(
                 'Query Email By The Customer',
                 body,
@@ -53,7 +60,7 @@ def contact_us(request):
                 ['nasir@dnalabpakistan.com'],
                 fail_silently=False,
             )
-            form.save()
+            contact_instance.save()
 
             # messages.success(request, 'Successfully Send the messages!!')
             return render(request, 'pages/thankyou.html')
