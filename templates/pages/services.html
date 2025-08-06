@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block extra_css %}
 <style>
     /* Service-specific styles */
@@ -192,227 +192,87 @@
                 we provide the most advanced DNA testing services in Pakistan.
             </p>
         </div>
-
-        <!-- Service Tabs -->
-        <div class="flex flex-wrap justify-center mb-16 gap-4">
-            <button class="tab-button active px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('paternity')">
-                Paternity & Relationship
-            </button>
-            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('legal')">
-                Legal & Immigration
-            </button>
-            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('health')">
-                Health & Wellness
-            </button>
-            <button class="tab-button px-8 py-4 rounded-full font-semibold border-2 border-phthalo text-phthalo" onclick="showCategory('ancestry')">
-                Ancestry & Genealogy
-            </button>
-        </div>
-<!-- Paternity & Relationship Services -->
-<div id="paternity" class="service-category active">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {% for test in paternity_tests %}
-        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
-            <!-- Popular Badge -->
-            {% if test.is_popular %}
-            <div class="popular-badge">Most Popular</div>
-            {% endif %}
-            
-            <!-- Test Icon -->
-            <div class="w-20 h-20 bg-gradient-to-br from-phthalo to-dts-accent rounded-3xl flex items-center justify-center mb-6">
-                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
-            </div>
-            
-            <!-- Test Name -->
-            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
-            
-            <!-- Description -->
-            <p class="text-gray-600 leading-relaxed mb-6">
-                {{ test.short_description }}
-            </p>
-            
-            <!-- Features List -->
-            <div class="space-y-3 mb-6">
-                {% for feature in test.features %}
-                <div class="flex items-center text-sm text-gray-600">
-                    <i class="fas fa-check text-dts-accent mr-3"></i>
-                    <span>{{ feature }}</span>
+            <!-- Products Grid -->
+            {% if products %}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for product in products %}
+                <!-- Product Card -->
+                <div class="test-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift">
+                    {% if product.image %}
+                    <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+                    </div>
+                    {% else %}
+                    <div class="w-16 h-16 bg-gradient-to-br from-phthalo to-dts-accent rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-dna text-white text-2xl"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <h3 class="text-2xl font-bold text-phthalo mb-4">{{ product.name }}</h3>
+                    <div class="text-gray-600 leading-relaxed mb-6">
+                        {{ product.description|safe|truncatewords:20 }}
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-dts-accent mr-2"></i>
+                            <span>99.9% Accuracy Rate</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-dts-accent mr-2"></i>
+                            <span>24-48 Hour Results</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-dts-accent mr-2"></i>
+                            <span>Certified Reports</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        {% if product.discounted_price %}
+                            <div class="text-2xl font-bold text-phthalo">
+                                PKR {{ product.discounted_price|intcomma }}
+                                <span class="text-lg text-gray-400 line-through ml-2">PKR {{ product.price|intcomma }}</span>
+                            </div>
+                            <div class="text-sm text-green-600 font-semibold">
+                                Save PKR {{ product.discount_amount|intcomma }}
+                            </div>
+                        {% else %}
+                            <div class="text-2xl font-bold text-phthalo">PKR {{ product.price|intcomma }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <a href="{% url 'product_detail' product.slug %}" class="flex-1 text-center bg-phthalo text-white py-3 rounded-xl font-semibold hover:bg-phthalo-light transition-colors">
+                            View Details
+                        </a>
+                        <button class="px-4 py-3 border-2 border-phthalo text-phthalo rounded-xl hover:bg-phthalo hover:text-white transition-colors">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
-            
-            <!-- Pricing -->
-            <div class="flex justify-between items-center mb-6">
-                <div class="text-3xl font-bold text-phthalo">PKR {{ test.price|floatformat:0 }}</div>
-                {% if test.original_price %}
-                <div class="text-sm text-gray-500 line-through">PKR {{ test.original_price|floatformat:0 }}</div>
-                {% endif %}
+            {% else %}
+            <div class="text-center py-16">
+                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-flask text-gray-400 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-600 mb-4">No Products Available</h3>
+                <p class="text-gray-500">We're working on adding new DNA testing products. Please check back soon!</p>
             </div>
+            {% endif %}
             
-            <!-- Action Buttons -->
-            <div class="space-y-3">
-                <!-- Main CTA Button - Links to Product Detail -->
-                <a href="{{ test.get_absolute_url }}" 
-                   class="block w-full bg-phthalo text-white py-4 rounded-xl font-semibold hover:bg-phthalo-light transition-colors text-center">
-                    View Details & Order
-                </a>
-                
-                <!-- Quick Add to Cart Button (Optional) -->
-                <button onclick="quickAddToCart('{{ test.id }}', '{{ test.name }}', '{{ test.price }}')" 
-                        class="w-full border-2 border-phthalo text-phthalo py-3 rounded-xl font-semibold hover:bg-phthalo hover:text-white transition-colors">
-                    <i class="fas fa-cart-plus mr-2"></i>
-                    Quick Add to Cart
+            <!-- Load More Button (if needed) -->
+            {% if products.count > 6 %}
+            <div class="text-center mt-12">
+                <button class="inline-flex items-center px-8 py-4 border-2 border-phthalo text-phthalo font-semibold rounded-full hover:bg-phthalo hover:text-white transition-all duration-300">
+                    View All Products
+                    <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
-        </div>
-        {% empty %}
-        <!-- Fallback if no tests found -->
-        <div class="col-span-full text-center py-12">
-            <i class="fas fa-flask text-6xl text-gray-300 mb-4"></i>
-            <p class="text-xl text-gray-500">No tests available in this category</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- Legal & Immigration Services -->
-<div id="legal" class="service-category">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {% for test in legal_tests %}
-        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
-            <!-- Embassy Approved Badge -->
-            {% if test.test_type == 'immigration' %}
-            <div class="popular-badge">Embassy Approved</div>
-            {% endif %}
-            
-            <div class="w-20 h-20 bg-gradient-to-br from-phthalo to-dts-accent rounded-3xl flex items-center justify-center mb-6">
-                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
-            </div>
-            
-            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
-            
-            <p class="text-gray-600 leading-relaxed mb-6">
-                {{ test.short_description }}
-            </p>
-            
-            <div class="space-y-3 mb-6">
-                {% for feature in test.features %}
-                <div class="flex items-center text-sm text-gray-600">
-                    <i class="fas fa-check text-dts-accent mr-3"></i>
-                    <span>{{ feature }}</span>
-                </div>
-                {% endfor %}
-            </div>
-            
-            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
-            
-            <a href="{{ test.get_absolute_url }}" 
-               class="block w-full bg-gradient-to-r from-phthalo to-dts-accent text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
-                View Details & Order
-            </a>
-        </div>
-        {% empty %}
-        <div class="col-span-full text-center py-12">
-            <i class="fas fa-gavel text-6xl text-gray-300 mb-4"></i>
-            <p class="text-xl text-gray-500">No legal tests available</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- Health & Wellness Services -->
-<div id="health" class="service-category">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {% for test in health_tests %}
-        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
-            {% if test.test_type == 'health' %}
-            <div class="popular-badge">Comprehensive</div>
-            {% endif %}
-            
-            <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-3xl flex items-center justify-center mb-6">
-                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
-            </div>
-            
-            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
-            
-            <p class="text-gray-600 leading-relaxed mb-6">
-                {{ test.short_description }}
-            </p>
-            
-            <div class="space-y-3 mb-6">
-                {% for feature in test.features %}
-                <div class="flex items-center text-sm text-gray-600">
-                    <i class="fas fa-check text-dts-accent mr-3"></i>
-                    <span>{{ feature }}</span>
-                </div>
-                {% endfor %}
-            </div>
-            
-            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
-            
-            {% if test.test_type == 'health' %}
-            <a href="{{ test.get_absolute_url }}" 
-               class="block w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
-                View Details & Order
-            </a>
-            {% else %}
-            <a href="{{ test.get_absolute_url }}" 
-               class="block w-full bg-purple-500 text-white py-4 rounded-xl font-semibold hover:bg-purple-600 transition-colors text-center">
-                View Details & Order
-            </a>
             {% endif %}
         </div>
-        {% empty %}
-        <div class="col-span-full text-center py-12">
-            <i class="fas fa-heartbeat text-6xl text-gray-300 mb-4"></i>
-            <p class="text-xl text-gray-500">No health tests available</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- Ancestry & Genealogy Services -->
-<div id="ancestry" class="service-category">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {% for test in ancestry_tests %}
-        <div class="service-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift relative">
-            <div class="popular-badge">Best Value</div>
-            
-            <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-3xl flex items-center justify-center mb-6">
-                <i class="{{ test.get_icon_class }} text-white text-3xl"></i>
-            </div>
-            
-            <h3 class="text-2xl font-bold text-phthalo mb-4">{{ test.name }}</h3>
-            
-            <p class="text-gray-600 leading-relaxed mb-6">
-                {{ test.short_description }}
-            </p>
-            
-            <div class="space-y-3 mb-6">
-                {% for feature in test.features %}
-                <div class="flex items-center text-sm text-gray-600">
-                    <i class="fas fa-check text-dts-accent mr-3"></i>
-                    <span>{{ feature }}</span>
-                </div>
-                {% endfor %}
-            </div>
-            
-            <div class="text-3xl font-bold text-phthalo mb-6">PKR {{ test.price|floatformat:0 }}</div>
-            
-            <a href="{{ test.get_absolute_url }}" 
-               class="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-center">
-                View Details & Order
-            </a>
-        </div>
-        {% empty %}
-        <div class="col-span-full text-center py-12">
-            <i class="fas fa-globe text-6xl text-gray-300 mb-4"></i>
-            <p class="text-xl text-gray-500">No ancestry tests available</p>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-    </div>
 </section>
 
 <!-- Service Comparison Table -->
@@ -703,31 +563,6 @@
 </section>
 {% block extra_js %}
 <script>
-    // Service Category Tab Functionality
-    function showCategory(categoryName) {
-        // Hide all service categories
-        const categories = document.querySelectorAll('.service-category');
-        categories.forEach(category => {
-            category.classList.remove('active');
-        });
-        
-        // Remove active class from all tab buttons
-        const tabButtons = document.querySelectorAll('.tab-button');
-        tabButtons.forEach(button => {
-            button.classList.remove('active');
-        });
-        
-        // Show selected category
-        const selectedCategory = document.getElementById(categoryName);
-        if (selectedCategory) {
-            selectedCategory.classList.add('active');
-        }
-        
-        // Add active class to clicked button
-        const clickedButton = event.target;
-        clickedButton.classList.add('active');
-    }
-    
     // FAQ Toggle Functionality
     function toggleFAQ(index) {
         const content = document.getElementById(`faq-content-${index}`);
@@ -786,108 +621,6 @@
             });
         });
     });
-    // Quick add to cart functionality (without going to product detail page)
-function quickAddToCart(productId, productName, price) {
-    // Show loading state
-    event.target.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Adding...';
-    event.target.disabled = true;
-    
-    fetch('{% url "service" %}', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}',
-        },
-        body: JSON.stringify({
-            product_id: productId,
-            quantity: 1
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Update cart count in navigation
-            const cartCount = document.getElementById('cart-count');
-            if (cartCount) {
-                cartCount.textContent = data.cart_count;
-            }
-            
-            // Show success state
-            event.target.innerHTML = '<i class="fas fa-check mr-2"></i>Added!';
-            event.target.classList.remove('border-phthalo', 'text-phthalo', 'hover:bg-phthalo', 'hover:text-white');
-            event.target.classList.add('bg-green-500', 'text-white');
-            
-            // Reset button after 2 seconds
-            setTimeout(() => {
-                event.target.innerHTML = '<i class="fas fa-cart-plus mr-2"></i>Quick Add to Cart';
-                event.target.classList.remove('bg-green-500', 'text-white');
-                event.target.classList.add('border-phthalo', 'text-phthalo', 'hover:bg-phthalo', 'hover:text-white');
-                event.target.disabled = false;
-            }, 2000);
-            
-            // Optional: Show toast notification
-            showQuickToast(`${productName} added to cart!`, 'success');
-        } else {
-            // Show error state
-            event.target.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Error';
-            event.target.classList.add('bg-red-500', 'text-white');
-            
-            setTimeout(() => {
-                event.target.innerHTML = '<i class="fas fa-cart-plus mr-2"></i>Quick Add to Cart';
-                event.target.classList.remove('bg-red-500', 'text-white');
-                event.target.disabled = false;
-            }, 2000);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        event.target.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>Error';
-        event.target.disabled = false;
-    });
-}
-
-// Toast notification for quick actions
-function showQuickToast(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.className = `fixed top-20 right-4 z-50 px-6 py-4 rounded-lg text-white font-semibold transform transition-all duration-300 ${
-        type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
-    }`;
-    toast.innerHTML = `
-        <div class="flex items-center">
-            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} mr-2"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    // Add to page
-    document.body.appendChild(toast);
-    
-    // Animate in
-    setTimeout(() => {
-        toast.style.transform = 'translateX(0)';
-    }, 10);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        toast.style.transform = 'translateX(400px)';
-        setTimeout(() => {
-            toast.remove();
-        }, 300);
-    }, 3000);
-}
-
-// Enhanced hover effects for service cards
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
 </script>
 {% endblock %}
 {% endblock %}

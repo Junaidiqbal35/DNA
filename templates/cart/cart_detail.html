@@ -1,81 +1,511 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
-<title>{% block title %} Your Cart | DTS {% endblock %}</title>
+
+{% block title %}Your Cart - DNA Testing Orders | DNA Lab Pakistan{% endblock %}
 
 {% block extrahead %}
-  <link rel="stylesheet" href="{% static '/css/cart.css' %}">
-{% endblock extrahead %}
+<style>
+    .cart-container {
+        background: linear-gradient(135deg, #fef7e7 0%, #f0f9ff 100%);
+        min-height: 100vh;
+    }
+    
+    .cart-item {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .cart-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .quantity-wrapper {
+        display: flex;
+        align-items: center;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        width: fit-content;
+        background: white;
+    }
+
+    .quantity-btn {
+        background: #f8fafc;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        color: #4a5568;
+        transition: all 0.2s ease;
+        min-width: 40px;
+    }
+
+    .quantity-btn:hover {
+        background: #00A693;
+        color: white;
+    }
+
+    .quantity-input {
+        border: none;
+        text-align: center;
+        width: 50px;
+        padding: 8px 4px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #2d3748;
+        background: white;
+    }
+    
+    .floating-dna {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+        pointer-events: none;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .cart-summary {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: sticky;
+        top: 100px;
+    }
+    
+    .empty-cart {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .price-animation {
+        animation: priceUpdate 0.5s ease-in-out;
+    }
+    
+    @keyframes priceUpdate {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); color: #00A693; }
+        100% { transform: scale(1); }
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="max-w-7xl pt-20 mx-auto px-4">
-  <div class="mt-12">
-    <div class="flex items-center space-x-2 text-gray-600 mb-6">
-      <a href="#" class="text-xl"><i class="bi bi-arrow-left-short"></i></a>
-      <p class="mt-1">Home / <span class="font-bold text-gray-900">Cart</span></p>
-    </div>
-  </div>
+<!-- Floating DNA Elements -->
+<div class="floating-dna" style="top: 10%; left: 5%;">
+    <i class="fas fa-dna text-6xl text-dts-primary"></i>
+</div>
+<div class="floating-dna" style="top: 20%; right: 8%;">
+    <i class="fas fa-microscope text-5xl text-phthalo"></i>
+</div>
+<div class="floating-dna" style="bottom: 15%; left: 10%;">
+    <i class="fas fa-flask text-4xl text-dts-accent"></i>
+</div>
+<div class="floating-dna" style="bottom: 25%; right: 15%;">
+    <i class="fas fa-vials text-3xl text-dts-secondary"></i>
 </div>
 
-<main class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-  <div class="md:col-span-2">
-    <div class="mb-6">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">My Cart</h3>
-      <div class="grid grid-cols-5 text-gray-500 border-b pb-2 text-sm">
-        <div class="col-span-2">Item</div>
-        <div class="text-center">Price</div>
-        <div class="text-center">Quantity</div>
-        <div class="text-center">Subtotal</div>
-      </div>
+<div class="cart-container py-8 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header Section -->
+        <div class="mb-8">
+            <div class="flex items-center space-x-4 mb-6">
+                <a href="{% url 'service' %}" 
+                   class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 text-phthalo hover:text-dts-primary">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <div class="flex-1">
+                    <nav class="text-sm text-gray-600">
+                        <a href="{% url 'home' %}" class="hover:text-dts-primary transition-colors">Home</a>
+                        <span class="mx-2">/</span>
+                        <a href="{% url 'service' %}" class="hover:text-dts-primary transition-colors">Services</a>
+                        <span class="mx-2">/</span>
+                        <span class="font-semibold text-phthalo">Shopping Cart</span>
+                    </nav>
+                </div>
+            </div>
+            
+            <!-- Cart Header -->
+            <div class="bg-gradient-to-r from-phthalo to-dts-primary rounded-2xl p-6 text-white mb-8 mt-12">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold mb-2">🧬 Shopping Cart</h1>
+                        <p class="text-white text-opacity-90">Review your DNA testing orders</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold">{{ cart|length }} item{{ cart|length|pluralize }}</div>
+                        <div class="text-white text-opacity-90">in your cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      {% for item in cart %}
-        {% with product=item.product %}
-          <div class="grid grid-cols-5 items-center py-4 border-b">
-            <div class="col-span-2 flex items-center space-x-4">
-              <img src="{{ product.image.url }}" alt="Image" class="w-16 h-16 object-cover rounded border">
-              <div>
-                <h4 class="font-medium text-gray-800">{{ product.name }}</h4>
-              </div>
+        {% if cart %}
+        <!-- Cart Items Section -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Left Side - Cart Items -->
+            <div class="lg:col-span-2 space-y-6">
+                {% for item in cart %}
+                {% with product=item.product %}
+                <div class="cart-item rounded-3xl shadow-xl p-6">
+                    <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                        <!-- Product Image -->
+                        <div class="flex-shrink-0">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" 
+                                 class="w-24 h-24 object-cover rounded-2xl shadow-lg">
+                            {% else %}
+                            <div class="w-24 h-24 bg-gradient-to-br from-dts-primary to-dts-accent rounded-2xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-dna text-white text-2xl"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-phthalo mb-2">{{ product.name }}</h3>
+                            <div class="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                                <i class="fas fa-check-circle text-dts-accent"></i>
+                                <span>99.9% Accuracy Guaranteed</span>
+                            </div>
+                            
+                            <!-- Price Display -->
+                            <div class="flex items-center space-x-3">
+                                {% if product.discounted_price %}
+                                <span class="text-2xl font-bold text-dts-primary">PKR {{ product.discounted_price|intcomma }}</span>
+                                <span class="text-lg text-gray-500 line-through">PKR {{ product.price|intcomma }}</span>
+                                <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs font-semibold">
+                                    SAVE PKR {{ product.price|add:"-"|add:product.discounted_price|intcomma }}
+                                </span>
+                                {% else %}
+                                <span class="text-2xl font-bold text-dts-primary">PKR {{ product.price|intcomma }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Quantity and Actions -->
+                        <div class="flex flex-col space-y-4">
+                            <!-- Quantity Controls -->
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm font-semibold text-phthalo">Quantity:</span>
+                                <div class="quantity-wrapper">
+                                    <button type="button" class="quantity-btn" onclick="updateQuantity('{{ product.id }}', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="qty-{{ product.id }}" value="{{ item.quantity }}" min="1" max="10" readonly>
+                                    <button type="button" class="quantity-btn" onclick="updateQuantity('{{ product.id }}', 1)">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Item Total -->
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Item Total</p>
+                                <p class="text-xl font-bold text-phthalo" id="total-{{ product.id }}">PKR {{ item.total_price|intcomma }}</p>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="flex space-x-2">
+                                <button onclick="editItem('{{ product.id }}')" 
+                                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-semibold text-sm transition-colors">
+                                    <i class="fas fa-edit mr-1"></i>
+                                    Edit
+                                </button>
+                                <form action="{% url 'cart_remove' product.id %}" method="post" class="inline">
+                                    {% csrf_token %}
+                                    <button type="submit" 
+                                            class="bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+                                            onclick="return confirm('Remove this item from cart?')">
+                                        <i class="fas fa-trash mr-1"></i>
+                                        Remove
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endwith %}
+                {% endfor %}
+
+                <!-- Continue Shopping Card -->
+                <div class="cart-item rounded-3xl shadow-xl p-6">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-phthalo mb-4">Need More Tests?</h3>
+                        <p class="text-gray-600 mb-6">Explore our complete range of DNA testing services</p>
+                        <a href="{% url 'service' %}" 
+                           class="inline-flex items-center bg-gradient-to-r from-dts-accent to-dts-secondary text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-plus mr-2"></i>
+                            Browse More Tests
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="text-center">
-              {% if product.discounted_price %} 
-                {{ product.discounted_price | intcomma }}
-              {% else %} 
-                {{ product.price | intcomma }}
-              {% endif %}
+
+            <!-- Right Side - Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="cart-summary rounded-3xl shadow-xl p-8">
+                    <div class="flex items-center space-x-3 mb-8">
+                        <div class="w-12 h-12 bg-gradient-to-br from-phthalo to-dts-primary rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-calculator text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-phthalo">Order Summary</h2>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal ({{ cart|length }} item{{ cart|length|pluralize }})</span>
+                            <span class="font-semibold">PKR {{ cart.get_total_price|intcomma }}</span>
+                        </div>
+                        
+                        <div class="flex justify-between text-gray-600">
+                            <span>Sample Collection</span>
+                            <span class="text-green-600 font-semibold">Free</span>
+                        </div>
+                        
+                        <div class="flex justify-between text-gray-600">
+                            <span>Processing & Lab Fees</span>
+                            <span class="text-green-600 font-semibold">Included</span>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-4">
+                            <div class="flex justify-between text-2xl font-bold text-phthalo">
+                                <span>Total Amount</span>
+                                <span id="grand-total">PKR {{ cart.get_total_price|intcomma }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Offers -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 mb-6">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <i class="fas fa-gift text-green-600"></i>
+                            <span class="font-semibold text-green-700">Special Offer</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Free home sample collection on all orders!</p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-4">
+                        <a href="{% url 'order_checkout' %}" 
+                           class="block w-full bg-gradient-to-r from-dts-primary to-dts-accent hover:from-dts-accent hover:to-dts-secondary text-white font-bold py-4 px-6 rounded-xl text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-credit-card mr-2"></i>
+                            Proceed to Checkout
+                        </a>
+                        
+                        <a href="{% url 'service' %}" 
+                           class="block w-full border-2 border-dts-primary text-dts-primary hover:bg-dts-primary hover:text-white font-semibold py-4 px-6 rounded-xl text-center transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+
+                    <!-- Security & Trust Badges -->
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <div class="text-center space-y-4">
+                            <div class="flex items-center justify-center space-x-4 text-sm text-gray-600">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-shield-alt text-green-500"></i>
+                                    <span>Secure Checkout</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-truck text-blue-500"></i>
+                                    <span>Free Collection</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-center space-x-2 text-sm text-gray-600">
+                                <i class="fas fa-certificate text-dts-primary"></i>
+                                <span>ISO Certified Laboratory</span>
+                            </div>
+                            
+                            <div class="text-xs text-gray-500">
+                                <p>🧬 Professional DNA testing with 99.9% accuracy</p>
+                                <p>Results delivered within 24-48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="text-center">{{ item.quantity }}</div>
-            <div class="text-center">{{ item.total_price }}</div>
-            <div class="text-center flex space-x-2 justify-center mt-2">
-              <form action="{% url 'cart_remove' product.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" title="Remove" class="text-red-500"><i class="bi bi-x-circle"></i></button>
-              </form>
-              <button title="Edit" class="text-blue-500"><i class="bi bi-pencil"></i></button>
+        </div>
+
+        {% else %}
+        <!-- Empty Cart State -->
+        <div class="text-center">
+            <div class="empty-cart rounded-3xl shadow-xl p-12 max-w-2xl mx-auto">
+                <div class="mb-8">
+                    <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shopping-cart text-6xl text-gray-400"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-phthalo mb-4">Your Cart is Empty</h2>
+                    <p class="text-xl text-gray-600 mb-8">Start by adding some DNA tests to your cart</p>
+                </div>
+                
+                <!-- Featured Services -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
+                        <div class="w-16 h-16 bg-gradient-to-br from-dts-primary to-dts-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-dna text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-phthalo mb-2">Paternity Test</h3>
+                        <p class="text-sm text-gray-600">99.9% accuracy</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
+                        <div class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-passport text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-phthalo mb-2">Immigration DNA</h3>
+                        <p class="text-sm text-gray-600">Embassy approved</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
+                        <div class="w-16 h-16 bg-gradient-to-br from-dts-accent to-phthalo-light rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heartbeat text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-phthalo mb-2">Health Screen</h3>
+                        <p class="text-sm text-gray-600">Comprehensive</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <a href="{% url 'service' %}" 
+                       class="inline-flex items-center bg-gradient-to-r from-dts-primary to-dts-accent text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-microscope mr-3"></i>
+                        Browse DNA Tests
+                    </a>
+                    
+                    <div class="mt-4">
+                        <a href="{% url 'home' %}" class="text-dts-primary hover:text-dts-accent font-semibold">
+                            <i class="fas fa-home mr-2"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-        {% endwith %}
-      {% endfor %}
+        </div>
+        {% endif %}
     </div>
-  </div>
+</div>
 
+<script>
+// Quantity update functionality
+function updateQuantity(productId, change) {
+    const qtyInput = document.getElementById(`qty-${productId}`);
+    const currentQty = parseInt(qtyInput.value);
+    const newQty = Math.max(1, Math.min(10, currentQty + change));
+    
+    if (newQty !== currentQty) {
+        qtyInput.value = newQty;
+        
+        // Show loading state
+        const totalElement = document.getElementById(`total-${productId}`);
+        totalElement.innerHTML = '<i class="fas fa-spinner fa-spin text-dts-primary"></i>';
+        
+        // AJAX call to update cart
+        fetch(`/cart/update/${productId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+            body: JSON.stringify({
+                quantity: newQty
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update item total
+                totalElement.textContent = `PKR ${data.item_total.toLocaleString()}`;
+                totalElement.classList.add('price-animation');
+                
+                // Update grand total
+                const grandTotal = document.getElementById('grand-total');
+                grandTotal.textContent = `PKR ${data.cart_total.toLocaleString()}`;
+                grandTotal.classList.add('price-animation');
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    totalElement.classList.remove('price-animation');
+                    grandTotal.classList.remove('price-animation');
+                }, 500);
+                
+                // Show success toast
+                showToast('Cart updated successfully!', 'success');
+            } else {
+                // Revert quantity on error
+                qtyInput.value = currentQty;
+                totalElement.textContent = `PKR ${(currentQty * data.unit_price).toLocaleString()}`;
+                showToast('Failed to update cart. Please try again.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            qtyInput.value = currentQty;
+            showToast('Error updating cart. Please refresh the page.', 'error');
+        });
+    }
+}
 
-    <div class="w-full bg-gray-50 p-6 rounded-lg shadow-md">
-      <h3 class="text-lg font-semibold text-gray-700 mb-4">Order Summary</h3>
-      <div class="flex justify-between text-sm mb-2">
-        <span>Item ({{ cart|length }})</span>
-        <span class="font-medium">{{ cart.get_total_price | intcomma }}</span>
-      </div>
-      <div class="flex justify-between text-base font-semibold border-t pt-2 mt-2">
-        <span>Total</span>
-        <span>{{ cart.get_total_price | intcomma }}</span>
-      </div>
-      <div class="mt-4 space-y-2">
-        <a href="{% url 'order_checkout' %}" class="block w-full text-center bg-phthalo hover:bg-phthalo-light text-white font-semibold py-2 rounded">GO TO CHECKOUT</a>
-        <a href="#" class="block w-full text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded">Continue Shopping</a>
-      </div>
-    </div>
-  
-</main>
+// Edit item functionality
+function editItem(productId) {
+    // This could open a modal or redirect to product detail page
+    showToast('Edit functionality coming soon!', 'info');
+}
 
-{% endblock content %}
+// Toast notification function
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `fixed top-20 right-4 z-50 px-6 py-4 rounded-lg text-white font-semibold transform transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+    }`;
+    toast.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} mr-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.transform = 'translateX(0)';
+    }, 10);
+    
+    setTimeout(() => {
+        toast.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth animations to existing elements
+    const cartItems = document.querySelectorAll('.cart-item');
+    cartItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.classList.add('animate-fade-in-up');
+    });
+    
+    // Add confirmation to remove buttons
+    const removeButtons = document.querySelectorAll('button[type="submit"]');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (!confirm('Are you sure you want to remove this item from your cart?')) {
+                e.preventDefault();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
