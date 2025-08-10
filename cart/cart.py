@@ -29,6 +29,9 @@ class Cart:
         for item in cart.values():
             item['price'] = int(item['price'])
             item['total_price'] = item['price'] * item['quantity']
+            # Add addon total if it exists
+            if 'addon_total' in item:
+                item['total_price'] += item['addon_total'] * item['quantity']
             yield item
 
     def __len__(self):
@@ -42,9 +45,42 @@ class Cart:
         Add a product to the cart or update its quantity.
         """
         product_id = str(product.id)
+        # Use effective_price (discounted price if available, otherwise regular price)
+        price = product.discounted_price if product.discounted_price else product.price
+
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0,
-                                     'price': str(product.price)}
+            self.cart[product_id] = {
+                'quantity': 0,
+                'price': str(price)
+            }
+        if override_quantity:
+            self.cart[product_id]['quantity'] = quantity
+        else:
+            self.cart[product_id]['quantity'] += quantity
+        self.save()
+
+    def add_with_addons(self, product, quantity=1, override_quantity=False, addons=None, addon_total=0):
+        """
+        Add a product to the cart with addons.
+        """
+        product_id = str(product.id)
+        # Use effective_price (discounted price if available, otherwise regular price)
+        price = product.discounted_price if product.discounted_price else product.price
+
+        if product_id not in self.cart:
+            self.cart[product_id] = {
+                'quantity': 0,
+                'price': str(price),
+                'addons': addons or {},
+                'addon_total': addon_total
+            }
+        else:
+            # Update existing item
+            if addons:
+                self.cart[product_id]['addons'] = addons
+            if addon_total:
+                self.cart[product_id]['addon_total'] = addon_total
+
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -70,4 +106,9 @@ class Cart:
         self.save()
 
     def get_total_price(self):
-        return sum(int(item['price']) * item['quantity'] for item in self.cart.values())
+        total = 0
+        for item in self.cart.values():
+            base_price = int(item['price']) * item['quantity']
+            addon_price = item.get('addon_total', 0) * item['quantity']
+            total += base_price + addon_price
+        return total
