@@ -60,6 +60,27 @@
 .breadcrumb-nav a:hover {
     color: #1f2937;
 }
+.addon-card {
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+.addon-card:hover {
+    border-color: #00A693;
+    background-color: rgba(0, 166, 147, 0.05);
+}
+.addon-card.selected {
+    border-color: #00A693;
+    background-color: rgba(0, 166, 147, 0.1);
+}
+.cart-summary {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 166, 147, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
 </style>
 {% endblock extrahead %}
 
@@ -70,7 +91,7 @@
         <nav class="breadcrumb-nav">
             <a href="{% url 'home' %}" class="hover:text-phthalo">Home</a>
             <span class="mx-2">/</span>
-            <a href="{% url 'home' %}#products" class="hover:text-phthalo">Products</a>
+            <a href="{% url 'service' %}" class="hover:text-phthalo">Services</a>
             <span class="mx-2">/</span>
             <span class="text-phthalo font-medium">{{ product.name }}</span>
         </nav>
@@ -120,7 +141,7 @@
                 </div>
             </div>
 
-            <!-- Product Info -->
+            <!-- Product Info and Cart -->
             <div class="space-y-8">
                 <!-- Product Header -->
                 <div class="bg-white rounded-3xl p-8 shadow-lg">
@@ -167,10 +188,10 @@
                     </div>
                 </div>
 
-                <!-- Add to Cart Section -->
+                <!-- Add to Cart Section with Addons -->
                 {% if product.available %}
-                <div class="bg-white rounded-3xl p-8 shadow-lg floating-cart">
-                    <form action="{% url 'cart_add' product.id %}" method="post">
+                <div class="cart-summary rounded-3xl p-8 shadow-lg floating-cart">
+                    <form action="{% url 'cart_add_with_addons' product.id %}" method="post" id="cartForm">
                         {% csrf_token %}
                         
                         <!-- Quantity Selector -->
@@ -189,13 +210,56 @@
 
                         {{ cart_product_form.override }}
 
+                        <!-- Addon Options -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                                <i class="fas fa-plus-circle text-dts-primary mr-2"></i>
+                                Additional Services
+                            </h3>
+                            <div class="space-y-3 max-h-64 overflow-y-auto">
+                                {% for addon in addon_options %}
+                                <div class="addon-card" onclick="toggleAddon('{{ addon.id }}', {{ addon.price }})">
+                                    <label class="flex items-start space-x-3 cursor-pointer">
+                                        <input type="checkbox" name="addons" value="{{ addon.id }}" class="mt-1">
+                                        <input type="hidden" name="addon_price_{{ addon.id }}" value="{{ addon.price }}">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="font-medium text-gray-800">{{ addon.name }}</h4>
+                                                <span class="text-lg font-bold text-dts-primary">+PKR {{ addon.price|intcomma }}</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">{{ addon.description }}</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="bg-gray-50 rounded-2xl p-4 mb-6">
+                            <h4 class="font-semibold text-gray-700 mb-3">Order Summary</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Base Test</span>
+                                    <span id="basePrice">PKR {{ product.effective_price|intcomma }}</span>
+                                </div>
+                                <div id="addonsList"></div>
+                                <div class="border-t pt-2 mt-2">
+                                    <div class="flex justify-between font-bold text-lg">
+                                        <span>Total</span>
+                                        <span id="totalPrice">PKR {{ product.effective_price|intcomma }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Action Buttons -->
                         <div class="space-y-4">
                             <button type="submit" class="w-full bg-phthalo text-white py-4 rounded-2xl font-bold text-lg hover:bg-phthalo-light transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                                 <i class="fas fa-cart-plus mr-2"></i>Add to Cart
                             </button>
                             
-                            <button type="button" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <button type="button" onclick="buyNow()" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                                 <i class="fas fa-bolt mr-2"></i>Buy Now
                             </button>
                         </div>
@@ -223,72 +287,6 @@
                 {{ product.description|safe }}
             </div>
         </div>
-
-            <!-- Additional Services -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-bold text-phthalo mb-6">Additional Services</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Enhance your DNA testing experience with our premium add-on services and support options.
-            </p>
-        </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Express Processing -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-bolt text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Express Processing</h3>
-                <p class="text-gray-600 mb-4">Get your results in 12-24 hours with our express service.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 10,000</div>
-                <button class="w-full bg-yellow-500 text-white py-3 rounded-xl font-semibold hover:bg-yellow-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Home Collection -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-home text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Home Collection</h3>
-                <p class="text-gray-600 mb-4">Professional sample collection at your location.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 5,000</div>
-                <button class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Genetic Counseling -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-user-md text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Genetic Counseling</h3>
-                <p class="text-gray-600 mb-4">Professional consultation to understand your results.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 7,500</div>
-                <button class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Additional Participants -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-users text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Extra Participants</h3>
-                <p class="text-gray-600 mb-4">Add additional participants to your DNA test.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 8,000</div>
-                <button class="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold hover:bg-purple-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-        </div>
-    </div>
-</section>z
 
         <!-- Similar Products -->
         {% if recommended_products %}
@@ -338,14 +336,18 @@
         </div>
         {% endif %}
     </div>
-
 </div>
 
 <script>
+// Product configuration
+const basePrice = {{ product.effective_price }};
+let selectedAddons = {};
+
 function increaseQuantity() {
     const input = document.getElementById('id_quantity');
     const currentValue = parseInt(input.value) || 1;
     input.value = currentValue + 1;
+    updateTotal();
 }
 
 function decreaseQuantity() {
@@ -353,10 +355,77 @@ function decreaseQuantity() {
     const currentValue = parseInt(input.value) || 1;
     if (currentValue > 1) {
         input.value = currentValue - 1;
+        updateTotal();
     }
 }
 
-// Initialize quantity if not set
+function toggleAddon(addonId, price) {
+    const checkbox = document.querySelector(`input[value="${addonId}"]`);
+    const addonCard = checkbox.closest('.addon-card');
+    
+    if (checkbox.checked) {
+        selectedAddons[addonId] = {
+            name: addonCard.querySelector('h4').textContent,
+            price: price
+        };
+        addonCard.classList.add('selected');
+    } else {
+        delete selectedAddons[addonId];
+        addonCard.classList.remove('selected');
+    }
+    
+    updateTotal();
+}
+
+function updateTotal() {
+    const quantity = parseInt(document.getElementById('id_quantity').value) || 1;
+    let addonTotal = 0;
+    
+    // Calculate addon total
+    Object.values(selectedAddons).forEach(addon => {
+        addonTotal += addon.price;
+    });
+    
+    // Update displays
+    const total = (basePrice + addonTotal) * quantity;
+    document.getElementById('totalPrice').textContent = `PKR ${total.toLocaleString()}`;
+    
+    // Update addons list
+    const addonsList = document.getElementById('addonsList');
+    addonsList.innerHTML = '';
+    
+    Object.values(selectedAddons).forEach(addon => {
+        const addonDiv = document.createElement('div');
+        addonDiv.className = 'flex justify-between text-dts-primary';
+        addonDiv.innerHTML = `
+            <span>${addon.name}</span>
+            <span>+PKR ${addon.price.toLocaleString()}</span>
+        `;
+        addonsList.appendChild(addonDiv);
+    });
+}
+
+function buyNow() {
+    // Add to cart and redirect to checkout
+    const form = document.getElementById('cartForm');
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        }
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = '{% url "order_checkout" %}';
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     const quantityInput = document.getElementById('id_quantity');
     if (!quantityInput.value || quantityInput.value == '0') {
@@ -367,6 +436,11 @@ document.addEventListener('DOMContentLoaded', function() {
     quantityInput.className = 'quantity-input';
     quantityInput.setAttribute('min', '1');
     quantityInput.setAttribute('max', '10');
+    
+    // Add change listener to quantity input
+    quantityInput.addEventListener('change', updateTotal);
+    
+    updateTotal();
 });
 </script>
 
