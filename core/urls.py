@@ -32,6 +32,7 @@ urlpatterns = [
     path('product/', TemplateView.as_view(template_name="pages/product.html"), name='product'),
     path('about-us/', TemplateView.as_view(template_name="pages/aboutus.html"), name='about'),
     path('contact-us/', views.contact_us, name='contact'),
+    path('privacy/', TemplateView.as_view(template_name="pages/privacy.html"), name='privacy'),
     path('web-store/', TemplateView.as_view(template_name='webstore/webHome.html'), name='webstore'),
 
     # Commented out cart URLs (uncomment when cart app is ready)
