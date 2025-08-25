@@ -342,11 +342,11 @@
 
                         <!-- Action Buttons -->
                         <div class="mt-8 space-y-4">
-                            <button type="submit" 
-                                    class="w-full bg-gradient-to-r from-dts-primary to-dts-accent hover:from-dts-accent hover:to-dts-secondary text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <a href="{% url 'place_order' %}" type="submit" 
+                                    class="w-full block text-center bg-gradient-to-r from-dts-primary to-dts-accent hover:from-dts-accent hover:to-dts-secondary text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                                 <i class="fas fa-credit-card mr-2"></i>
                                 Place Order - PKR {{ cart.get_total_price|intcomma }}
-                            </button>
+                        </a>
                             
                             <a href="{% url 'service' %}" 
                                class="w-full block text-center border-2 border-dts-primary text-dts-primary hover:bg-dts-primary hover:text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300">

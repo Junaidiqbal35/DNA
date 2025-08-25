@@ -113,22 +113,7 @@
                     
                     <h3 class="text-2xl font-bold text-phthalo mb-4">{{ product.name }}</h3>
                     <div class="text-gray-600 leading-relaxed mb-6">
-                        {{ product.description|safe|truncatewords:20 }}
-                    </div>
-                    
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>99.9% Accuracy Rate</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>24-48 Hour Results</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>Certified Reports</span>
-                        </div>
+                        {{ product.description|safe|truncatewords:10 }}
                     </div>
                     
                     <div class="mb-4">

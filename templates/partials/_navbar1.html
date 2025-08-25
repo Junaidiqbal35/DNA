@@ -79,47 +79,27 @@
                         </button>
                         <div
                             class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2">
-<<<<<<< HEAD
-                            <a href="{% url 'service'  %}"
-=======
                             <a href="{% url 'service' %}#paternity-tests"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
                                 <i class="fas fa-baby mr-3 text-phthalo"></i>
                                 Paternity Testing
                             </a>
-<<<<<<< HEAD
-                            <a href="{% url 'service'  %}"
-=======
                             <a href="{% url 'service' %}#immigration-tests"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
                                 <i class="fas fa-passport mr-3 text-phthalo"></i>
                                 Immigration DNA
                             </a>
-<<<<<<< HEAD
-                            <a href="{% url 'service'  %}"
-=======
                             <a href="{% url 'service' %}#prenatal-tests"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
                                 <i class="fas fa-person-pregnant mr-3 text-phthalo"></i>
                                 Prenatal Testing
                             </a>
-<<<<<<< HEAD
-                            <a href="{% url 'service'  %}"
-=======
                             <a href="{% url 'service' %}#ancestry-tests"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
                                 <i class="fas fa-search mr-3 text-phthalo"></i>
                                 Ancestry Testing
                             </a>
-<<<<<<< HEAD
-                            <a href="{% url 'service'  %}"
-=======
                             <a href="{% url 'service' %}#health-tests"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                                 class="block px-4 py-3 text-sm text-gray-700 hover:bg-buttersmoke hover:text-phthalo transition-colors">
                                 <i class="fas fa-heart mr-3 text-phthalo"></i>
                                 Health & Wellness
@@ -133,18 +113,19 @@
                             </div>
                         </div>
                     </div>
-
+                    <a href="{% url 'checkreports' %}"
+                        class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
+                        Check Reports
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
                     <a href="{% url 'contact' %}"
                         class="text-gray-700 hover:text-phthalo font-medium transition-colors relative group">
                         Contact
                         <span
                             class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 group-hover:w-full transition-all duration-300"></span>
                     </a>
-<<<<<<< HEAD
-                    <a href="https://dnalab.store/"
-=======
                     <a href="{% url 'service' %}"
->>>>>>> 03c33c26e6877dc9d425c87948d7ca13680e6a1d
                         class="bg-phthalo text-white px-6 py-2 rounded-full hover:bg-phthalo-light transition-all duration-300 hover:shadow-lg transform hover:scale-105">
                         Web Store
                     </a>
@@ -199,74 +180,3 @@
         </div>
     </div>
 </nav>
-<<<<<<< HEAD
-
-<script>
-// Improved dropdown functionality for desktop
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-    let hideTimeout;
-    
-    if (dropdown && dropdownMenu) {
-        // Show dropdown on hover
-        dropdown.addEventListener('mouseenter', function() {
-            clearTimeout(hideTimeout);
-            dropdownMenu.classList.add('show');
-            dropdownMenu.classList.remove('hidden');
-        });
-        
-        // Hide dropdown with delay on mouse leave
-        dropdown.addEventListener('mouseleave', function() {
-            hideTimeout = setTimeout(function() {
-                dropdownMenu.classList.remove('show');
-                setTimeout(function() {
-                    dropdownMenu.classList.add('hidden');
-                }, 300); // Wait for transition to complete
-            }, 150); // 150ms delay before hiding
-        });
-        
-        // Keep dropdown open when hovering over menu items
-        dropdownMenu.addEventListener('mouseenter', function() {
-            clearTimeout(hideTimeout);
-        });
-        
-        dropdownMenu.addEventListener('mouseleave', function() {
-            hideTimeout = setTimeout(function() {
-                dropdownMenu.classList.remove('show');
-                setTimeout(function() {
-                    dropdownMenu.classList.add('hidden');
-                }, 300);
-            }, 100);
-        });
-    }
-});
-
-// Mobile dropdown toggle (keep existing function)
-function toggleMobileDropdown() {
-    const dropdown = document.getElementById('mobile-dropdown');
-    const icon = document.getElementById('mobile-dropdown-icon');
-    
-    dropdown.classList.toggle('hidden');
-    icon.classList.toggle('fa-chevron-down');
-    icon.classList.toggle('fa-chevron-up');
-}
-
-// Mobile menu toggle (keep existing function)
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-}
-
-// Close mobile menu when clicking outside (keep existing function)
-document.addEventListener('click', function(event) {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuButton = event.target.closest('[onclick="toggleMobileMenu()"]');
-    
-    if (!mobileMenu.contains(event.target) && !menuButton && !mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-    }
-});
-</script>
-=======
->>>>>>> 8477780079cafddbdc9495e10a5632b254f853a4
