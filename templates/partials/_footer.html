@@ -1,53 +1,102 @@
 {% load static %}
-<footer class="bg-phthalo text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-dna text-2xl text-butterscotch mr-2"></i>
-                        <span class="text-xl font-bold">DTS LAB Pakistan</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">Leading genetic testing laboratory bringing world-class DNA analysis to Pakistan.</p>
-                    <div class="flex space-x-4">
-                        <i class="fab fa-facebook text-butterscotch text-xl hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-twitter text-butterscotch text-xl hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-linkedin text-butterscotch text-xl hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-instagram text-butterscotch text-xl hover:text-white cursor-pointer"></i>
-                    </div>
-                </div>
+{% comment %}
+  Links use plain paths so this drops in without NoReverseMatch errors.
+  Swap them for {% url 'name' %} once you confirm your URL names.
+{% endcomment %}
 
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Services</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><a href="{% url 'service'  %}" class="hover:text-butterscotch">Paternity Testing</a></li>
-                        <li><a href="{% url 'service'  %}" class="hover:text-butterscotch">Ancestry Testing</a></li>
-                        <li><a href="{% url 'service'  %}" class="hover:text-butterscotch">Health Testing</a></li>
-                        <li><a href="{% url 'service'  %}" class="hover:text-butterscotch">Pharmacogenomics</a></li>
-                    </ul>
-                </div>
+<footer class="bg-ink text-white mt-24">
 
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><a href="{% url 'about' %}" class="hover:text-butterscotch">About Us</a></li>
-                        <li><a href="{% url 'privacy'  %}" class="hover:text-butterscotch">Privacy Policy</a></li>
-                        <li><a href="{% url 'privacy'  %}" class="hover:text-butterscotch">Terms of Service</a></li>
-                        <li><a href="{% url 'contact' %}" class="hover:text-butterscotch">Contact</a></li>
-                    </ul>
+    <!-- Site-wide disclaimer. Appears on every page by design. -->
+    <div class="border-b border-white/15">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row gap-5 md:gap-10">
+                <div class="shrink-0">
+                    <span class="inline-flex items-center gap-2 text-xs font-bold tracking-wide text-amber">
+                        <span class="w-2 h-2 rounded-full bg-amber"></span>
+                        Important
+                    </span>
                 </div>
-
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Contact Info</h3>
-                    <div class="space-y-2 text-gray-300">
-                        <p><i class="fas fa-map-marker-alt text-butterscotch mr-2"></i>Lahore, Pakistan</p>
-                        <p><i class="fas fa-phone text-butterscotch mr-2"></i>+92-307-456-1958</p>
-                        <p><i class="fas fa-envelope text-butterscotch mr-2"></i>info@dnalabpakistan.com</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-                <p>&copy; 2025 DTS LAB Pakistan. All rights reserved.</p>
+                <p class="text-sm leading-relaxed text-white/80 max-w-3xl">
+                    DNA TESTING SOLUTIONS is a sample collection, documentation and international shipping service. We do
+                    not perform DNA testing, DNA extraction, genetic analysis, PCR or sequencing in Pakistan, and we
+                    are not a pathology or diagnostic laboratory. Samples collected at our Lahore office are packed
+                    and dispatched by international courier to partner laboratories in the United Kingdom, the United
+                    States and Australia, where all testing, analysis and report preparation takes place. We do not
+                    provide genetic or medical diagnosis, medical advice or treatment.
+                    <a href="{% url 'disclaimer' %}" class="text-white link-underline font-medium">Full disclaimer</a>
+                </p>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 py-14">
+        <div class="grid gap-10 md:grid-cols-12">
+
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-3 mb-3">
+                    {# White tile behind the mark: the logo's own strokes are
+                       dark teal and would disappear on the dark footer. #}
+                    <span class="inline-flex items-center justify-center w-11 h-11 rounded bg-white shrink-0">
+                        <img src="{% static 'img/dts-icon.svg' %}" alt="" class="h-9 w-auto" aria-hidden="true">
+                    </span>
+                    <p class="font-serif text-2xl text-white leading-tight">DNA Testing Solutions</p>
+                </div>
+                <p class="text-sm text-white/60 mt-1 measure-s">
+                    Sample collection and international laboratory coordination, based in Lahore.
+                </p>
+            </div>
+
+            <div class="md:col-span-2">
+                <h2 class="text-sm font-semibold text-white mb-4">Service</h2>
+                <ul class="space-y-2.5 text-sm text-white/70">
+                    <li><a href="{% url 'services' %}" class="hover:text-white">Tests we arrange</a></li>
+                    <li><a href="{% url 'partners' %}" class="hover:text-white">Partner laboratories</a></li>
+                    <li><a href="{% url 'home' %}#how-it-works" class="hover:text-white">How it works</a></li>
+                    <li><a href="{% url 'about' %}" class="hover:text-white">About us</a></li>
+                    <li><a href="{% url 'home' %}#faq" class="hover:text-white">Questions</a></li>
+                    <li><a href="{% url 'contact' %}" class="hover:text-white">Contact us</a></li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h2 class="text-sm font-semibold text-white mb-4">Collection office</h2>
+                <ul class="space-y-2.5 text-sm text-white/70">
+                    <li>Lahore, Punjab, Pakistan</li>
+                    <li>
+                        <a href="tel:+923074561958" class="hover:text-white">
+                            <span class="code">+92 307 456 1958</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@dnalabpakistan.com" class="hover:text-white break-all">
+                            info@dnalabpakistan.com
+                        </a>
+                    </li>
+                    <li class="text-white/50 pt-1">By appointment. Walk-in times confirmed when you book.</li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-3">
+                <h2 class="text-sm font-semibold text-white mb-4">Testing partners</h2>
+                <ul class="space-y-2.5 text-sm text-white/70">
+                    <li><a href="{% url 'partners' %}" class="hover:text-white">United Kingdom</a></li>
+                    <li><a href="{% url 'partners' %}" class="hover:text-white">United States</a></li>
+                    <li><a href="{% url 'partners' %}" class="hover:text-white">Australia</a></li>
+                    <li class="text-white/50 pt-1">
+                        Accreditations are held by the partner laboratory that performs your test and are stated on
+                        your report.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row justify-between gap-4 text-xs text-white/50">
+            <p>&copy; {% now "Y" %} DNA TESTING SOLUTIONS. All rights reserved.</p>
+            <ul class="flex gap-6">
+                <li><a href="{% url 'disclaimer' %}" class="hover:text-white">Disclaimer</a></li>
+<!--                <li><a href="{% url 'privacy' %}" class="hover:text-white">Privacy</a></li>-->
+                <li><a href="{% url 'disclaimer' %}" class="hover:text-white">Terms</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

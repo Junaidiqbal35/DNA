@@ -1,124 +1,574 @@
-.gradient-bg {
-    background: linear-gradient(135deg, #fef7e7 0%, #f5f5f5 50%, #e0f2fe 100%);
+/* ==========================================================================
+   DNA Lab Pakistan — site styles
+   Replaces: custom-styles.css, product.css, service.css, landing.css
+   Tailwind handles layout/utilities; this file carries the bespoke pieces.
+   ========================================================================== */
+
+:root {
+    --ink: #0B403D;
+    --ink-soft: #4E7470;
+    --teal: #0E6E66;
+    --teal-light: #1A8A7F;
+    --teal-wash: #E7F5F0;
+    --amber: #C27C10;
+    --amber-soft: #FAF1E0;
+    --paper: #F4F8F6;
+    --line: #D9E8E3;
 }
 
-.hero-gradient {
-    background: linear-gradient(135deg, #fef7e7 0%, #ffffff 50%, #f0f9ff 100%);
+/* --- Base type -----------------------------------------------------------
+   Serif headlines set tighter than default; body gets a comfortable measure. */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-.glass-effect {
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+h1, h2, h3, h4 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    text-wrap: balance;
 }
 
-.glass-dark {
-    backdrop-filter: blur(20px);
-    background: rgba(18, 53, 36, 0.05);
-    border: 1px solid rgba(18, 53, 36, 0.1);
+h1 { line-height: 1.04; }
+h2 { line-height: 1.12; }
+
+p { text-wrap: pretty; }
+
+.measure   { max-width: 68ch; }
+.measure-s { max-width: 54ch; }
+
+/* Mono is reserved for real reference data — tracking numbers, order refs,
+   sample IDs. Not used as decoration. */
+.code {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
 }
 
-.hover-lift {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* --- Links ---------------------------------------------------------------- */
+
+.link-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(10, 107, 128, 0.35);
+    transition: text-decoration-color 0.15s ease;
 }
 
-.hover-lift:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+.link-underline:hover {
+    text-decoration-color: var(--teal);
 }
 
-.gradient-text {
-    background: linear-gradient(135deg, #123524, #00A693, #10b981);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+/* --- Keyboard focus ------------------------------------------------------- */
 
-.dna-helix {
-    position: relative;
-    width: 100px;
-    height: 200px;
-    margin: 0 auto;
-}
-
-.dna-strand {
-    position: absolute;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(to bottom, #00A693, #10b981);
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
     border-radius: 2px;
 }
 
-.dna-strand:first-child {
-    left: 20px;
-    animation: float 3s ease-in-out infinite;
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    z-index: 100;
 }
 
-.dna-strand:last-child {
-    right: 20px;
-    animation: float 3s ease-in-out infinite reverse;
+.skip-link:focus {
+    left: 0;
 }
 
-.process-step {
+/* --- Sample journey rail -------------------------------------------------
+   The one piece of deliberate motion on the site: stations light up once, in
+   order, on load. It mirrors the actual chain of custody, so the sequence
+   carries meaning rather than decorating the page. */
+
+.rail {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rail-step {
     position: relative;
-    transition: all 0.3s ease;
+    padding: 0 0 1.75rem 2.25rem;
 }
 
-.process-step::before {
+.rail-step:last-child {
+    padding-bottom: 0;
+}
+
+/* connecting line */
+.rail-step::before {
     content: '';
     position: absolute;
-    top: 50%;
-    right: -50px;
-    width: 40px;
-    height: 2px;
-    background: linear-gradient(to right, #00A693, #10b981);
-    transform: translateY(-50%);
+    left: 7px;
+    top: 1.35rem;
+    bottom: -0.25rem;
+    width: 1px;
+    background: var(--line);
 }
 
-.process-step:last-child::before {
+.rail-step:last-child::before {
     display: none;
 }
 
-.floating-dna {
-    animation: float 4s ease-in-out infinite;
+/* station marker */
+.rail-step::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    background: #fff;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.test-card {
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+.rail-step.is-lit::after {
+    border-color: var(--amber);
+    background: var(--amber);
 }
 
-.test-card:hover {
-    border-color: #00A693;
-    background: linear-gradient(135deg, rgba(0, 166, 147, 0.05), rgba(16, 185, 129, 0.05));
+/* the station that happens outside Pakistan is marked differently —
+   it is the point the whole business model turns on */
+.rail-step.rail-offshore::after {
+    border-color: var(--teal);
+    background: #fff;
+    box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 6px var(--teal);
 }
 
-.testimonial-card {
+.rail-step.rail-offshore.is-lit::after {
+    border-color: var(--teal);
+}
+
+.rail-label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    display: block;
+}
+
+.rail-meta {
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+}
+
+/* --- Panels and surfaces -------------------------------------------------- */
+
+.panel {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+.panel-wash {
+    background: var(--teal-wash);
+    border: 1px solid rgba(10, 107, 128, 0.15);
+    border-radius: 6px;
+}
+
+/* Disclaimer / notice block — deliberately plain so it reads as a statement
+   of fact, not a marketing panel. */
+.notice {
+    border-left: 3px solid var(--amber);
+    background: var(--amber-soft);
+    padding: 1rem 1.25rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.notice-quiet {
+    border-left: 3px solid var(--line);
+    background: transparent;
+    padding: 0.75rem 0 0.75rem 1.25rem;
+    border-radius: 0;
+}
+
+/* --- Tables --------------------------------------------------------------- */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+
+.data-table thead th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    border-bottom: 2px solid var(--line);
+    white-space: nowrap;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Accordion (FAQ) ------------------------------------------------------ */
+
+.faq-item {
+    border-bottom: 1px solid var(--line);
+}
+
+.faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.25rem 2.5rem 1.25rem 0;
     position: relative;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 1.6rem;
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid var(--teal);
+    border-bottom: 1.5px solid var(--teal);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(-135deg);
+}
+
+.faq-item .faq-body {
+    padding: 0 2.5rem 1.5rem 0;
+    color: var(--ink-soft);
+    max-width: 68ch;
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border: 1px solid transparent;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--teal);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--teal-light);
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #fff;
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+.btn-secondary:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+}
+
+/* --- Partner logo grid ---------------------------------------------------- */
+
+.partner-logo {
+    filter: grayscale(100%);
+    opacity: 0.65;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+    max-height: 48px;
+    width: auto;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* --- Motion preferences --------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* show the rail in its finished state immediately */
+    .rail-step::after {
+        border-color: var(--amber);
+        background: var(--amber);
+    }
+
+    .rail-step.rail-offshore::after {
+        background: #fff;
+    }
+}
+
+/* --- Print ---------------------------------------------------------------- */
+
+@media print {
+    .no-print { display: none !important; }
+    body { background: #fff; }
+}
+/* ==========================================================================
+   SAFETY NET
+   If the Tailwind CDN is blocked, slow, or its config fails to load, the
+   brand colours below still apply, so the site degrades to "plain but
+   correct" rather than to an unreadable white page. Values are identical to
+   the Tailwind config in base.html, so nothing conflicts when both load.
+   ========================================================================== */
+
+body           { background-color: var(--paper); color: var(--ink); }
+.bg-paper      { background-color: var(--paper); }
+.bg-white      { background-color: #fff; }
+.bg-ink        { background-color: var(--ink); }
+.text-ink      { color: var(--ink); }
+.text-ink-soft { color: var(--ink-soft); }
+.text-teal     { color: var(--teal); }
+.text-amber    { color: var(--amber); }
+.border-line   { border-color: var(--line); }
+.border-teal   { border-color: var(--teal); }
+
+/* --- Partner laboratory cards --------------------------------------------
+   A lab is a trust asset, so it gets a real card with country, accreditation
+   and certificate — not an anonymous grey logo in a strip. */
+
+.lab-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
-.testimonial-card::before {
-    content: '"';
+/* The logo sits on its own plate so logos of different shapes and
+   backgrounds line up instead of floating at random sizes. */
+.lab-logo-plate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 96px;
+    padding: 1.25rem;
+    background: var(--teal-wash);
+    border-bottom: 1px solid var(--line);
+}
+
+.lab-logo-plate img {
+    max-height: 56px;
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Fallback when a lab has no logo uploaded yet: initials, not a broken image. */
+.lab-logo-fallback {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.75rem;
+    color: var(--teal);
+    letter-spacing: 0.02em;
+}
+
+.lab-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--teal);
+    background: var(--teal-wash);
+    border: 1px solid rgba(10, 107, 128, 0.18);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+}
+
+/* Accreditation chip — reads as a credential, not a marketing badge. */
+.accred-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+}
+
+/* --- Certificate thumbnails ---------------------------------------------- */
+
+.cert-thumb {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    padding: 0.4rem;
+    cursor: zoom-in;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cert-thumb:hover {
+    border-color: var(--teal);
+    box-shadow: 0 2px 10px rgba(6, 59, 73, 0.1);
+}
+
+.cert-thumb img {
+    display: block;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
+}
+
+.cert-thumb figcaption {
+    font-size: 0.6875rem;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+    line-height: 1.35;
+}
+
+/* --- Certificate viewer (native <dialog>) -------------------------------- */
+
+.cert-viewer {
+    border: none;
+    border-radius: 6px;
+    padding: 1rem;
+    max-width: min(900px, 92vw);
+    max-height: 92vh;
+    background: #fff;
+    position: relative;
+}
+
+.cert-viewer::backdrop {
+    background: rgba(6, 59, 73, 0.75);
+}
+
+.cert-viewer img {
+    display: block;
+    max-width: 100%;
+    max-height: 78vh;
+    width: auto;
+    margin: 0 auto;
+}
+
+.cert-caption {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    margin-top: 0.75rem;
+}
+
+.cert-close {
     position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 80px;
-    color: rgba(0, 166, 147, 0.1);
-    font-family: serif;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    line-height: 1;
 }
 
-/* Dropdown Styles */
-.dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+.cert-close:hover {
+    border-color: var(--teal);
+    color: var(--teal);
 }
 
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+/* --- Product detail: order form -------------------------------------------
+   The cart app renders its own widgets, so style them here rather than
+   depending on classes it may or may not emit. */
+
+.qty-field input,
+.qty-field select {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.55rem 0.75rem;
+    min-width: 5.5rem;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
 }
+
+.addon-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.addon-row:hover {
+    border-color: var(--teal);
+}
+
+.addon-row:has(input:checked) {
+    border-color: var(--teal);
+    background: var(--teal-wash);
+}
+
+.addon-row input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--teal);
+    flex-shrink: 0;
+}
+
+/* CKEditor description content, which arrives as raw HTML. */
+.prose-dts p { margin-bottom: 0.9rem; }
+.prose-dts ul,
+.prose-dts ol { margin: 0 0 0.9rem 1.25rem; }
+.prose-dts ul { list-style: disc; }
+.prose-dts ol { list-style: decimal; }
+.prose-dts li { margin-bottom: 0.35rem; }
+.prose-dts strong { color: var(--ink); font-weight: 600; }
+.prose-dts a { color: var(--teal); text-decoration: underline; }
+.prose-dts h2,
+.prose-dts h3 { color: var(--ink); margin: 1.5rem 0 0.6rem; }
+.prose-dts img { max-width: 100%; height: auto; border-radius: 4px; }

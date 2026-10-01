@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static %}
 
-{% block title %}Checkout - Order Summary | DNA Lab Pakistan{% endblock %}
+{% block title %}Checkout - Order Summary | DNA TESTING SOLUTIONS{% endblock %}
 
 {% block extrahead %}
 <style>
@@ -98,7 +98,7 @@
         <!-- Header Section -->
         <div class="mb-8">
             <div class="flex items-center space-x-4 mb-6">
-                <a href="{% url 'service' %}" 
+                <a href="{% url 'services' %}" 
                    class="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 text-phthalo hover:text-dts-primary">
                     <i class="fas fa-arrow-left text-xl"></i>
                 </a>
@@ -106,7 +106,7 @@
                     <nav class="text-sm text-gray-600">
                         <a href="{% url 'home' %}" class="hover:text-dts-primary transition-colors">Home</a>
                         <span class="mx-2">/</span>
-                        <a href="{% url 'service' %}" class="hover:text-dts-primary transition-colors">Services</a>
+                        <a href="{% url 'services' %}" class="hover:text-dts-primary transition-colors">Services</a>
                         <span class="mx-2">/</span>
                         <span class="font-semibold text-phthalo">Checkout</span>
                     </nav>
@@ -348,7 +348,7 @@
                                 Place Order - PKR {{ cart.get_total_price|intcomma }}
                             </button>
                             
-                            <a href="{% url 'service' %}" 
+                            <a href="{% url 'services' %}" 
                                class="w-full block text-center border-2 border-dts-primary text-dts-primary hover:bg-dts-primary hover:text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300">
                                 <i class="fas fa-arrow-left mr-2"></i>
                                 Continue Shopping

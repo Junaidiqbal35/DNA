@@ -1,10 +1,256 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Our partner laboratories — DNA TESTING SOLUTIONS{% endblock %}
+{% block meta_description %}The accredited laboratories in the United Kingdom, the United States and Australia that carry out testing on samples collected at our Lahore office — with their accreditations and certificates.{% endblock %}
+
+{% block content %}
+
+<!-- ======================= HEADER =======================
+     This page answers the question the disclaimer raises: "if you don't test
+     in Pakistan, then who does?" So it leads with the answer and backs it
+     with documents. -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 lg:pt-20 lg:pb-16">
+        <div class="grid lg:grid-cols-12 gap-12">
+
+            <div class="lg:col-span-7">
+                <p class="text-sm text-ink-soft mb-5">Partner laboratories</p>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-7">
+                    We don't test your sample. These laboratories do.
+                </h1>
+                <p class="text-lg text-ink-soft leading-relaxed measure">
+                    Our Lahore office collects and ships. The analysis, and the report you finally receive, come from
+                    an established laboratory abroad, working under its own accreditation. Here is who they are and
+                    what they hold.
+                </p>
+            </div>
+
+            <div class="lg:col-span-5 lg:pt-14">
+                <div class="panel p-7">
+                    <h2 class="text-base font-sans font-bold mb-5 pb-4 border-b border-line">Where testing happens</h2>
+
+                    {% if countries %}
+                    <ul class="space-y-3.5 text-sm">
+                        {% for country in countries %}
+                        <li class="flex items-baseline justify-between gap-4">
+                            <span class="font-semibold text-ink">{{ country.name }}</span>
+                            <span class="text-ink-soft">
+                                {{ country.total }} laborator{{ country.total|pluralize:"y,ies" }}
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <ul class="space-y-3.5 text-sm">
+                        <li class="font-semibold text-ink">United Kingdom</li>
+                        <li class="font-semibold text-ink">United States</li>
+                        <li class="font-semibold text-ink">Australia</li>
+                    </ul>
+                    {% endif %}
+
+                    {% if certificate_total %}
+                    <p class="text-xs text-ink-soft mt-6 pt-5 border-t border-line leading-relaxed">
+                        {{ certificate_total }} accreditation certificate{{ certificate_total|pluralize }} on file.
+                        Every one is viewable below.
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= THE LABS ======================= -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        {% if partner_labs %}
+
+        <div class="space-y-8">
+            {% for lab in partner_labs %}
+            <article id="{{ lab.slug }}" class="panel p-7 lg:p-9 scroll-mt-28">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+
+                    <!-- Identity -->
+                    <div class="lg:col-span-4">
+                        <div class="lab-logo-plate mb-5">
+                            {% if lab.logo %}
+                            <img src="{{ lab.logo.url }}" alt="{{ lab.name }}">
+                            {% else %}
+                            <span class="lab-logo-fallback">{{ lab.initials }}</span>
+                            {% endif %}
+                        </div>
+
+                        <h2 class="text-2xl mb-3">{{ lab.name }}</h2>
+
+                        <p class="mb-4">
+                            <span class="lab-flag">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                {% if lab.city %}{{ lab.city }}, {% endif %}{{ lab.get_country_display }}
+                            </span>
+                        </p>
+
+                        {% if lab.handles_legal_tests %}
+                        <p class="text-sm text-ink-soft leading-relaxed mb-4">
+                            Issues reports for legal and immigration matters.
+                        </p>
+                        {% endif %}
+
+                        {% if lab.website %}
+                        <a href="{{ lab.website }}" target="_blank" rel="noopener noreferrer"
+                            class="text-sm font-semibold text-teal link-underline">
+                            Visit their website
+                        </a>
+                        {% endif %}
+                    </div>
+
+                    <!-- What they do and what they hold -->
+                    <div class="lg:col-span-8">
+                        {% if lab.summary %}
+                        <p class="text-ink leading-relaxed measure mb-4">{{ lab.summary }}</p>
+                        {% endif %}
+
+                        {% if lab.description %}
+                        <div class="text-sm text-ink-soft leading-relaxed measure mb-6">
+                            {{ lab.description|safe }}
+                        </div>
+                        {% endif %}
+
+                        {% if lab.accreditation_list %}
+                        <div class="mb-7">
+                            <h3 class="text-sm font-sans font-bold mb-3">Accreditations held</h3>
+                            <div class="flex flex-wrap gap-2">
+                                {% for accreditation in lab.accreditation_list %}
+                                <span class="accred-chip">
+                                    <i class="fa-solid fa-certificate text-teal text-[10px]" aria-hidden="true"></i>
+                                    {{ accreditation }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if lab.live_certifications %}
+                        <div class="pt-6 border-t border-line">
+                            <h3 class="text-sm font-sans font-bold mb-1">Documents</h3>
+                            <p class="text-xs text-ink-soft mb-4">
+                                Accreditations below belong to this laboratory. Anything marked as issued to us is our
+                                authorisation from them, not an accreditation of ours. Tap to read at full size.
+                            </p>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {% for certificate in lab.live_certifications %}
+                                <figure class="cert-thumb"
+                                    data-cert-open="{{ certificate.image.url }}"
+                                    data-cert-label="{{ lab.name }} — {{ certificate.title }}"
+                                    tabindex="0" role="button"
+                                    aria-label="View certificate: {{ certificate.title }}">
+                                    <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" loading="lazy">
+                                    <figcaption>
+                                        <span class="block text-teal font-semibold mb-0.5">
+                                            {% if certificate.kind == 'authorization' %}Issued to us{% else %}Their accreditation{% endif %}
+                                        </span>
+                                        {{ certificate.title }}
+                                        {% if certificate.issuing_body %}
+                                        <br><span class="text-ink-soft">{{ certificate.issuing_body }}</span>
+                                        {% endif %}
+                                        {% if certificate.reference %}
+                                        <br><span class="code">{{ certificate.reference }}</span>
+                                        {% endif %}
+                                    </figcaption>
+                                </figure>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <!-- Empty state: an instruction, not an apology.
+             NOTE FOR JUNAID: add your labs under Admin → Partner laboratories,
+             upload each logo and certificate there, and this page fills itself. -->
+        <div class="panel p-10 lg:p-14">
+            <h2 class="text-2xl mb-3">Laboratory details are being published</h2>
+            <p class="text-ink-soft measure mb-7">
+                Our testing partners are in the United Kingdom, the United States and Australia. Call the Lahore
+                office and we will tell you exactly which laboratory handles the test you need, and what it is
+                accredited for.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="tel:+923074561958" class="btn btn-primary">Call +92 307 456 1958</a>
+                <a href="{% url 'services' %}" class="btn btn-secondary">See tests</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ======================= WHAT WE HOLD ======================= -->
+{% if company_credentials %}
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        {% include 'partials/_credentials.html' %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ======================= HOW WE CHOOSE ======================= -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        <h2 class="text-3xl lg:text-4xl mb-4">How a laboratory ends up on this page</h2>
+        <p class="text-ink-soft measure mb-12">
+            Your report is only worth what the laboratory behind it is worth, so the choice is not made on price.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">Accreditation we can see</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    We hold a copy of each laboratory's current certificate, and we publish it here. If a certificate
+                    lapses, the laboratory comes off this page until it is renewed.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">Reports that get accepted</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    For legal and immigration work, what matters is whether the receiving authority accepts the
+                    laboratory's report. We send that work only to laboratories with a record of it being accepted.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">A working relationship</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    We ship internationally every week, so we need a laboratory that answers questions about a
+                    shipment quickly. A lab we cannot reach is a lab we cannot use.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= SCOPE NOTE ======================= -->
+<section class="bg-paper">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="panel p-8 lg:p-10">
+            <h2 class="text-xl mb-4">Whose accreditation this is</h2>
+            <p class="text-ink-soft leading-relaxed measure mb-5">
+                Every accreditation and certificate on this page belongs to the laboratory named beside it. DNA Lab
+                Pakistan does not hold laboratory accreditation, does not claim any, and does not perform testing. Our
+                Lahore office collects, verifies, documents and ships samples; the laboratory tests them and issues the
+                report.
+            </p>
+            <p class="text-ink-soft leading-relaxed measure mb-7">
+                These laboratories have no offices or testing facilities in Pakistan.
+            </p>
+            <a href="{% url 'disclaimer' %}" class="btn btn-secondary">Read the full disclaimer</a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

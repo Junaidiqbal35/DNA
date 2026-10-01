@@ -1,276 +1,234 @@
 {% extends 'base.html' %}
 {% load static %}
-<title>{% block title %} About Us|DNA {% endblock %}</title>
+
+{% block title %}About us — DNA TESTING SOLUTIONS{% endblock %}
+{% block meta_description %}DNA TESTING SOLUTIONS is a sample collection and international shipping office in Lahore. We prepare and courier DNA samples to partner laboratories in the UK, US and Australia, who perform the testing.{% endblock %}
+
 {% block content %}
-<section id="about" class="py-20 gradient-bg mt-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8 my-8">
-                <div>
-                    <h2 class="text-4xl font-bold text-phthalo mb-6">About DTS Lab Pakistan</h2>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                        At DNA Testing Solutions®, we provide reliable and accredited DNA testing services for 
-                        individuals, families, and professionals across various needs and applications.
-                    </p>
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        With a commitment to dependability and efficiency, we offer a wide range of 
-                        genomic testing options to meet diverse client needs.
-                    </p>
-                </div>
 
-                <!-- Key Features -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium"> Home Kit or Office Visit – Your Choice</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">Certified Results in 10 Working Days</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">Non-Standard Samples Accepted Free</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">100% Confidential & Secure Process</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">24/7 Support & Maintenance</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Image placeholder -->
-            <!-- <div class="relative">
-                    <div class="bg-white p-8 rounded-3xl shadow-xl">
-                        <div class="aspect-square bg-gradient-to-br from-phthalo to-green-500 rounded-2xl flex items-center justify-center">
-                            <i class="fas fa-laptop-code text-white text-6xl"></i>
-                        </div>
-                    </div>
-                </div> -->
-            <div class="relative px-4 sm:px-6 lg:px-8">
-                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl max-w-5xl mx-auto">
-                    <div class="w-full h-[350px] rounded-2xl overflow-hidden">
-                        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
-                            <source src="{% static 'videos/dna_about.mp4'%}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</section>
-<!-- Lab Excellence Section -->
-    <section class="relative py-14 bg-cover bg-center bg-fixed" style="background-image: url('{%static 'images/2024-03-07.webp'%}');">
-        <!-- Overlay for text readability -->
-        <div class="absolute inset-0 bg-phthalo bg-opacity-40"></div>
-            <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-                <div class="floating">
-                    <h2 class="text-5xl font-bold text-white mb-8">
-                        State-of-the-Art <span class="text-butterscotch">Laboratory</span>
-                    </h2>
-                    <p class="text-xl text-gray-200 mb-12 leading-relaxed">
-                        Our world-class facility in Lahore combines cutting-edge technology with the expertise 
-                        of internationally trained geneticists and laboratory technicians. Every sample is processed 
-                        with the highest standards of precision and care.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-microscope text-phthalo text-2xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Advanced Equipment</h3>
-                            <p class="text-gray-200">Latest DNA sequencing technology and automated processing systems</p>
-                        </div>
-                        
-                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-user-md text-phthalo text-2xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Expert Team</h3>
-                            <p class="text-gray-200">PhD geneticists and certified laboratory professionals</p>
-                        </div>
-                        
-                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-shield-alt text-phthalo text-2xl"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Quality Assurance</h3>
-                            <p class="text-gray-200">Rigorous quality control and international accreditation standards</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button class="bg-gradient-to-br from-buttersmoke to-white text-phthalo px-8 py-4 rounded-full hover:bg-yellow-600 font-semibold text-lg">
-                            <i class="fas fa-calendar-alt mr-2"></i>Schedule Lab Visit
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-phthalo font-semibold text-lg">
-                            <i class="fas fa-download mr-2"></i>Lab Certifications
-                        </button>
-                    </div>
-                </div>
-            </div>
-        
-    </section>
-<section id="about" class="py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Image placeholder -->
-            <!-- <div class="relative">
-                    <div class="bg-white p-8 rounded-3xl shadow-xl">
-                        <div class="aspect-square bg-gradient-to-br from-phthalo to-green-500 rounded-2xl flex items-center justify-center">
-                            <i class="fas fa-laptop-code text-white text-6xl"></i>
-                        </div>
-                    </div>
-                </div> -->
-           <!-- Collection Illustration -->
-                <div class="text-center">
-                    <div class="relative max-w-md mx-auto">
-                        <div class="w-64 h-64 bg-gradient-to-br from-buttersmoke to-white rounded-full flex items-center justify-center mx-auto shadow-2xl">
-                            <div class="text-center">
-                                <i class="fas fa-dna text-6xl text-phthalo mb-4"></i>
-                                <p class="text-lg font-semibold text-gray-800">Simple & Secure</p>
-                                <p class="text-sm text-gray-600">Sample Collection</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Floating elements -->
-                        <div class="absolute top-8 left-8 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center floating-dna">
-                            <i class="fas fa-shield-alt text-dts-accent"></i>
-                        </div>
-                        <div class="absolute top-8 right-8 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center floating-dna" style="animation-delay: 1s;">
-                            <i class="fas fa-clock text-phthalo"></i>
-                        </div>
-                        <div class="absolute bottom-8 left-8 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center floating-dna" style="animation-delay: 2s;">
-                            <i class="fas fa-certificate text-dts-secondary"></i>
-                        </div>
-                        <div class="absolute bottom-8 right-8 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center floating-dna" style="animation-delay: 3s;">
-                            <i class="fas fa-lock text-dts-accent"></i>
-                        </div>
-                    </div>
-                </div>
-            <div class="space-y-8 my-8">
-                <div>
-                    <h2 class="text-4xl font-bold text-phthalo mb-6">Non-Standard Samples – Accepted at No Extra Cost</h2>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                        We provide a simple, confidential, and professional DNA testing service with flexible options to suit your needs.
-                    </p>
-                </div>
-
-                <!-- Key Features -->
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium"> We also accept hair with roots, nails, blood, toothbrushes, 
-                        cigarette butts</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">Other non-standard samples for testing</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                            <i class="fas fa-check text-white text-sm"></i>
-                        </div>
-                        <span class="text-gray-700 font-medium">No additional charges apply</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="gradient-bg p-20">
-     <!-- Laboratory Partners Section -->
-            <div class="text-center mb-16">
-                <h3 class="text-5xl font-bold gradient-text mb-8">Our Trusted Laboratory Partners</h3>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    We collaborate with internationally recognized laboratories to ensure the highest quality standards 
-                    and deliver accurate, reliable results that you can trust for all your DNA testing needs.
+<!-- ======================= HEADER ======================= -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 lg:pt-20 lg:pb-16">
+        <div class="grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-7">
+                <p class="text-sm text-ink-soft mb-5">About us</p>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-7">
+                    A Lahore office that gets your sample to the right laboratory.
+                </h1>
+                <p class="text-lg text-ink-soft leading-relaxed measure">
+                    DNA TESTING SOLUTIONS exists to solve one problem: people in Pakistan need DNA reports that will be
+                    accepted abroad, and the laboratories that produce those reports are not here. We bridge that gap
+                    &mdash; carefully, and with the paperwork done properly.
                 </p>
             </div>
 
-            <!-- Enhanced Partners Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 mb-12">
-                <!-- BGI -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <!-- <div class="text-2xl font-bold text-gray-700 mb-1">BGI</div> -->
-                         <img src="{% static 'images/bgi_logo.png' %}" alt="BGI Logo" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- Universal Forensics -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/universal-forensics-logo.png' %}" alt="Universal" class=" mx-auto mb-1 transition-transform group-hover:scale-105">           
-                    </div>
-                </div>
-
-                <!-- Dynamic DNA -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/dynamic.png' %}" alt="Dynamic" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                        <!-- <div class="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">Testing</div> -->
-                    </div>
-                </div>
-
-                <!-- Eurofins -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/Eurofins_Scientific_logo.png' %}" alt="Eurofins" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- Endeavor DNA -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/endeavor.png' %}" alt="Endeavor" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- D.N.A.Q -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/dnaq.png' %}" alt="DNAQ" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- Alpha Biolabs -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/alphabiolabs-logo.png' %}" alt="Alpha" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- Cenata -->
-                <div class="partner-logo glass-effect rounded-3xl p-6 h-28 flex items-center justify-center hover-lift group">
-                    <div class="text-center">
-                        <img src="{% static 'images/cenata.png' %}" alt="Cenata" class=" mx-auto mb-1 transition-transform group-hover:scale-105">
-                    </div>
+            <div class="lg:col-span-5 lg:pt-14">
+                <div class="panel p-7">
+                    <h2 class="text-base font-sans font-bold mb-5 pb-4 border-b border-line">At a glance</h2>
+                    <dl class="space-y-5 text-sm">
+                        <div>
+                            <dt class="text-ink-soft mb-0.5">What we are</dt>
+                            <dd class="font-semibold text-ink">A sample collection and shipping office</dd>
+                        </div>
+                        <div>
+                            <dt class="text-ink-soft mb-0.5">Where we are</dt>
+                            <dd class="font-semibold text-ink">Lahore, Punjab, Pakistan</dd>
+                        </div>
+                        <div>
+                            <dt class="text-ink-soft mb-0.5">Where testing happens</dt>
+                            <dd class="font-semibold text-ink">United Kingdom &middot; United States &middot; Australia</dd>
+                        </div>
+                        <div>
+                            <dt class="text-ink-soft mb-0.5">Sample type we collect</dt>
+                            <dd class="font-semibold text-ink">Buccal (cheek) swab</dd>
+                        </div>
+                        <div>
+                            <dt class="text-ink-soft mb-0.5">How samples travel</dt>
+                            <dd class="font-semibold text-ink">DHL and other tracked international couriers</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= THE HONEST VERSION ======================= -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-24">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+            <div class="lg:col-span-5">
+                <h2 class="text-3xl lg:text-4xl mb-5">We are not a laboratory, and we say so</h2>
+                <p class="text-ink-soft leading-relaxed measure-s mb-5">
+                    A lot of DNA services in Pakistan are vague about where testing actually happens. We would rather
+                    be plain about it. Our office does not contain testing equipment, because it does not need to.
+                </p>
+                <p class="text-ink-soft leading-relaxed measure-s">
+                    What it contains is the part that usually goes wrong: identity checks, correct sealing, the right
+                    forms for the right laboratory, and a courier booking that gets a biological sample across borders
+                    without being delayed or rejected.
+                </p>
+            </div>
+
+            <div class="lg:col-span-7">
+                <div class="panel p-7 lg:p-9">
+                    <h3 class="text-xl mb-6">The division of work</h3>
+
+                    <div class="space-y-6">
+                        <div class="pb-6 border-b border-line">
+                            <p class="text-sm font-semibold text-ink mb-3">Our Lahore office is responsible for</p>
+                            <p class="text-sm text-ink-soft leading-relaxed">
+                                Receiving samples from customers; verifying them against the customer and order
+                                details; preparing and packaging them for international shipment; completing the
+                                shipping and supporting documentation; dispatching through DHL or another
+                                international courier; tracking the shipment; coordinating with the laboratory; and
+                                supporting you throughout your order.
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="text-sm font-semibold text-ink mb-3">The partner laboratory is responsible for</p>
+                            <p class="text-sm text-ink-soft leading-relaxed">
+                                DNA testing; genetic analysis; and the preparation and issuing of your results and
+                                report, under its own accreditation and quality system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-sm text-ink-soft leading-relaxed mt-6 measure">
+                    No DNA testing, extraction, genetic analysis, PCR or sequencing takes place at our Pakistan
+                    facility, and no results are prepared here. We do not provide genetic or medical diagnosis or
+                    treatment, and we do not operate as a pathology or diagnostic laboratory in Pakistan.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= WHAT WE'RE GOOD AT ======================= -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        <h2 class="text-3xl lg:text-4xl mb-4">What we are actually good at</h2>
+        <p class="text-ink-soft measure mb-12">
+            Everything between you handing over a swab and a laboratory on another continent opening a valid,
+            correctly documented sample.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">Getting the identity right</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    Every swab is matched to a named participant on your order and checked against identification
+                    before it is sealed. A sample that reaches the laboratory with the wrong name attached is worse
+                    than no sample at all.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">Getting the paperwork right</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    Each laboratory, embassy and court wants its own forms, consents and identification. We complete
+                    them before dispatch, which is what stops an order stalling three weeks later.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-xl mb-3 pb-3 border-b-2 border-teal">Getting it there</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    Biological samples crossing borders need correct packaging, declarations and a tracked service. We
+                    book it, we track it, and we chase it if it stops moving.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= PARTNER LABORATORIES =======================
+     Driven by the PartnerLab model, not hardcoded <img> tags. The old static
+     logos pointed at static/images/, which does not exist in this project, so
+     every one of them 404'd. Managing labs in the admin also means a lapsed
+     agreement can be switched off in seconds instead of waiting for a deploy. -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div class="lg:col-span-4">
+                <h2 class="text-3xl lg:text-4xl mb-5">Our laboratory partners</h2>
+                <p class="text-ink-soft leading-relaxed measure-s mb-5">
+                    Samples go to established laboratories in the United Kingdom, the United States and Australia.
+                    Which one handles your sample depends on the test and on who will receive the report.
+                </p>
+                <p class="text-ink-soft leading-relaxed measure-s mb-7 text-sm">
+                    Each laboratory's accreditation certificate is published in full, so you can read the credentials
+                    behind your report instead of taking our word for them.
+                </p>
+                <a href="{% url 'partners' %}" class="btn btn-primary">See the laboratories and certificates</a>
+            </div>
+
+            <div class="lg:col-span-8">
+                {% include 'partials/_lab_strip.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= WHAT WE HOLD ======================= -->
+{% if company_credentials %}
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        {% include 'partials/_credentials.html' %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ======================= CONTACT ======================= -->
+<section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <div class="grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-6">
+                <h2 class="text-3xl lg:text-4xl mb-5">Come and talk to us</h2>
+                <p class="text-ink-soft leading-relaxed measure-s mb-8">
+                    Most people arrive with a situation rather than a test name &mdash; a visa application, a court
+                    matter, a question in the family. Describe it and we will tell you honestly whether a DNA test
+                    helps, and which one.
+                </p>
+
+                <dl class="space-y-5 text-sm">
+                    <div class="flex gap-4">
+                        <dt class="w-20 shrink-0 text-ink-soft">Phone</dt>
+                        <dd>
+                            <a href="tel:+923074561958" class="text-teal link-underline code">+92 307 456 1958</a>
+                        </dd>
+                    </div>
+                    <div class="flex gap-4">
+                        <dt class="w-20 shrink-0 text-ink-soft">Email</dt>
+                        <dd>
+                            <a href="mailto:info@dnalabpakistan.com" class="text-teal link-underline break-all">
+                                info@dnalabpakistan.com
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="flex gap-4">
+                        <dt class="w-20 shrink-0 text-ink-soft">Office</dt>
+                        <dd class="text-ink">
+                            Lahore, Punjab, Pakistan
+                            <!-- NOTE FOR JUNAID: add the full street address here. -->
+                        </dd>
+                    </div>
+                    <div class="flex gap-4">
+                        <dt class="w-20 shrink-0 text-ink-soft">Visits</dt>
+                        <dd class="text-ink">By appointment, confirmed when you book</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="lg:col-span-6">
+                {% include 'partials/_disclaimer.html' %}
+                <a href="{% url 'services' %}" class="btn btn-primary mt-6">See tests and prices</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock content %}

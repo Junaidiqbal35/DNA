@@ -1,525 +1,504 @@
 {% extends 'base.html' %}
 {% load static %}
-<title>{% block title %} Home |DNA LAB PAKISTAN {% endblock %}</title>
+{% load humanize %}
+
+{% block title %}DNA TESTING SOLUTIONS — DNA sample collection in Lahore, tested by accredited labs abroad{% endblock %}
+{% block meta_description %}Give your DNA sample at our Lahore office. We verify, seal and courier it to partner laboratories in the UK, US and Australia, who carry out the testing and issue your report.{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section id="home" class="min-h-screen flex items-center relative overflow-hidden">
-    <!-- Animated Background -->
-    <div class="absolute inset-0">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl morph"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl morph"
-            style="animation-delay: -4s;"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl morph"
-            style="animation-delay: -2s;"></div>
-    </div>
 
-    <!-- Floating DNA Elements -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="floating absolute top-32 left-20 w-8 h-8">
-            <div class="w-full h-full bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full shadow-lg"></div>
-        </div>
-        <div class="floating-delayed absolute top-48 right-32 w-6 h-6">
-            <div class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 rounded-full shadow-lg"></div>
-        </div>
-        <div class="floating absolute bottom-40 left-32 w-10 h-10">
-            <div class="w-full h-full bg-gradient-to-br from-purple-400 to-purple-600 rounded-full shadow-lg"></div>
-        </div>
-        <div class="floating-delayed absolute bottom-56 right-20 w-4 h-4">
-            <div class="w-full h-full bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full shadow-lg"></div>
-        </div>
-    </div>
+<!-- ======================= HERO =======================
+     The hero is the sample's route, not a stock helix. It states the
+     business model in the first screen instead of hiding it in fine print. -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div class="grid lg:grid-cols-12 gap-14 lg:gap-16 items-start">
 
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <div class="space-y-6">
-                    <div
-                        class="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full border border-emerald-500/30">
-                        <span class="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-pulse"></span>
-                        <span class="text-emerald-300 text-sm font-medium">Revolutionary DNA Technology</span>
+            <div class="lg:col-span-7">
+                <p class="text-sm text-ink-soft mb-5">Collection office &middot; Lahore, Pakistan</p>
+
+                <h1 class="text-[2.75rem] sm:text-6xl lg:text-[4.25rem] mb-7">
+                    Your sample, tracked from Lahore to the lab.
+                </h1>
+
+                <p class="text-lg lg:text-xl text-ink-soft leading-relaxed measure mb-5">
+                    You give a cheek swab at our office. We check it against your order, seal and document it, and
+                    send it by international courier to the laboratory handling your test.
+                </p>
+
+                <p class="text-lg lg:text-xl text-ink leading-relaxed measure mb-9">
+                    The testing itself happens in the United Kingdom, the United States or Australia &mdash;
+                    <strong class="font-semibold">not in Pakistan</strong>. We handle everything up to the lab door,
+                    and everything after your report arrives.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="{% url 'services' %}" class="btn btn-primary">Book a collection</a>
+                    <a href="#how-it-works" class="btn btn-secondary">See the full process</a>
+                </div>
+            </div>
+
+            <!-- Journey rail -->
+            <div class="lg:col-span-5">
+                <div class="panel p-7 lg:p-8">
+                    <div class="flex items-baseline justify-between mb-7 pb-4 border-b border-line">
+                        <h2 class="text-base font-sans font-bold text-ink">Where your sample goes</h2>
+                        <span class="code text-ink-soft">6 stages</span>
                     </div>
 
-                    <h1 class="text-6xl md:text-8xl font-black leading-tight">
-                        <span class="gradient-text text-shadow">Next-Gen</span><br>
-                        <span class="text-white">DNA</span><br>
-                        <span class="text-gray-300">Analysis</span>
-                    </h1>
+                    <ol class="rail" data-rail>
+                        <li class="rail-step">
+                            <span class="rail-label">Sample given </span>
+                            <span class="rail-meta">Buccal (cheek) swab, taken in front of our staff</span>
+                        </li>
+                        <li class="rail-step">
+                            <span class="rail-label">Identity and order verified</span>
+                            <span class="rail-meta">Swabs matched to the named participants on your file</span>
+                        </li>
+                        <li class="rail-step">
+                            <span class="rail-label">Sealed, labelled and documented</span>
+                            <span class="rail-meta">Packed for international transport with the lab's paperwork</span>
+                        </li>
+                        <li class="rail-step">
+                            <span class="rail-label">Dispatched by DHL</span>
+                            <span class="rail-meta">
+                                You get the airway bill &mdash; <span class="code">AWB</span> trackable door to door
+                            </span>
+                        </li>
+                        <li class="rail-step rail-offshore">
+                            <span class="rail-label">Testing at the partner laboratory</span>
+                            <span class="rail-meta">
+                                United Kingdom, United States or Australia. Extraction, analysis and the report are
+                                all done here, by them.
+                            </span>
+                        </li>
+                        <li class="rail-step">
+                            <span class="rail-label">Report issued to you</span>
+                            <span class="rail-meta">Sent by the laboratory; we help you read the logistics side of it</span>
+                        </li>
+                    </ol>
 
-                    <p class="text-xl text-gray-300 leading-relaxed max-w-2xl">
-                        Unlock the secrets of your genetic blueprint with Pakistan's most advanced DNA laboratory.
-                        Precision meets innovation for results you can trust.
+                    <p class="text-xs text-ink-soft mt-7 pt-5 border-t border-line leading-relaxed">
+                        Courier transit to the laboratory normally takes 3&ndash;5 working days. Laboratory processing
+                        time depends on the test and is confirmed in writing when you order.
                     </p>
                 </div>
-
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button
-                        class="group bg-gradient-to-r from-emerald-500 to-blue-500 px-8 py-4 rounded-2xl text-lg font-bold hover:scale-105 transition-all duration-300 pulse-glow">
-                        <span class="flex items-center">
-                            Start DNA Test
-                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="currentColor"
-                                viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </button>
-                    <button
-                        class="glass px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/20 transition-all duration-300 border-emerald-500/30">
-                        Watch Demo
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-3 gap-8 pt-8">
-                    <div class="text-center group">
-                        <div class="text-4xl font-black gradient-text mb-2 group-hover:scale-110 transition-transform">
-                            99.9%</div>
-                        <div class="text-gray-400 text-sm font-medium">Accuracy Rate</div>
-                    </div>
-                    <div class="text-center group">
-                        <div class="text-4xl font-black gradient-text mb-2 group-hover:scale-110 transition-transform">
-                            24h</div>
-                        <div class="text-gray-400 text-sm font-medium">Fast Results</div>
-                    </div>
-                    <div class="text-center group">
-                        <div class="text-4xl font-black gradient-text mb-2 group-hover:scale-110 transition-transform">
-                            15K+</div>
-                        <div class="text-gray-400 text-sm font-medium">Tests Done</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="glass rounded-3xl p-8 hover-lift">
-                    <!-- Advanced DNA Visualization -->
-                    <div
-                        class="relative h-96 bg-gradient-to-br from-emerald-500/10 via-blue-500/10 to-purple-500/10 rounded-2xl p-8 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-blue-500/5 rounded-2xl">
-                        </div>
-
-                        <!-- 3D DNA Helix -->
-                        <svg class="w-full h-full" viewBox="0 0 400 400">
-                            <defs>
-                                <linearGradient id="helix1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#10b981" />
-                                    <stop offset="100%" style="stop-color:#3b82f6" />
-                                </linearGradient>
-                                <linearGradient id="helix2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#3b82f6" />
-                                    <stop offset="100%" style="stop-color:#8b5cf6" />
-                                </linearGradient>
-                                <filter id="glow">
-                                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                                    <feMerge>
-                                        <feMergeNode in="coloredBlur" />
-                                        <feMergeNode in="SourceGraphic" />
-                                    </feMerge>
-                                </filter>
-                            </defs>
-
-                            <!-- Left DNA Strand -->
-                            <path class="floating" d="M 120 50 Q 160 90 120 140 Q 80 190 120 240 Q 160 290 120 340"
-                                stroke="url(#helix1)" stroke-width="6" fill="none" filter="url(#glow)" />
-
-                            <!-- Right DNA Strand -->
-                            <path class="floating-delayed"
-                                d="M 280 50 Q 240 90 280 140 Q 320 190 280 240 Q 240 290 280 340" stroke="url(#helix2)"
-                                stroke-width="6" fill="none" filter="url(#glow)" />
-
-                            <!-- Base Pairs with Animation -->
-                            <g class="floating" style="animation-delay: -1s;">
-                                <line x1="120" y1="80" x2="280" y2="80" stroke="#10b981" stroke-width="4"
-                                    opacity="0.8" />
-                                <line x1="120" y1="140" x2="280" y2="140" stroke="#3b82f6" stroke-width="4"
-                                    opacity="0.8" />
-                                <line x1="120" y1="200" x2="280" y2="200" stroke="#10b981" stroke-width="4"
-                                    opacity="0.8" />
-                                <line x1="120" y1="260" x2="280" y2="260" stroke="#3b82f6" stroke-width="4"
-                                    opacity="0.8" />
-                                <line x1="120" y1="320" x2="280" y2="320" stroke="#10b981" stroke-width="4"
-                                    opacity="0.8" />
-                            </g>
-
-                            <!-- Glowing Connection Points -->
-                            <circle cx="120" cy="80" r="8" fill="#10b981" filter="url(#glow)" class="pulse-glow" />
-                            <circle cx="280" cy="80" r="8" fill="#10b981" filter="url(#glow)" class="pulse-glow" />
-                            <circle cx="120" cy="200" r="8" fill="#3b82f6" filter="url(#glow)" class="pulse-glow" />
-                            <circle cx="280" cy="200" r="8" fill="#3b82f6" filter="url(#glow)" class="pulse-glow" />
-                            <circle cx="120" cy="320" r="8" fill="#8b5cf6" filter="url(#glow)" class="pulse-glow" />
-                            <circle cx="280" cy="320" r="8" fill="#8b5cf6" filter="url(#glow)" class="pulse-glow" />
-                        </svg>
-
-                        <!-- Floating Data Points -->
-                        <div class="absolute top-4 right-4 text-emerald-400 text-xs font-mono">
-                            <div class="animate-pulse">Analyzing: ATCG-2024-PK</div>
-                        </div>
-                        <div class="absolute bottom-4 left-4 text-blue-400 text-xs font-mono">
-                            <div class="animate-pulse">Progress: 94.7%</div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-6">
-                        <h3 class="text-2xl font-bold mb-2 gradient-text">Real-Time Analysis</h3>
-                        <p class="text-gray-300">Advanced AI-powered genetic sequencing</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<section id="services" class="py-24 relative">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent"></div>
+<!-- ======================= SCOPE OF SERVICE =======================
+     Two plain columns. No cards, no icons — the point is that this is a
+     factual statement about what the office is and is not. -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
 
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-20">
-            <div class="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full border border-blue-500/30 mb-6">
-                <span class="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
-                <span class="text-blue-300 text-sm font-medium">Comprehensive Solutions</span>
+        <h2 class="text-3xl lg:text-4xl mb-4">What our Lahore office does, and what it doesn't</h2>
+        <p class="text-ink-soft measure mb-12">
+            People often assume a DNA service in Pakistan runs its own laboratory. Ours does not, and we would rather
+            you knew that before you book than after.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+
+            <div>
+                <h3 class="text-xl mb-5 pb-3 border-b-2 border-teal">We do this, here in Lahore</h3>
+                <ul class="space-y-3.5 text-[0.9375rem] text-ink-soft">
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Receive buccal swab samples from customers</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Verify each sample against the customer and order details</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Prepare and package samples for international shipment</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Complete the shipping and supporting documentation</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Dispatch by DHL or other international courier, and track the shipment</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-check text-teal mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Coordinate with the laboratory and support you through your order</span>
+                    </li>
+                </ul>
             </div>
 
-            <h2 class="text-5xl md:text-6xl font-black mb-8">
-                <span class="gradient-text">Our Services</span>
-            </h2>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Cutting-edge DNA analysis solutions powered by state-of-the-art technology and delivered with
-                uncompromising accuracy and confidentiality.
+            <div>
+                <h3 class="text-xl mb-5 pb-3 border-b-2 border-line">We do not do this in Pakistan</h3>
+                <ul class="space-y-3.5 text-[0.9375rem] text-ink-soft">
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>DNA testing or DNA extraction</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Genetic analysis</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>PCR, sequencing or any other laboratory testing</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Preparing DNA test results inside Pakistan</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Genetic or medical diagnosis, or medical treatment</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="fa-solid fa-xmark text-ink-soft/50 mt-1 text-xs" aria-hidden="true"></i>
+                        <span>Operating as a pathology or diagnostic laboratory</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= WHO TESTS =======================
+     Placed immediately after "we do not test in Pakistan", because that is
+     exactly where the reader asks "then who does?". Leaving a gap here is
+     what makes the disclaimer feel like a warning instead of a credential. -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+
+            <div class="lg:col-span-4">
+                <h2 class="text-3xl lg:text-4xl mb-5">So who does test it?</h2>
+                <p class="text-ink-soft leading-relaxed measure-s mb-5">
+                    Established laboratories in the United Kingdom, the United States and Australia, each working
+                    under its own accreditation. We hold a copy of every current certificate and publish it, so you
+                    can check the credentials behind your report rather than take our word for them.
+                </p>
+                <a href="{% url 'partners' %}" class="btn btn-secondary">Meet the laboratories</a>
+            </div>
+
+            <div class="lg:col-span-8">
+                {% include 'partials/_lab_strip.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= TESTS ======================= -->
+<section id="tests" class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
+
+        {% if featured_products %}
+        <!-- Featured strip: wellness, nutrition & performance tests get top billing.
+             Set in the home view via FEATURED_TEST_SLUGS; the amber top rule,
+             icon and "Most popular" eyebrow lift these above the standard grid. -->
+        <div class="mb-16 lg:mb-20">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="code text-amber font-medium uppercase tracking-wide text-xs">Most popular</span>
+                <span class="h-px flex-grow bg-line"></span>
+            </div>
+            <h2 class="text-3xl lg:text-4xl mb-4">Wellness, nutrition &amp; performance</h2>
+            <p class="text-ink-soft measure mb-10">
+                Our most requested lifestyle tests &mdash; covering diet and metabolism, gut health and athletic
+                performance. These reports give research-based wellness insights, not a medical diagnosis.
             </p>
-        </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Paternity Testing -->
-            <div class="glass rounded-3xl p-8 hover-lift group">
-                <div
-                    class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-6h3v7c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-7h3v6h13v-6c0-1.1-.9-2-2-2h-1l-1-2h-1l-1 2H9l-1-2H7l-1 2H5c-1.1 0-2 .9-2 2v6H0v3h24v-3H4z" />
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-emerald-400 transition-colors">Paternity
-                    Testing</h3>
-                <p class="text-gray-300 mb-8 leading-relaxed">Industry-leading 99.9% accuracy with legal documentation.
-                    Confidential, fast, and court-admissible results you can trust.</p>
-
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-emerald-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Legal & Court Admissible</span>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in featured_products %}
+                <article class="panel p-7 flex flex-col border-t-2 border-amber">
+                    <div class="flex items-center justify-center w-11 h-11 rounded-full bg-teal/10 text-teal text-lg mb-5">
+                        {% if product.slug == 'nutrition-dna' %}
+                        <i class="fa-solid fa-apple-whole" aria-hidden="true"></i>
+                        {% elif product.slug == 'sports-dna' %}
+                        <i class="fa-solid fa-person-running" aria-hidden="true"></i>
+                        {% elif product.slug == 'microbiome' %}
+                        <i class="fa-solid fa-dna" aria-hidden="true"></i>
+                        {% else %}
+                        <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+                        {% endif %}
                     </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">24-48 Hour Results</span>
+                    <h3 class="text-xl mb-2">{{ product.name }}</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed mb-5 flex-grow">
+                        {{ product.description|safe|truncatewords:24 }}
+                    </p>
+                    <div class="pt-4 border-t border-line flex items-baseline justify-between gap-4">
+                        <div>
+                            {% if product.discounted_price %}
+                            <span class="text-lg font-semibold text-ink">PKR {{ product.discounted_price|intcomma }}</span>
+                            <span class="text-sm text-ink-soft line-through ml-1">PKR {{ product.price|intcomma }}</span>
+                            {% else %}
+                            <span class="text-lg font-semibold text-ink">PKR {{ product.price|intcomma }}</span>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'product_detail' product.slug %}"
+                            class="text-sm font-semibold text-teal link-underline">Details</a>
                     </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Complete Confidentiality</span>
-                    </div>
-                </div>
-
-                <button
-                    class="w-full bg-gradient-to-r from-emerald-500 to-emerald-700 py-3 rounded-xl font-semibold hover:scale-105 transition-transform">
-                    Learn More
-                </button>
-            </div>
-
-            <!-- Immigration Testing -->
-            <div class="glass rounded-3xl p-8 hover-lift group">
-                <div
-                    class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z" />
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-indigo-400 transition-colors">Immigration
-                    Testing</h3>
-                <p class="text-gray-300 mb-8 leading-relaxed">Get certified DNA testing for visa, citizenship, or
-                    residency applications with accuracy, speed, and global compliance standards.</p>
-
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-emerald-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Legal DNA Reports</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Global Embassy Acceptance</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Fast Processing Times</span>
-                    </div>
-                </div>
-
-                <button
-                    class="w-full bg-gradient-to-r from-indigo-500 to-indigo-700 py-3 rounded-xl font-semibold hover:scale-105 transition-transform">
-                    Learn More
-                </button>
-            </div>
-
-
-            <!-- Health Screening -->
-            <div class="glass rounded-3xl p-8 hover-lift group">
-                <div
-                    class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z" />
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-purple-400 transition-colors">Health
-                    Screening</h3>
-                <p class="text-gray-300 mb-8 leading-relaxed">Genetic predisposition testing for various health
-                    conditions with personalized wellness recommendations and risk assessments.</p>
-
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-emerald-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Disease Risk Assessment</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Personalized Reports</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
-                        <span class="text-gray-300">Wellness Recommendations</span>
-                    </div>
-                </div>
-
-                <button
-                    class="w-full bg-gradient-to-r from-purple-500 to-purple-700 py-3 rounded-xl font-semibold hover:scale-105 transition-transform">
-                    Learn More
-                </button>
+                </article>
+                {% endfor %}
             </div>
         </div>
-    </div>
-</section>
+        {% endif %}
 
-<!-- Products Section -->
-<section id="products" class="py-24 relative">
-    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 to-blue-900/20"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-20">
-            <div
-                class="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full border border-emerald-500/30 mb-6">
-                <span class="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-pulse"></span>
-                <span class="text-emerald-300 text-sm font-medium">Testing Packages</span>
+        <div class="md:flex md:items-end md:justify-between gap-10 mb-12">
+            <div>
+                <h2 class="text-3xl lg:text-4xl mb-4">{% if featured_products %}Other tests we arrange{% else %}Tests we arrange{% endif %}</h2>
+                <p class="text-ink-soft measure">
+                    Each test is carried out by the partner laboratory best suited to it. Prices and processing times
+                    are confirmed before you pay.
+                </p>
             </div>
+            <a href="{% url 'services' %}" class="hidden md:inline-flex btn btn-secondary shrink-0">All tests</a>
+        </div>
 
-            <h2 class="text-5xl md:text-6xl font-black mb-8">
-                <span class="gradient-text">DNA Test Packages</span>
-            </h2>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Choose from our comprehensive range of DNA testing packages, each designed to provide precise insights
-                tailored to your specific needs.
+        {% if products %}
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for product in products|slice:":6" %}
+            <article class="panel p-6 flex flex-col">
+                <h3 class="text-xl mb-2">{{ product.name }}</h3>
+                <p class="text-sm text-ink-soft leading-relaxed mb-5 flex-grow">
+                    {{ product.description|safe|truncatewords:22 }}
+                </p>
+                <div class="pt-4 border-t border-line flex items-baseline justify-between gap-4">
+                    <div>
+                        {% if product.discounted_price %}
+                        <span class="text-lg font-semibold text-ink">PKR {{ product.discounted_price|intcomma }}</span>
+                        <span class="text-sm text-ink-soft line-through ml-1">PKR {{ product.price|intcomma }}</span>
+                        {% else %}
+                        <span class="text-lg font-semibold text-ink">PKR {{ product.price|intcomma }}</span>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'product_detail' product.slug %}"
+                        class="text-sm font-semibold text-teal link-underline">Details</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="panel-wash p-8 lg:p-10">
+            <p class="text-ink-soft measure mb-5">
+                Our current tests, prices and processing times are listed on the services page.
             </p>
+            <a href="{% url 'services' %}" class="btn btn-primary">See all tests</a>
         </div>
+        {% endif %}
 
-        <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Essential Package -->
-            <div class="glass rounded-3xl p-8 hover-lift relative group">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span
-                        class="bg-gradient-to-r from-emerald-500 to-blue-500 px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                        Most Popular
-                    </span>
+        <div class="mt-10">
+            {% include 'partials/_disclaimer.html' with quiet=True %}
+        </div>
+    </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section id="how-it-works" class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
+
+        <h2 class="text-3xl lg:text-4xl mb-4">How an order runs, start to finish</h2>
+        <p class="text-ink-soft measure mb-14">
+            Five stages. You are told which laboratory your sample is going to, and you can track it the whole way.
+        </p>
+
+        <ol class="grid md:grid-cols-5 gap-8 md:gap-6">
+            <li>
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="code text-amber font-medium">01</span>
+                    <span class="h-px flex-grow bg-line"></span>
                 </div>
-
-                <div class="text-center mb-10 pt-4">
-                    <h3 class="text-3xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">Essential</h3>
-                    <p class="text-gray-300 mb-6">Perfect for basic genetic analysis</p>
-                    <div class="text-5xl font-black gradient-text mb-3">PKR 15,000</div>
-                    <p class="text-gray-400">One-time payment</p>
+                <h3 class="text-lg mb-2">Order and book</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    Choose your test and book a time at the Lahore office. We confirm the price and who needs to
+                    attend.
+                </p>
+            </li>
+            <li>
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="code text-amber font-medium">02</span>
+                    <span class="h-px flex-grow bg-line"></span>
                 </div>
-
-                <div class="space-y-4 mb-10">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-emerald-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Paternity Testing</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-emerald-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">99.9% Accuracy Guarantee</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-emerald-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">24-48 Hour Results</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-emerald-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Digital & Physical Report</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-emerald-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Customer Support</span>
-                    </div>
+                <h3 class="text-lg mb-2">Give the swab</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    A painless cheek swab, taken at our office. Bring the identity documents listed in your booking
+                    confirmation.
+                </p>
+            </li>
+            <li>
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="code text-amber font-medium">03</span>
+                    <span class="h-px flex-grow bg-line"></span>
                 </div>
+                <h3 class="text-lg mb-2">Sealed and shipped</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    We seal, label and document the samples, then hand them to DHL. You receive the tracking number.
+                </p>
+            </li>
+            <li>
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="code text-teal font-medium">04</span>
+                    <span class="h-px flex-grow bg-line"></span>
+                </div>
+                <h3 class="text-lg mb-2">Tested abroad</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    The partner laboratory in the UK, US or Australia carries out the testing and writes the report.
+                </p>
+            </li>
+            <li>
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="code text-amber font-medium">05</span>
+                    <span class="h-px flex-grow bg-line"></span>
+                </div>
+                <h3 class="text-lg mb-2">Report to you</h3>
+                <p class="text-sm text-ink-soft leading-relaxed">
+                    Results are issued by the laboratory and sent to you. We stay available for anything to do with
+                    your order.
+                </p>
+            </li>
+        </ol>
+    </div>
+</section>
 
-                <button
-                    class="w-full bg-gradient-to-r from-emerald-500 to-blue-500 py-4 rounded-2xl font-bold hover:scale-105 transition-transform pulse-glow">
-                    Choose Essential
-                </button>
+<!-- ======================= WHY THIS WAY ======================= -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+            <div class="lg:col-span-5">
+                <h2 class="text-3xl lg:text-4xl mb-5">Why send samples abroad at all?</h2>
+                <p class="text-ink-soft leading-relaxed measure-s">
+                    Because the report has to be trusted by whoever asked for it &mdash; a court, an embassy, a
+                    solicitor, or just the family involved. Sending the sample to an established laboratory abroad
+                    means the analysis and the report come from that laboratory, under its own accreditation and
+                    quality system.
+                </p>
             </div>
 
-            <!-- Premium Package -->
-            <div
-                class="glass rounded-3xl p-8 hover-lift relative group border-2 border-gradient-to-r from-blue-500/50 to-purple-500/50">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span
-                        class="bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                        Premium
-                    </span>
+            <div class="lg:col-span-7 grid sm:grid-cols-2 gap-x-10 gap-y-8">
+                <div>
+                    <h3 class="text-lg mb-2">One chain, documented</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed">
+                        Collection, sealing, paperwork and dispatch are recorded at each step, in the format the
+                        receiving laboratory requires.
+                    </p>
                 </div>
-
-                <div class="text-center mb-10 pt-4">
-                    <h3 class="text-3xl font-bold mb-3 group-hover:text-blue-400 transition-colors">Premium</h3>
-                    <p class="text-gray-300 mb-6">Comprehensive genetic insights</p>
-                    <div class="text-5xl font-black gradient-text mb-3">PKR 28,000</div>
-                    <p class="text-gray-400">One-time payment</p>
+                <div>
+                    <h3 class="text-lg mb-2">Tracked, not posted and hoped</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed">
+                        Samples travel by international courier with an airway bill you can follow from Lahore to the
+                        laboratory's door.
+                    </p>
                 </div>
-
-                <div class="space-y-4 mb-10">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-blue-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">All Essential Features</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-blue-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Ancestry Analysis</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-blue-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Health Risk Assessment</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-blue-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Detailed Family Tree</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-blue-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Priority Support</span>
-                    </div>
+                <div>
+                    <h3 class="text-lg mb-2">The lab's own report</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed">
+                        Results are prepared and issued by the laboratory that did the testing, on its own letterhead.
+                        We do not write or alter them.
+                    </p>
                 </div>
-
-                <button
-                    class="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">
-                    Choose Premium
-                </button>
-            </div>
-
-            <!-- Professional Package -->
-            <div class="glass rounded-3xl p-8 hover-lift relative group">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span
-                        class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                        Professional
-                    </span>
+                <div>
+                    <h3 class="text-lg mb-2">Someone local to ask</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed">
+                        You deal with an office in Lahore in your own language and time zone, rather than emailing
+                        another continent.
+                    </p>
                 </div>
-
-                <div class="text-center mb-10 pt-4">
-                    <h3 class="text-3xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Professional</h3>
-                    <p class="text-gray-300 mb-6">Complete genetic analysis suite</p>
-                    <div class="text-5xl font-black gradient-text mb-3">PKR 50,000</div>
-                    <p class="text-gray-400">One-time payment</p>
-                </div>
-
-                <div class="space-y-4 mb-10">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">All Premium Features</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Pharmacogenomics</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Nutrition Optimization</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">Fitness Genetics</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-400 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-white">1-on-1 Genetic Counseling</span>
-                    </div>
-                </div>
-
-                <button
-                    class="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">
-                    Choose Professional
-                </button>
             </div>
         </div>
     </div>
 </section>
 
+<!-- ======================= FAQ ======================= -->
+<section id="faq" class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
+        <div class="grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-4">
+                <h2 class="text-3xl lg:text-4xl mb-4">Questions people ask</h2>
+                <p class="text-ink-soft measure-s text-sm leading-relaxed">
+                    Not covered here? Call
+                    <a href="tel:+923074561958" class="text-teal link-underline code">+92 307 456 1958</a>
+                    or email
+                    <a href="mailto:info@dnalabpakistan.com" class="text-teal link-underline">info@dnalabpakistan.com</a>.
+                </p>
+            </div>
 
+            <div class="lg:col-span-8">
+                <details class="faq-item" open>
+                    <summary>Do you test the DNA yourselves?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        No. Our Lahore office collects, verifies, packages and ships samples. All DNA extraction,
+                        analysis and reporting is done by the partner laboratory in the United Kingdom, the United
+                        States or Australia. We are not a pathology or diagnostic laboratory in Pakistan.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Which laboratory will handle my sample?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        It depends on the test you order and the requirements of whoever asked for it. We tell you
+                        which laboratory and which country before your sample is dispatched, and the laboratory's
+                        details appear on your report.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How long does it take?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        Courier transit from Lahore to the laboratory normally takes 3&ndash;5 working days.
+                        Processing time at the laboratory varies by test type and is confirmed in writing when you
+                        order. We do not quote a single turnaround for every test, because the sample has to travel
+                        internationally first.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I use the result for a visa, court case or inheritance matter?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        Legal and immigration matters require a test taken under the receiving authority's
+                        chain-of-custody rules, and whether a report is accepted is decided by that authority &mdash;
+                        an embassy, court or government department &mdash; not by us. Tell us what the result is for
+                        before you book, so the correct test and documentation are arranged from the start.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is my information kept private?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        Your details and sample are shared only with the laboratory carrying out your test and the
+                        courier handling the shipment. We do not release results to anyone other than the people named
+                        on your order without your written instruction.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will you explain my results?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        We can explain the process, your paperwork and anything about the shipment. We cannot give
+                        genetic or medical interpretation, diagnosis or advice &mdash; those come from the issuing
+                        laboratory, and for health-related questions from a qualified clinician.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================= CTA ======================= -->
+<section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-20 lg:py-24">
+        <div class="panel-wash p-10 lg:p-14">
+            <h2 class="text-3xl lg:text-4xl mb-4">Start with a conversation, not a payment</h2>
+            <p class="text-ink-soft measure mb-8 leading-relaxed">
+                Tell us what the test is for and who needs to be tested. We will tell you which test fits, which
+                laboratory it goes to, what it costs and how long it realistically takes.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="{% url 'services' %}" class="btn btn-primary">See tests and prices</a>
+                <a href="tel:+923074561958" class="btn btn-secondary">Call the Lahore office</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

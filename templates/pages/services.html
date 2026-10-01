@@ -1,627 +1,361 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
-{% block extra_css %}
-<style>
-    /* Service-specific styles */
-    .service-category {
-        display: none;
-    }
-    
-    .service-category.active {
-        display: block;
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-    
-    .tab-button {
-        transition: all 0.3s ease;
-    }
-    
-    .tab-button.active {
-        background: #123524;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(18, 53, 36, 0.3);
-    }
-    
-    .tab-button:hover:not(.active) {
-        background: rgba(18, 53, 36, 0.1);
-        transform: translateY(-1px);
-    }
-    
-    .service-card {
-        position: relative;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .service-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    .popular-badge {
-        position: absolute;
-        top: -10px;
-        right: 20px;
-        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        z-index: 10;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    }
-    
-    .comparison-table th {
-        background: linear-gradient(135deg, #123524, #00A693);
-    }
-    
-    .faq-item {
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-    
-    .faq-item:hover {
-        transform: translateX(5px);
-        box-shadow: 0 8px 25px rgba(0, 166, 147, 0.1);
-    }
-    
-    .faq-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-        padding: 0 2rem;
-    }
-    
-    .faq-content.active {
-        max-height: 200px;
-        padding: 0 2rem 1.5rem 2rem;
-    }
-    
-    .faq-icon {
-        transition: transform 0.3s ease;
-    }
-    
-    .faq-icon.active {
-        transform: rotate(180deg);
-    }
-    
-    /* Floating objects positioning */
-    .floating-object {
-        position: absolute;
-        pointer-events: none;
-        z-index: 1;
-    }
-    
-    .float-left-1 { top: 10%; left: 5%; animation: float 8s ease-in-out infinite; }
-    .float-left-2 { top: 30%; left: 8%; animation: float 10s ease-in-out 2s infinite; }
-    .float-left-3 { top: 60%; left: 3%; animation: float 7s ease-in-out 4s infinite; }
-    .float-left-4 { top: 80%; left: 6%; animation: float 9s ease-in-out 1s infinite; }
-    
-    .float-right-1 { top: 15%; right: 5%; animation: float 11s ease-in-out 3s infinite; }
-    .float-right-2 { top: 45%; right: 8%; animation: float 6s ease-in-out infinite; }
-    .float-right-3 { top: 70%; right: 4%; animation: float 8s ease-in-out 2s infinite; }
-    .float-right-4 { top: 85%; right: 7%; animation: float 12s ease-in-out 5s infinite; }
-    
-    .molecule {
-        width: 40px;
-        height: 40px;
-        background: radial-gradient(circle, #00A693, #10b981);
-        border-radius: 50%;
-        position: relative;
-    }
-    
-    .molecule::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        border: 2px solid rgba(0, 166, 147, 0.3);
-        border-radius: 50%;
-        animation: spin 20s linear infinite;
-    }
-    
-    @keyframes float-reverse {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(20px) rotate(-5deg); }
-    }
-    
-    @keyframes wiggle {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(5deg); }
-        75% { transform: rotate(-5deg); }
-    }
-    
-    .animate-wiggle {
-        animation: wiggle 2s ease-in-out infinite;
-    }
-    .popular-badge {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    z-index: 10;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    animation: pulse 2s infinite;
-}
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.service-card {
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.service-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-/* Loading animation for buttons */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.fa-spin {
-    animation: spin 1s linear infinite;
-}
-</style>
-{% endblock %}
+{% block title %}Tests we arrange — DNA TESTING SOLUTIONS{% endblock %}
+{% block meta_description %}DNA tests arranged from our Lahore collection office and carried out by partner laboratories in the UK, US and Australia. Prices, sample requirements and how to order.{% endblock %}
 
 {% block content %}
-<!-- Service Categories -->
-<section id="services" class="py-24 bg-white mt-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-20">
-            <h2 class="text-5xl font-bold text-phthalo mb-6">Complete DNA Testing Solutions</h2>
-            <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                From paternity and immigration testing to comprehensive health and ancestry analysis, 
-                we provide the most advanced DNA testing services in Pakistan.
-            </p>
+
+<!-- ======================= HEADER ======================= -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-14 lg:pt-20 lg:pb-16">
+        <div class="grid lg:grid-cols-12 gap-10">
+            <div class="lg:col-span-7">
+                <p class="text-sm text-ink-soft mb-5">Tests</p>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-6">
+                    Choose the test, we handle the journey.
+                </h1>
+                <p class="text-lg text-ink-soft leading-relaxed measure">
+                    Every test below starts with a cheek swab taken at our Lahore office and is carried out by one of
+                    our partner laboratories abroad. Tell us what the result is for and we will confirm which test you
+                    need before you pay.
+                </p>
+            </div>
+            <div class="lg:col-span-5 lg:pt-16">
+                {% include 'partials/_disclaimer.html' %}
+            </div>
         </div>
-            <!-- Products Grid -->
-            {% if products %}
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for product in products %}
-                <!-- Product Card -->
-                <div class="test-card bg-gradient-to-br from-buttersmoke to-white p-8 rounded-3xl hover-lift">
-                    {% if product.image %}
-                    <div class="w-full h-48 mb-6 rounded-2xl overflow-hidden">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
-                    </div>
-                    {% else %}
-                    <div class="w-16 h-16 bg-gradient-to-br from-phthalo to-dts-accent rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-dna text-white text-2xl"></i>
-                    </div>
-                    {% endif %}
-                    
-                    <h3 class="text-2xl font-bold text-phthalo mb-4">{{ product.name }}</h3>
-                    <div class="text-gray-600 leading-relaxed mb-6">
-                        {{ product.description|safe|truncatewords:20 }}
-                    </div>
-                    
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>99.9% Accuracy Rate</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>24-48 Hour Results</span>
-                        </div>
-                        <div class="flex items-center text-sm text-gray-600">
-                            <i class="fas fa-check text-dts-accent mr-2"></i>
-                            <span>Certified Reports</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        {% if product.discounted_price %}
-                            <div class="text-2xl font-bold text-phthalo">
-                                PKR {{ product.discounted_price|intcomma }}
-                                <span class="text-lg text-gray-400 line-through ml-2">PKR {{ product.price|intcomma }}</span>
-                            </div>
-                            <div class="text-sm text-green-600 font-semibold">
-                                Save PKR {{ product.discount_amount|intcomma }}
-                            </div>
-                        {% else %}
-                            <div class="text-2xl font-bold text-phthalo">PKR {{ product.price|intcomma }}</div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="flex gap-2">
-                        <a href="{% url 'product_detail' product.slug %}" class="flex-1 text-center bg-phthalo text-white py-3 rounded-xl font-semibold hover:bg-phthalo-light transition-colors">
-                            View Details
-                        </a>
-                        <button class="px-4 py-3 border-2 border-phthalo text-phthalo rounded-xl hover:bg-phthalo hover:text-white transition-colors">
-                            <i class="fas fa-cart-plus"></i>
-                        </button>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="text-center py-16">
-                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-flask text-gray-400 text-3xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-600 mb-4">No Products Available</h3>
-                <p class="text-gray-500">We're working on adding new DNA testing products. Please check back soon!</p>
-            </div>
-            {% endif %}
-            
-            <!-- Load More Button (if needed) -->
-            {% if products.count > 6 %}
-            <div class="text-center mt-12">
-                <button class="inline-flex items-center px-8 py-4 border-2 border-phthalo text-phthalo font-semibold rounded-full hover:bg-phthalo hover:text-white transition-all duration-300">
-                    View All Products
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
-            {% endif %}
-        </div>
+    </div>
 </section>
 
-<!-- Service Comparison Table -->
-<section id="pricing" class="py-20 gradient-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-bold text-phthalo mb-6">Service Comparison</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Choose the right DNA test for your needs. All tests include our 99.9% accuracy guarantee and professional support.
+<!-- ======================= TEST LISTING =======================
+     Grouped by category, because the catalogue is ~30 tests and a flat grid
+     puts a paternity swab next to a 400-gene cancer panel. Prices and
+     descriptions come from the database — nothing is hard-coded here. -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        {% if product_groups %}
+
+        <!-- Jump links. Worth it at this catalogue size; they would be noise
+             with five tests. -->
+        <nav class="mb-12 pb-8 border-b border-line" aria-label="Test categories">
+            <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                {% for group in product_groups %}
+                <li>
+                    <a href="#{{ group.key }}" class="text-teal link-underline font-medium">
+                        {{ group.label }}
+                        <span class="text-ink-soft font-normal">({{ group.products|length }})</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+        {% if needs_clinical_collection %}
+        <div class="notice mb-12">
+            <p class="text-sm font-semibold text-ink mb-1">Some tests need a blood or tissue sample</p>
+            <p class="text-sm text-ink-soft leading-relaxed measure">
+                Our Lahore office collects cheek swabs. Tests marked below need a blood draw or a tissue sample,
+                which is arranged separately through a clinical collection partner. Ask us before booking one of
+                those, so the collection is set up properly from the start.
             </p>
         </div>
-        
-        <div class="overflow-x-auto">
-            <table class="comparison-table w-full bg-white rounded-3xl overflow-hidden shadow-2xl">
+        {% endif %}
+
+        <div class="space-y-16">
+            {% for group in product_groups %}
+            <div id="{{ group.key }}" class="scroll-mt-28">
+
+                <div class="flex items-baseline gap-4 mb-7">
+                    <h2 class="text-2xl lg:text-3xl">{{ group.label }}</h2>
+                    <span class="h-px flex-grow bg-line"></span>
+                    <span class="code text-ink-soft text-xs">{{ group.products|length }}</span>
+                </div>
+
+                {% if group.is_health_related %}
+                <p class="text-sm text-ink-soft leading-relaxed measure mb-7">
+                    These results carry health meaning. They are produced and interpreted by the laboratory, and
+                    should be discussed with a qualified clinician. We cannot interpret them or offer medical advice.
+                </p>
+                {% endif %}
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {% for product in group.products %}
+                    <article class="panel flex flex-col overflow-hidden group">
+
+
+                        <div class="aspect-square bg-teal-wash border-b border-line p-5 flex items-center justify-center">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                                class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
+                            {% else %}
+                            <span class="text-ink-soft text-xs">No image yet</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="text-lg leading-snug mb-3">
+                                <a href="{% url 'product_detail' product.slug %}"
+                                   class="hover:text-teal focus-visible:text-teal">
+                                    {{ product.name }}
+                                </a>
+                            </h3>
+
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                {% if product.sample_type %}
+                                <span class="accred-chip">{{ product.get_sample_type_display }}</span>
+                                {% endif %}
+                                {% if product.partner_lab %}
+                                <span class="lab-flag">{{ product.partner_lab.get_country_display }}</span>
+                                {% endif %}
+                            </div>
+
+                            <p class="text-sm text-ink-soft leading-relaxed mb-4 flex-grow">
+                                {{ product.description|striptags|truncatewords:18 }}
+                            </p>
+
+                            {% if product.needs_clinical_collection %}
+                            <p class="text-xs text-ink-soft leading-relaxed mb-4 pl-3 border-l-2 border-amber">
+                                Blood or tissue sample — arranged through a clinical collection partner, not taken
+                                at our Lahore office.
+                            </p>
+                            {% endif %}
+
+                            <div class="pt-4 border-t border-line flex items-end justify-between gap-3">
+                                <div>
+                                    {% if product.discounted_price %}
+                                    <div class="text-lg font-semibold text-ink leading-tight">
+                                        PKR {{ product.discounted_price|intcomma }}
+                                    </div>
+                                    <div class="text-xs text-ink-soft">
+                                        <span class="line-through">PKR {{ product.price|intcomma }}</span>
+                                        <span class="text-amber font-semibold ml-1">
+                                            save {{ product.discount_percentage }}%
+                                        </span>
+                                    </div>
+                                    {% else %}
+                                    <div class="text-lg font-semibold text-ink leading-tight">
+                                        PKR {{ product.price|intcomma }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <a href="{% url 'product_detail' product.slug %}"
+                                    class="btn btn-secondary shrink-0 !py-2 !px-4 text-sm">
+                                    Details
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <p class="text-sm text-ink-soft mt-12 measure">
+            Prices cover collection, documentation, international courier, and the laboratory's testing and report,
+            unless the individual test says otherwise. Processing time depends on the test and is confirmed in
+            writing when you order.
+        </p>
+
+        {% else %}
+        <!-- Empty state: an invitation to act, not an apology. -->
+        <div class="panel p-10 lg:p-14 text-center">
+            <h2 class="text-2xl mb-3">The test list is being updated</h2>
+            <p class="text-ink-soft measure-s mx-auto mb-7">
+                Call or email the Lahore office and we will tell you which test fits your situation, what it costs
+                and which laboratory it goes to.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="tel:+923074561958" class="btn btn-primary">Call +92 307 456 1958</a>
+                <a href="mailto:info@dnalabpakistan.com" class="btn btn-secondary">Email the office</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ======================= SAMPLE REQUIREMENTS =======================
+     NOTE FOR JUNAID: confirm each row against what your partner labs
+     actually require, then adjust. No accuracy percentages or turnaround
+     promises here on purpose — those belong to the lab, per test. -->
+<section class="bg-white border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        <h2 class="text-3xl lg:text-4xl mb-4">Who needs to be tested</h2>
+        <p class="text-ink-soft measure mb-10">
+            The people who must attend differ by test. Bringing the right participants and documents the first time is
+            the single biggest thing that keeps an order on schedule.
+        </p>
+
+        <div class="panel overflow-x-auto">
+            <table class="data-table">
                 <thead>
-                    <tr class="text-white">
-                        <th class="px-6 py-4 text-left">Service</th>
-                        <th class="px-6 py-4 text-center">Accuracy</th>
-                        <th class="px-6 py-4 text-center">Turnaround</th>
-                        <th class="px-6 py-4 text-center">Sample Type</th>
-                        <th class="px-6 py-4 text-center">Legal Use</th>
-                        <th class="px-6 py-4 text-center">Price (PKR)</th>
+                    <tr>
+                        <th scope="col">Test</th>
+                        <th scope="col">Participants needed</th>
+                        <th scope="col">Sample</th>
+                        <th scope="col">Commonly used for</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200">
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Paternity Test</td>
-                        <td class="px-6 py-4 text-center">99.9%</td>
-                        <td class="px-6 py-4 text-center">24-48h</td>
-                        <td class="px-6 py-4 text-center">Cheek Swab</td>
-                        <td class="px-6 py-4 text-center">✓</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">25,000</td>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="font-semibold text-ink">Paternity</th>
+                        <td>Child and alleged father. The mother's sample is optional but strengthens the result.</td>
+                        <td>Cheek swab</td>
+                        <td>Personal certainty; legal matters when ordered as a legal test</td>
                     </tr>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Immigration DNA</td>
-                        <td class="px-6 py-4 text-center">99.9%</td>
-                        <td class="px-6 py-4 text-center">3-5 days</td>
-                        <td class="px-6 py-4 text-center">Cheek Swab</td>
-                        <td class="px-6 py-4 text-center">✓</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">35,000</td>
+                    <tr>
+                        <th scope="row" class="font-semibold text-ink">Maternity</th>
+                        <td>Child and alleged mother</td>
+                        <td>Cheek swab</td>
+                        <td>Personal certainty; records and documentation disputes</td>
                     </tr>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Prenatal Test</td>
-                        <td class="px-6 py-4 text-center">99.9%</td>
-                        <td class="px-6 py-4 text-center">5-7 days</td>
-                        <td class="px-6 py-4 text-center">Blood Sample</td>
-                        <td class="px-6 py-4 text-center">✗</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">95,000</td>
+                    <tr>
+                        <th scope="row" class="font-semibold text-ink">Siblingship</th>
+                        <td>Two or more siblings. A known parent's sample improves accuracy.</td>
+                        <td>Cheek swab</td>
+                        <td>Establishing a relationship when a parent is unavailable</td>
                     </tr>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Ancestry Test</td>
-                        <td class="px-6 py-4 text-center">99.5%</td>
-                        <td class="px-6 py-4 text-center">4-6 weeks</td>
-                        <td class="px-6 py-4 text-center">Cheek Swab</td>
-                        <td class="px-6 py-4 text-center">✗</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">18,000</td>
+                    <tr>
+                        <th scope="row" class="font-semibold text-ink">Grandparent / aunt / uncle</th>
+                        <td>Child and the relative being tested</td>
+                        <td>Cheek swab</td>
+                        <td>Relationship questions where the parent cannot be tested</td>
                     </tr>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Health & Wellness</td>
-                        <td class="px-6 py-4 text-center">99.5%</td>
-                        <td class="px-6 py-4 text-center">3-4 weeks</td>
-                        <td class="px-6 py-4 text-center">Cheek Swab</td>
-                        <td class="px-6 py-4 text-center">✗</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">28,000</td>
-                    </tr>
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-semibold text-phthalo">Relationship Test</td>
-                        <td class="px-6 py-4 text-center">95-99%</td>
-                        <td class="px-6 py-4 text-center">3-5 days</td>
-                        <td class="px-6 py-4 text-center">Cheek Swab</td>
-                        <td class="px-6 py-4 text-center">✓</td>
-                        <td class="px-6 py-4 text-center font-bold text-phthalo">30,000</td>
+                    <tr>
+                        <th scope="row" class="font-semibold text-ink">Immigration DNA</th>
+                        <td>Exactly the people named by the embassy or immigration authority</td>
+                        <td>Cheek swab</td>
+                        <td>Visa, residency and citizenship applications</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-</section>
 
-<!-- Additional Services -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-bold text-phthalo mb-6">Additional Services</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Enhance your DNA testing experience with our premium add-on services and support options.
+        <div class="mt-6 grid md:grid-cols-2 gap-5">
+            <p class="text-sm text-ink-soft leading-relaxed">
+                Tests requiring a blood sample rather than a cheek swab are arranged separately through a clinical
+                collection partner. Ask us before booking.
+            </p>
+            <p class="text-sm text-ink-soft leading-relaxed">
+                For immigration and court use, the authority receiving the report sets the rules on collection and
+                identification. Tell us who the report is for before you book.
             </p>
         </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Express Processing -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-bolt text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Express Processing</h3>
-                <p class="text-gray-600 mb-4">Get your results in 12-24 hours with our express service.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 10,000</div>
-                <button class="w-full bg-yellow-500 text-white py-3 rounded-xl font-semibold hover:bg-yellow-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Home Collection -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-home text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Home Collection</h3>
-                <p class="text-gray-600 mb-4">Professional sample collection at your location.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 5,000</div>
-                <button class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Genetic Counseling -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-user-md text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Genetic Counseling</h3>
-                <p class="text-gray-600 mb-4">Professional consultation to understand your results.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 7,500</div>
-                <button class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-
-            <!-- Additional Participants -->
-            <div class="glass-dark p-8 rounded-3xl text-center hover-lift">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-users text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-phthalo mb-3">Extra Participants</h3>
-                <p class="text-gray-600 mb-4">Add additional participants to your DNA test.</p>
-                <div class="text-2xl font-bold text-phthalo mb-4">+PKR 8,000</div>
-                <button class="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold hover:bg-purple-600 transition-colors">
-                    Add Service
-                </button>
-            </div>
-        </div>
     </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="py-16 gradient-bg relative overflow-hidden">
-     <!-- Left Side Floating Objects -->
-    <div class="floating-object float-left-1">
-        <div class="w-16 h-16 bg-gradient-to-br from-phthalo to-dts-accent rounded-full opacity-20 flex items-center justify-center">
-            <i class="fas fa-dna text-white text-2xl"></i>
+<!-- ======================= WHAT'S INCLUDED ======================= -->
+<section class="bg-paper border-b border-line">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+
+        <h2 class="text-3xl lg:text-4xl mb-10">What the price covers</h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <div>
+                <h3 class="text-lg mb-3 pb-3 border-b border-line">At our office</h3>
+                <ul class="space-y-2.5 text-sm text-ink-soft">
+                    <li>Appointment and guidance before you come in</li>
+                    <li>Swab collection by trained staff</li>
+                    <li>Identity and order verification</li>
+                    <li>Sealing, labelling and paperwork</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg mb-3 pb-3 border-b border-line">In transit</h3>
+                <ul class="space-y-2.5 text-sm text-ink-soft">
+                    <li>International courier to the laboratory</li>
+                    <li>Airway bill shared with you</li>
+                    <li>Shipment tracked until delivery</li>
+                    <li>Customs and lab documentation handled</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg mb-3 pb-3 border-b border-line">At the laboratory</h3>
+                <ul class="space-y-2.5 text-sm text-ink-soft">
+                    <li>DNA extraction and analysis</li>
+                    <li>Report prepared and issued by the laboratory</li>
+                    <li>Results delivered to you</li>
+                    <li>Re-testing where the laboratory's policy allows</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    
-    <div class="floating-object float-left-2">
-        <div class="dna-helix opacity-15">
-            <div class="dna-strand"></div>
-            <div class="dna-strand"></div>
-        </div>
-    </div>
-    
-    <div class="floating-object float-left-3">
-        <div class="w-12 h-12 bg-gradient-to-br from-dts-secondary to-dts-accent rounded-lg opacity-25 flex items-center justify-center animate-spin-slow">
-            <i class="fas fa-microscope text-white"></i>
-        </div>
-    </div>
-    
-    <div class="floating-object float-left-4">
-        <div class="molecule opacity-20"></div>
-    </div>
-    
-    <!-- Right Side Floating Objects -->
-    <div class="floating-object float-right-1">
-        <div class="w-14 h-14 bg-gradient-to-br from-dts-accent to-phthalo rounded-full opacity-25 flex items-center justify-center animate-pulse-slow">
-            <i class="fas fa-flask text-white text-xl"></i>
-        </div>
-    </div>
-    
-    <div class="floating-object float-right-2">
-        <div class="w-20 h-20 bg-gradient-to-br from-buttersmoke to-white rounded-full opacity-30 flex items-center justify-center shadow-lg">
-            <i class="fas fa-certificate text-phthalo text-2xl animate-wiggle"></i>
-        </div>
-    </div>
-    
-    <div class="floating-object float-right-3">
-        <div class="w-10 h-10 bg-gradient-to-br from-dts-primary to-dts-secondary rounded-full opacity-20 animate-bounce-slow"></div>
-    </div>
-    
-    <div class="floating-object float-right-4">
-        <div class="dna-helix opacity-10" style="transform: scale(0.7);">
-            <div class="dna-strand"></div>
-            <div class="dna-strand"></div>
-        </div>
-    </div>
-    
-    <!-- Additional scattered floating elements -->
-    <div class="floating-object" style="top: 5%; left: 25%; animation: float 10s ease-in-out 3s infinite;">
-        <div class="w-6 h-6 bg-dts-accent rounded-full opacity-15"></div>
-    </div>
-    
-    <div class="floating-object" style="top: 85%; right: 30%; animation: float-reverse 12s ease-in-out infinite;">
-        <div class="w-8 h-8 bg-phthalo rounded-full opacity-10"></div>
-    </div>
-    
-    <div class="floating-object" style="top: 60%; left: 20%; animation: float 14s ease-in-out 2s infinite;">
-        <div class="w-4 h-4 bg-dts-secondary rounded-full opacity-20"></div>
-    </div>
-    
-    <div class="floating-object" style="top: 20%; right: 25%; animation: float-delayed 11s ease-in-out infinite;">
-        <div class="w-5 h-5 bg-dts-primary rounded-full opacity-15"></div>
-    </div>
-    
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-bold text-phthalo mb-6">Frequently Asked Questions</h2>
-            <p class="text-xl text-gray-600">
-                Get answers to common questions about our DNA testing services.
+
+        <!-- NOTE FOR JUNAID: add real add-on pricing here once confirmed
+             (extra participants, courier of a kit to another city, additional
+             report copies). Left price-free rather than carrying over the old
+             invented "+PKR 10,000 express" figure. -->
+        <div class="notice mt-12">
+            <p class="text-sm text-ink-soft leading-relaxed measure">
+                Extra participants, delivery of a collection kit to another city, and additional copies of a report
+                are priced per order. Ask when you book and we will confirm the cost in writing.
             </p>
         </div>
-        
-        <div class="space-y-6">
-            <!-- FAQ Item 1 -->
-            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
-                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(1)">
-                    <span class="text-lg font-semibold text-phthalo">How accurate are your DNA tests?</span>
-                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-1"></i>
-                </button>
-                <div class="faq-content" id="faq-content-1">
-                    <p class="text-gray-600 leading-relaxed">
-                        Our DNA tests achieve 99.9% accuracy for paternity testing and 99.5% for ancestry testing. We use the latest SNP-based technology and strict quality control measures to ensure reliable results.
-                    </p>
-                </div>
+    </div>
+</section>
+
+<!-- ======================= ORDERING FAQ ======================= -->
+<section class="bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <div class="grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-4">
+                <h2 class="text-3xl lg:text-4xl mb-4">Before you order</h2>
+                <p class="text-sm text-ink-soft leading-relaxed measure-s">
+                    Still unsure which test you need? Call
+                    <a href="tel:+923074561958" class="text-teal link-underline code">+92 307 456 1958</a>.
+                </p>
             </div>
 
-            <!-- FAQ Item 2 -->
-            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
-                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(2)">
-                    <span class="text-lg font-semibold text-phthalo">How long does it take to get results?</span>
-                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-2"></i>
-                </button>
-                <div class="faq-content" id="faq-content-2">
-                    <p class="text-gray-600 leading-relaxed">
-                        Turnaround times vary by test type: Paternity tests take 24-48 hours, Immigration DNA takes 3-5 days, Prenatal testing takes 5-7 days, and Ancestry testing takes 4-6 weeks.
-                    </p>
-                </div>
-            </div>
+            <div class="lg:col-span-8">
+                <details class="faq-item" open>
+                    <summary>Where is the test actually performed?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        At a partner laboratory in the United Kingdom, the United States or Australia. Our Lahore
+                        office collects and ships the sample; it does not carry out testing, extraction or analysis.
+                        You are told which laboratory before dispatch.
+                    </div>
+                </details>
 
-            <!-- FAQ Item 3 -->
-            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
-                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(3)">
-                    <span class="text-lg font-semibold text-phthalo">Is my information kept confidential?</span>
-                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-3"></i>
-                </button>
-                <div class="faq-content" id="faq-content-3">
-                    <p class="text-gray-600 leading-relaxed">
-                        Yes, we maintain strict confidentiality protocols. Your personal information and test results are protected by advanced security measures and are never shared without your explicit consent.
-                    </p>
-                </div>
-            </div>
+                <details class="faq-item">
+                    <summary>What should I bring to the appointment?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        Photo identification for every adult being tested, and the birth certificate or B-Form for any
+                        child. Legal and immigration tests have stricter identification rules, which we send you in
+                        your booking confirmation.
+                    </div>
+                </details>
 
-            <!-- FAQ Item 4 -->
-            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
-                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(4)">
-                    <span class="text-lg font-semibold text-phthalo">Are your tests accepted by courts and embassies?</span>
-                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-4"></i>
-                </button>
-                <div class="faq-content" id="faq-content-4">
-                    <p class="text-gray-600 leading-relaxed">
-                        Yes, our legal DNA tests are AABB-accredited and accepted by courts, embassies, and immigration authorities worldwide. We follow strict chain of custody procedures for legal testing.
-                    </p>
-                </div>
-            </div>
+                <details class="faq-item">
+                    <summary>Can I collect the sample at home instead?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        For personal-knowledge tests, we can discuss sending a collection kit. For legal and
+                        immigration tests, collection has to be witnessed and documented, so it must happen at our
+                        office or an approved location.
+                    </div>
+                </details>
 
-            <!-- FAQ Item 5 -->
-            <div class="faq-item bg-white rounded-2xl shadow-lg overflow-hidden">
-                <button class="faq-question w-full px-8 py-6 text-left flex items-center justify-between focus:outline-none" onclick="toggleFAQ(5)">
-                    <span class="text-lg font-semibold text-phthalo">What if I'm not satisfied with the service?</span>
-                    <i class="faq-icon fas fa-chevron-down text-phthalo" id="faq-icon-5"></i>
-                </button>
-                <div class="faq-content" id="faq-content-5">
-                    <p class="text-gray-600 leading-relaxed">
-                        We offer a 100% satisfaction guarantee. If you're not completely satisfied with our service, we'll work to resolve any issues or provide a full refund according to our terms and conditions.
-                    </p>
-                </div>
+                <details class="faq-item">
+                    <summary>Does a cheek swab hurt?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        No. A soft swab is rubbed inside the cheek for a few seconds. It is painless, needs no
+                        needles, and is safe for newborns and elderly participants alike.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What happens if the sample fails at the laboratory?</summary>
+                    <div class="faq-body text-[0.9375rem] leading-relaxed">
+                        The laboratory tells us, and we arrange a fresh collection. Re-collection and re-shipping terms
+                        depend on the laboratory's policy for your test and are set out in your order confirmation.
+                    </div>
+                </details>
             </div>
         </div>
     </div>
 </section>
-{% block extra_js %}
-<script>
-    // FAQ Toggle Functionality
-    function toggleFAQ(index) {
-        const content = document.getElementById(`faq-content-${index}`);
-        const icon = document.getElementById(`faq-icon-${index}`);
-        
-        if (content && icon) {
-            // Close all other FAQs
-            const allContents = document.querySelectorAll('.faq-content');
-            const allIcons = document.querySelectorAll('.faq-icon');
-            
-            allContents.forEach((otherContent, i) => {
-                if (otherContent !== content && otherContent.classList.contains('active')) {
-                    otherContent.classList.remove('active');
-                    if (allIcons[i]) {
-                        allIcons[i].classList.remove('active');
-                    }
-                }
-            });
-            
-            // Toggle current FAQ
-            content.classList.toggle('active');
-            icon.classList.toggle('active');
-        }
-    }
-    
-    // Initialize page functionality when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe service cards and other elements for animations
-        document.querySelectorAll('.service-card, .faq-item').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Add hover effects to floating objects
-        document.querySelectorAll('.floating-object').forEach(obj => {
-            obj.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1)';
-                this.style.transition = 'transform 0.3s ease';
-            });
-            
-            obj.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-    });
-</script>
-{% endblock %}
-{% endblock %}
 
+{% endblock content %}

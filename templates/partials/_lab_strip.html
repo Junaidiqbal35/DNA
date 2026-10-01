@@ -1,0 +1,59 @@
+{% comment %}
+  Compact partner-laboratory strip. Include with:
+      {% include 'partials/_lab_strip.html' %}
+  Needs `partner_labs` in the context (see core.views.active_labs).
+  Falls back to a plain country statement when no labs are published yet, so
+  the section never renders empty or broken.
+{% endcomment %}
+
+<div class="panel p-7 lg:p-9">
+
+    <div class="md:flex md:items-baseline md:justify-between gap-6 mb-7 pb-5 border-b border-line">
+        <h2 class="text-xl mb-2 md:mb-0">Who performs the testing</h2>
+        <a href="{% url 'partners' %}" class="text-sm font-semibold text-teal link-underline whitespace-nowrap">
+            See accreditations and certificates
+        </a>
+    </div>
+
+    {% if partner_labs %}
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+        {% for lab in partner_labs|slice:":8" %}
+        <a href="{% url 'partners' %}#{{ lab.slug }}" class="block group">
+            <div class="lab-logo-plate rounded mb-3">
+                {% if lab.logo %}
+                <img src="{{ lab.logo.url }}" alt="{{ lab.name }}" loading="lazy">
+                {% else %}
+                <span class="lab-logo-fallback">{{ lab.initials }}</span>
+                {% endif %}
+            </div>
+            <p class="text-sm font-semibold text-ink leading-snug group-hover:text-teal">{{ lab.name }}</p>
+            <p class="text-xs text-ink-soft mt-0.5">{{ lab.get_country_display }}</p>
+        </a>
+        {% endfor %}
+    </div>
+
+    {% else %}
+
+    <div class="grid sm:grid-cols-3 gap-6">
+        <div>
+            <p class="font-semibold text-ink mb-1">United Kingdom</p>
+            <p class="text-sm text-ink-soft">Partner laboratory</p>
+        </div>
+        <div>
+            <p class="font-semibold text-ink mb-1">United States</p>
+            <p class="text-sm text-ink-soft">Partner laboratory</p>
+        </div>
+        <div>
+            <p class="font-semibold text-ink mb-1">Australia</p>
+            <p class="text-sm text-ink-soft">Partner laboratory</p>
+        </div>
+    </div>
+
+    {% endif %}
+
+    <p class="text-xs text-ink-soft leading-relaxed mt-7 pt-5 border-t border-line measure">
+        Accreditations belong to the laboratory that performs your test and are stated on the report it issues. DNA
+        Lab Pakistan holds no laboratory accreditation and performs no testing.
+    </p>
+</div>
