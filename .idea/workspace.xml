@@ -5,44 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33bc0d86-6ca0-4568-9b4b-b394995c642c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dna.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/management/commands/seed_dnalab.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/management/commands/seed_dnalab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0005_partnerlab_labcertification_product_partner_lab.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0005_partnerlab_labcertification_product_partner_lab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/migrations/0006_product_category_product_sample_type.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0006_product_category_product_sample_type.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/seed_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/core/seed_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dna/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/dna/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/about.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/basket.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/custom-styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom-styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/landing.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/order.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/product.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/service.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/tailwind-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/tailwind-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/cart/cart_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/cart_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cart/order_checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/order_checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/aboutus.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/aboutus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/checkreports.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/checkreports.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/contactus.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/contactus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/disclaimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/disclaimer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/dnatestlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/dnatestlist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/partners.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/privacy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/privacy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/product_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/services.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_disclaimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_disclaimer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_lab_strip.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_lab_strip.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/partials/_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_navbar1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/webstore/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/webstore/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/lab_strips.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/lab_strips.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/webstore/webHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/webstore/webHome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,23 +68,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7171354820625961" />
-      <entry key="MS500" value="2.250323241654355" />
-      <entry key="S2" value="4.40592910096147" />
-      <entry key="S5" value="6.341692595724845" />
-      <entry key="S10" value="7.533765392864807" />
-      <entry key="S30" value="10.982206643119277" />
-      <entry key="S60" value="16.230568038323078" />
-      <entry key="M2" value="25.89460562264874" />
-      <entry key="M5" value="42.82743296573122" />
-      <entry key="M10" value="54.04885525939435" />
-      <entry key="M15" value="59.31843450540033" />
-      <entry key="M30" value="68.02614874474048" />
-      <entry key="H1" value="85.80050715267723" />
-      <entry key="H2" value="118.07634661204003" />
-      <entry key="H4" value="153.02783902909584" />
-      <entry key="D1" value="201.99517362372328" />
-      <entry key="W1" value="213.06253166911875" />
+      <entry key="MS100" value="1.721964597761248" />
+      <entry key="MS500" value="1.9369214468724256" />
+      <entry key="S2" value="1.9838429889437326" />
+      <entry key="S5" value="1.9935055968910624" />
+      <entry key="S10" value="1.9967475090969942" />
+      <entry key="S30" value="1.9989146590257818" />
+      <entry key="S60" value="1.9994772083691825" />
+      <entry key="M2" value="2.0070655144409555" />
+      <entry key="M5" value="2.533590020362125" />
+      <entry key="M10" value="4.94092903905012" />
+      <entry key="M15" value="7.331639379750825" />
+      <entry key="M30" value="12.024349620155208" />
+      <entry key="H1" value="19.906480231476486" />
+      <entry key="H2" value="49.02116422971689" />
+      <entry key="H4" value="115.8297134344031" />
+      <entry key="D1" value="291.9559171214835" />
+      <entry key="W1" value="347.59935448884437" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -101,37 +92,37 @@
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
       <entry key="S10" value="0.0" />
-      <entry key="S30" value="1.0806818489905957E-132" />
-      <entry key="S60" value="1.0395584875275624E-66" />
-      <entry key="M2" value="1.0195874104399077E-33" />
-      <entry key="M5" value="6.358721230527517E-14" />
-      <entry key="M10" value="2.521650497298844E-7" />
-      <entry key="M15" value="3.991381700926125E-5" />
-      <entry key="M30" value="0.006317738282744947" />
-      <entry key="H1" value="0.07948420146636045" />
-      <entry key="H2" value="0.28192942639313245" />
-      <entry key="H4" value="0.5309702688410449" />
-      <entry key="D1" value="0.8998670863788358" />
-      <entry key="W1" value="0.9850404218951881" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="4.01122075010642E-183" />
+      <entry key="M2" value="6.333419889843391E-92" />
+      <entry key="M5" value="3.316311467322813E-37" />
+      <entry key="M10" value="5.758742455886356E-19" />
+      <entry key="M15" value="6.921790293887139E-13" />
+      <entry key="M30" value="8.319729739533072E-7" />
+      <entry key="H1" value="9.12125525327141E-4" />
+      <entry key="H2" value="0.03020141594904356" />
+      <entry key="H4" value="0.17378554585765588" />
+      <entry key="D1" value="0.7470258127957512" />
+      <entry key="W1" value="0.9591909818793626" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7964761584828892" />
-      <entry key="MS500" value="1.478750961286466" />
-      <entry key="S2" value="3.9921554706669835" />
-      <entry key="S5" value="6.123681972739796" />
-      <entry key="S10" value="7.412093393103291" />
-      <entry key="S30" value="10.934909690392784" />
-      <entry key="S60" value="16.197976281390755" />
-      <entry key="M2" value="25.866640072877942" />
-      <entry key="M5" value="42.80767035786953" />
-      <entry key="M10" value="54.036239345507894" />
-      <entry key="M15" value="59.309276334112496" />
-      <entry key="M30" value="68.02740072280646" />
-      <entry key="H1" value="85.87727850056787" />
-      <entry key="H2" value="118.35681022538267" />
-      <entry key="H4" value="153.55801826925108" />
-      <entry key="D1" value="202.89489477671478" />
-      <entry key="W1" value="214.04755077601473" />
+      <entry key="MS100" value="0.9185198930881229" />
+      <entry key="MS500" value="1.603216463448586" />
+      <entry key="S2" value="1.8855804265526284" />
+      <entry key="S5" value="1.9528504699643683" />
+      <entry key="S10" value="1.9761882384838698" />
+      <entry key="S30" value="1.99200944290719" />
+      <entry key="S60" value="1.9960180283336204" />
+      <entry key="M2" value="2.0053310535417093" />
+      <entry key="M5" value="2.532777555232911" />
+      <entry key="M10" value="4.940232909781074" />
+      <entry key="M15" value="7.330979920384668" />
+      <entry key="M30" value="12.023815615512767" />
+      <entry key="H1" value="19.90689674257263" />
+      <entry key="H2" value="49.050715807997115" />
+      <entry key="H4" value="116.00278345663249" />
+      <entry key="D1" value="292.7026778922948" />
+      <entry key="W1" value="348.5585015663503" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -152,7 +143,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#2 on updated&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version2&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/upworkProject2025/DNA/static/img&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,

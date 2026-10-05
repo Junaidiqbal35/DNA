@@ -11,7 +11,7 @@ class Product(models.Model):
     tests spanning relationship work, immigration work and clinical genetics.
     One flat list is unusable, and — more importantly — a large share of the
     clinical tests need an EDTA blood draw rather than the buccal swab the
-    Lahore office collects. That difference has to be visible before someone
+    Pakistan office coordinate. That difference has to be visible before someone
     books, not discovered at the appointment.
     """
 
@@ -50,7 +50,7 @@ class Product(models.Model):
     sample_type = models.CharField(
         max_length=20, choices=SampleType.choices, blank=True,
         help_text='Leave blank if unsure. Anything other than a cheek swab '
-                  'cannot be collected at the Lahore office and needs a '
+                  'cannot be collected at the Pakistan office and needs a '
                   'clinical collection partner — say so before someone books.',
     )
 
@@ -96,7 +96,7 @@ class Product(models.Model):
 
     @property
     def needs_clinical_collection(self):
-        """True when the sample cannot be taken at the Lahore office."""
+        """True when the sample cannot be taken at the Pakistan office."""
         return self.sample_type in {
             self.SampleType.BLOOD,
             self.SampleType.MATERNAL_BLOOD,
@@ -131,7 +131,7 @@ class PartnerLab(models.Model):
     class Country(models.TextChoices):
         UK = 'GB', 'United Kingdom'
         USA = 'US', 'United States'
-        AUSTRALIA = 'AU', 'Australia'
+        Turkey = 'AU', 'Turkey'
 
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -204,7 +204,7 @@ class LabCertification(models.Model):
     """A certificate or accreditation document belonging to a partner lab.
 
     The certificate is evidence, so it is attached to the lab that holds it.
-    Never attach one to the Lahore office — that office holds no laboratory
+    Never attach one to the Pakistan office — that office holds no laboratory
     accreditation.
     """
 

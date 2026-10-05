@@ -191,11 +191,11 @@ def product_detail(request, slug):
     # CHANGED — two of the old entries contradicted the business model:
     #
     #   'Express Processing (12-24 hours)' cannot be promised. The sample has
-    #   to clear a Lahore-to-overseas courier leg before testing even starts.
+    #   to clear a Pakistan-to-overseas courier leg before testing even starts.
     #   Replaced with priority courier, which shortens transit and says so.
     #
     #   'Genetic Counseling Session' cuts straight across the disclaimer — the
-    #   Lahore office provides no genetic or medical interpretation. Removed.
+    #   Pakistan office provides no genetic or medical interpretation. Removed.
     addon_options = [
         {
             'id': 'additional_child',

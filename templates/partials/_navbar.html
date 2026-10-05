@@ -6,7 +6,7 @@
 
 <div class="bg-ink text-white/80 text-xs no-print">
     <div class="max-w-6xl mx-auto px-6 py-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
-        <p>Samples collected in Lahore &middot; tested by partner laboratories in the UK, US and Australia</p>
+        <p> DNA sample coordination in Pakistan &middot; Testing performed by partner laboratories in the UK, US and Turkey</p>
         <a href="tel:+923074561958" class="hover:text-white whitespace-nowrap">
             <span class="code">+92 307 456 1958</span>
         </a>
@@ -22,7 +22,10 @@
                 <img src="{% static 'img/dts-logo.svg' %}" alt="DNA Testing Solutions"
                      class="h-9 w-auto" width="120" height="36">
                 <span class="hidden lg:block text-[11px] leading-tight text-ink-soft border-l border-line pl-3">
-                   <br>International lab coordination
+                    <span class="block font-semibold text-teal mb-0.5">
+                        <i class="fa-solid fa-venus" aria-hidden="true"></i>
+                    </span>
+                    International lab coordination
                 </span>
             </a>
 
@@ -32,12 +35,12 @@
                 <li><a href="{% url 'home' %}#how-it-works" class="text-ink hover:text-teal">How it works</a></li>
                 <li><a href="{% url 'about' %}" class="text-ink hover:text-teal">About</a></li>
                 <li><a href="{% url 'contact' %}" class="text-ink hover:text-teal">Contact</a></li>
-                <li><a href="{% url 'privacy' %}" class="text-ink hover:text-teal">Terms & Conditions </a> </li>
+                <li><a href="{% url 'privacy' %}" class="text-ink hover:text-teal">Terms &amp; Conditions</a></li>
                 <li><a href="{% url 'home' %}#faq" class="text-ink hover:text-teal">Questions</a></li>
             </ul>
 
             <div class="flex items-center gap-3">
-                <a href="{% url 'services' %}" class="hidden sm:inline-flex btn btn-primary">Book a collection</a>
+                <a href="https://dts-enterprise-cloud.vercel.app/?book_appointment=1" class="hidden sm:inline-flex btn btn-primary">Schedule an Appointment</a>
 
                 <button type="button" class="md:hidden p-2 -mr-2 text-ink" aria-expanded="false"
                     aria-controls="mobile-nav" data-menu-toggle>
@@ -55,7 +58,7 @@
                 <li><a href="{% url 'about' %}" class="block py-2.5 text-ink">About</a></li>
                 <li><a href="{% url 'contact' %}" class="block py-2.5 text-ink">Contact</a></li>
                 <li><a href="{% url 'home' %}#faq" class="block py-2.5 text-ink">Questions</a></li>
-                <li class="pt-3"><a href="{% url 'services' %}" class="btn btn-primary w-full">Book a collection</a></li>
+                <li class="pt-3"><a href="{% url 'services' %}" class="btn btn-primary w-full">Book an appointment</a></li>
             </ul>
         </div>
     </nav>

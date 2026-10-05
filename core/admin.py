@@ -41,7 +41,7 @@ class PartnerLabAdmin(admin.ModelAdmin):
             'description': (
                 'Only list accreditations this laboratory actually holds. They '
                 'display to customers as credentials, and they belong to the '
-                'laboratory — never to the Lahore office.'),
+                'laboratory — never to the Pakistan office.'),
         }),
     )
 

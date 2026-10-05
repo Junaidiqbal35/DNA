@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(db_index=True, max_length=200)),
                 ('slug', models.SlugField(max_length=200, unique=True)),
-                ('country', models.CharField(choices=[('GB', 'United Kingdom'), ('US', 'United States'), ('AU', 'Australia')], max_length=2)),
+                ('country', models.CharField(choices=[('GB', 'United Kingdom'), ('US', 'United States'), ('AU', 'Turkey')], max_length=2)),
                 ('city', models.CharField(blank=True, help_text='Optional. City the laboratory operates from.', max_length=120)),
                 ('logo', models.ImageField(blank=True, upload_to='labs/logos/')),
                 ('website', models.URLField(blank=True)),

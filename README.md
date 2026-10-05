@@ -197,13 +197,13 @@ Other 3, Relationship 2, Prenatal 2, Ancestry 1.
 
 ### The thing worth acting on first
 
-**15 of your 30 tests need a blood or tissue sample.** Your Lahore office
+**15 of your 30 tests need a blood or tissue sample.** Your Pakistan office
 collects buccal swabs — that is what the business model says, and it is what
 the whole site now states. So more than half the catalogue cannot actually be
 collected where the site implies it can.
 
 Those tests are seeded with the right `sample_type`, and the services page
-marks each one "Not collected at our Lahore office — arranged through a
+marks each one "Not collected at our Pakistan office — arranged through a
 clinical collection partner", with a notice at the top of the list. That is
 honest, but it is a stopgap. The real fix is to decide and document how blood
 collection actually happens — a partner phlebotomy clinic, a hospital
@@ -217,7 +217,7 @@ AABB-accredited laboratories, and the accreditation belongs to the *lab*. The
 product was reworded to "USA Immigration DNA Test (AABB accredited
 laboratory)". Set its `lab` to whichever partner actually holds AABB.
 
-**Three countries vs five.** The site says UK, US and Australia. Your
+**Three countries vs five.** The site says UK, US and Turkey. Your
 catalogue images show otherwise: *NIFTY* is BGI's product (China / Hong Kong),
 and the Fanconi Anemia panel image reads "powered by Mikrogen, Turkey". Either
 add those labs and widen the wording everywhere — home page, about page,
@@ -234,11 +234,11 @@ medical advice.
 ### Names
 
 Your WhatsApp business is **DNA Testing Solutions (DTS®)**, the site says
-**DNA TESTING SOLUTIONS**, the old About page said **DTS Lab Pakistan**, and the
-catalogue cards show **DNA Labs Pakistan**. Four names for one business.
+**DNA TESTING SOLUTIONS**, the old About page said **DTS Lab  Pakistan**, and the
+catalogue cards show **DNA Labs  Pakistan**. Four names for one business.
 
 Worth settling — and "DNA TESTING SOLUTIONS" works against the disclaimer sitting
-right beside it, since the name itself implies a lab in Pakistan. "DNA Testing
+right beside it, since the name itself implies a lab in  Pakistan. "DNA Testing
 Solutions" doesn't have that problem.
 
 One good thing: your catalogue's own Services Disclaimer card states the same
@@ -261,7 +261,7 @@ reach.
 
 **Cenata and BGI were left out.** They were on your old About page, but Cenata
 is German and BGI is Chinese, and the whole site states three countries —
-UK, US, Australia. If you genuinely ship to them, add them back to
+UK, US, Turkey. If you genuinely ship to them, add them back to
 `seed_data.json` and update the disclaimer wording, because it currently names
 three countries and would be wrong.
 
@@ -272,11 +272,11 @@ three countries and would be wrong.
 Both were in `addon_options` and both cut across the business model:
 
 **"Express Processing (12-24 hours)"** — not deliverable. The sample has to
-clear a Lahore-to-overseas courier leg before testing starts, so 12–24 hours
+clear a Pakistan-to-overseas courier leg before testing starts, so 12–24 hours
 can't be sold. Replaced with "Priority courier to the laboratory", which
 shortens transit and says so, rather than promising a total turnaround.
 
-**"Genetic Counseling Session"** — the Lahore office provides no genetic or
+**"Genetic Counseling Session"** — the Pakistan office provides no genetic or
 medical interpretation, so selling counselling from there contradicts the
 disclaimer directly. Removed. If a partner lab offers it, sell it as that
 lab's service and name the lab.
@@ -293,7 +293,7 @@ lab's service and name the lab.
 - **Still white after replacing base.html** — hard-refresh (Ctrl+Shift+R); the
   old HTML caches aggressively. Then check the browser Network tab for a 404
   on `custom-styles.css`.
-- **Partner section shows only "United Kingdom / United States / Australia"**
+- **Partner section shows only "United Kingdom / United States / Turkey"**
   — the view isn't passing `partner_labs`. On the about page that means it's
   still a `TemplateView`.
 - **Images under `static/images/` 404** — that folder doesn't exist in the

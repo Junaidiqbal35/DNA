@@ -264,16 +264,7 @@
                             <span>Subtotal ({{ cart|length }} item{{ cart|length|pluralize }})</span>
                             <span class="font-semibold">PKR {{ cart.get_total_price|intcomma }}</span>
                         </div>
-                        
-                        <div class="flex justify-between text-gray-600">
-                            <span>Sample Collection</span>
-                            <span class="text-green-600 font-semibold">Free</span>
-                        </div>
-                        
-                        <div class="flex justify-between text-gray-600">
-                            <span>Processing & Lab Fees</span>
-                            <span class="text-green-600 font-semibold">Included</span>
-                        </div>
+
                         
                         <div class="border-t border-gray-200 pt-4">
                             <div class="flex justify-between text-2xl font-bold text-phthalo">
@@ -287,9 +278,9 @@
                     <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-4 mb-6">
                         <div class="flex items-center space-x-2 mb-2">
                             <i class="fas fa-gift text-green-600"></i>
-                            <span class="font-semibold text-green-700">Special Offer</span>
+                            <span class="font-semibold text-green-700"></span>
                         </div>
-                        <p class="text-sm text-gray-600">Free home sample collection on all orders!</p>
+                        <p class="text-sm text-gray-600"></p>
                     </div>
 
                     <!-- Action Buttons -->
@@ -348,38 +339,38 @@
                     <p class="text-xl text-gray-600 mb-8">Start by adding some DNA tests to your cart</p>
                 </div>
                 
-                <!-- Featured Services -->
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-dts-primary to-dts-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-dna text-white text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-phthalo mb-2">Paternity Test</h3>
-                        <p class="text-sm text-gray-600">99.9% accuracy</p>
-                    </div>
-                    
-                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-passport text-white text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-phthalo mb-2">Immigration DNA</h3>
-                        <p class="text-sm text-gray-600">Embassy approved</p>
-                    </div>
-                    
-                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">
-                        <div class="w-16 h-16 bg-gradient-to-br from-dts-accent to-phthalo-light rounded-2xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-heartbeat text-white text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-phthalo mb-2">Health Screen</h3>
-                        <p class="text-sm text-gray-600">Comprehensive</p>
-                    </div>
-                </div>
+<!--                &lt;!&ndash; Featured Services &ndash;&gt;-->
+<!--                <div class="grid md:grid-cols-3 gap-6 mb-8">-->
+<!--                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">-->
+<!--                        <div class="w-16 h-16 bg-gradient-to-br from-dts-primary to-dts-accent rounded-2xl flex items-center justify-center mx-auto mb-4">-->
+<!--                            <i class="fas fa-dna text-white text-2xl"></i>-->
+<!--                        </div>-->
+<!--                        <h3 class="font-bold text-phthalo mb-2">Paternity Test</h3>-->
+<!--                        <p class="text-sm text-gray-600">99.9% accuracy</p>-->
+<!--                    </div>-->
+<!--                    -->
+<!--                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">-->
+<!--                        <div class="w-16 h-16 bg-gradient-to-br from-dts-secondary to-dts-primary rounded-2xl flex items-center justify-center mx-auto mb-4">-->
+<!--                            <i class="fas fa-passport text-white text-2xl"></i>-->
+<!--                        </div>-->
+<!--                        <h3 class="font-bold text-phthalo mb-2">Immigration DNA</h3>-->
+<!--                        <p class="text-sm text-gray-600">Embassy approved</p>-->
+<!--                    </div>-->
+<!--                    -->
+<!--                    <div class="text-center p-4 bg-gradient-to-br from-buttersmoke to-white rounded-xl">-->
+<!--                        <div class="w-16 h-16 bg-gradient-to-br from-dts-accent to-phthalo-light rounded-2xl flex items-center justify-center mx-auto mb-4">-->
+<!--                            <i class="fas fa-heartbeat text-white text-2xl"></i>-->
+<!--                        </div>-->
+<!--                        <h3 class="font-bold text-phthalo mb-2">Health Screen</h3>-->
+<!--                        <p class="text-sm text-gray-600">Comprehensive</p>-->
+<!--                    </div>-->
+<!--                </div>-->
                 
                 <div class="space-y-4">
                     <a href="{% url 'services' %}" 
                        class="inline-flex items-center bg-gradient-to-r from-dts-primary to-dts-accent text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-microscope mr-3"></i>
-                        Browse DNA Tests
+                        Browse Services
                     </a>
                     
                     <div class="mt-4">

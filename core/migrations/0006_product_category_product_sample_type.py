@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='sample_type',
-            field=models.CharField(blank=True, choices=[('swab', 'Buccal (cheek) swab'), ('blood', 'Blood sample'), ('maternal_blood', "Mother's blood sample"), ('tissue', 'Tissue sample'), ('other', 'Other — ask us')], help_text='Leave blank if unsure. Anything other than a cheek swab cannot be collected at the Lahore office and needs a clinical collection partner — say so before someone books.', max_length=20),
+            field=models.CharField(blank=True, choices=[('swab', 'Buccal (cheek) swab'), ('blood', 'Blood sample'), ('maternal_blood', "Mother's blood sample"), ('tissue', 'Tissue sample'), ('other', 'Other — ask us')], help_text='Leave blank if unsure. Anything other than a cheek swab cannot be collected at the Pakistan office and needs a clinical collection partner — say so before someone books.', max_length=20),
         ),
     ]

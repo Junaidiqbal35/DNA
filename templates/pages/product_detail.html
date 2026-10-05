@@ -2,238 +2,267 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %}{{ product.name }} — DNA Testing Solutions{% endblock %}
-{% block meta_description %}{{ product.description|striptags|truncatewords:28 }}{% endblock %}
+{% block title %}{{ product.name }} | DTS{% endblock %}
+
+{% block extrahead %}
+<style>
+.product-image {
+    transition: transform 0.3s ease;
+}
+.product-image:hover {
+    transform: scale(1.05);
+}
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.quantity-btn {
+    padding: 0.75rem 1rem;
+    background: #f9fafb;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.quantity-btn:hover {
+    background: #e5e7eb;
+}
+.quantity-input {
+    border: none;
+    text-align: center;
+    padding: 0.75rem;
+    width: 60px;
+    background: white;
+}
+.floating-cart {
+    position: sticky;
+    top: 2rem;
+}
+.feature-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.breadcrumb-nav {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+.breadcrumb-nav a {
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.breadcrumb-nav a:hover {
+    color: #1f2937;
+}
+.addon-card {
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+.addon-card:hover {
+    border-color: #00A693;
+    background-color: rgba(0, 166, 147, 0.05);
+}
+.addon-card.selected {
+    border-color: #00A693;
+    background-color: rgba(0, 166, 147, 0.1);
+}
+.cart-summary {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 166, 147, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+</style>
+{% endblock extrahead %}
 
 {% block content %}
-
-{% comment %}
-  Rewritten. The old version ran its own visual language — text-gray-700,
-  bg-gray-50, rounded-3xl cards, gradient buttons, and a `text-dts-primary`
-  class that was never defined anywhere — so it looked like a different site
-  from every page that linked to it. This uses the shared tokens only.
-{% endcomment %}
-
-<!-- ======================= BREADCRUMB ======================= -->
-<nav class="bg-white border-b border-line" aria-label="Breadcrumb">
-    <div class="max-w-6xl mx-auto px-6 py-4">
-        <ol class="flex flex-wrap items-center gap-2 text-sm text-ink-soft">
-            <li><a href="{% url 'home' %}" class="hover:text-teal">Home</a></li>
-            <li aria-hidden="true">/</li>
-            <li><a href="{% url 'services' %}" class="hover:text-teal">Tests</a></li>
-            <li aria-hidden="true">/</li>
-            <li class="text-ink font-medium">{{ product.name }}</li>
-        </ol>
+<div class="bg-gray-50 min-h-screen">
+    <!-- Breadcrumb -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <nav class="breadcrumb-nav">
+            <a href="{% url 'home' %}" class="hover:text-phthalo">Home</a>
+            <span class="mx-2">/</span>
+            <a href="{% url 'services' %}" class="hover:text-phthalo">Services</a>
+            <span class="mx-2">/</span>
+            <span class="text-phthalo font-medium">{{ product.name }}</span>
+        </nav>
     </div>
-</nav>
 
-<!-- ======================= PRODUCT ======================= -->
-<section class="bg-white border-b border-line">
-    <div class="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+    <!-- Product Detail Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 mt-20">
+        <div class="grid lg:grid-cols-2 gap-12 mb-20">
+            <!-- Product Image -->
+            <div class="space-y-4">
+                <div class="bg-white rounded-3xl p-8 shadow-lg">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}"
+                             alt="{{ product.name }}"
+                             class="w-full h-96 object-cover rounded-2xl product-image">
+                    {% else %}
+                        <div class="w-full h-96 bg-gradient-to-br from-phthalo to-dts-accent rounded-2xl flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-dna text-6xl mb-4"></i>
+                                <p class="text-xl font-semibold">{{ product.name }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
 
-            <!-- Image + at-a-glance -->
-            <div class="lg:col-span-5">
-                <div class="panel overflow-hidden">
-                    <div class="aspect-square bg-teal-wash p-8 flex items-center justify-center">
-                        {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}"
-                            class="w-full h-full object-contain mix-blend-multiply">
+                <!-- Product Features -->
+                <div class="bg-white rounded-3xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Key Features</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span class="text-gray-700">99.9% Accuracy Rate</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-blue-500 mr-3"></i>
+                            <span class="text-gray-700">24-48 Hour Results</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-certificate text-purple-500 mr-3"></i>
+                            <span class="text-gray-700">Certified Reports</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-indigo-500 mr-3"></i>
+                            <span class="text-gray-700">Complete Privacy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info and Cart -->
+            <div class="space-y-8">
+                <!-- Product Header -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg">
+                    {% if product.available %}
+                        <span class="feature-badge mb-4 inline-block">
+                            <i class="fas fa-check mr-1"></i>Available
+                        </span>
+                    {% else %}
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">
+                            <i class="fas fa-times mr-1"></i>Out of Stock
+                        </span>
+                    {% endif %}
+
+                    <h1 class="text-4xl font-bold text-phthalo mb-4">{{ product.name }}</h1>
+
+                    <!-- Price -->
+                    <div class="mb-6">
+                        {% if product.discounted_price %}
+                            <div class="flex items-baseline space-x-3">
+                                <span class="text-4xl font-bold text-phthalo">PKR {{ product.discounted_price|intcomma }}</span>
+                                <span class="text-2xl text-gray-400 line-through">PKR {{ product.price|intcomma }}</span>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Save PKR {{ product.discount_amount|intcomma }}
+                                </span>
+                            </div>
                         {% else %}
-                        <span class="text-ink-soft text-sm">No image yet</span>
+                            <span class="text-4xl font-bold text-phthalo">PKR {{ product.price|intcomma }}</span>
                         {% endif %}
                     </div>
+
+                    <!-- Quick Contact -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600">Need help? Call us now</p>
+                                <a href="tel:+923074561958" class="text-lg font-bold text-green-600 hover:text-green-700 transition-colors">
+                                    <i class="fas fa-phone mr-2"></i>+92 307 456 1958
+                                </a>
+                            </div>
+                            <div class="text-green-500">
+                                <i class="fas fa-headset text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <dl class="panel mt-5 p-6 space-y-4 text-sm">
-                    <div class="flex gap-4">
-                        <dt class="w-28 shrink-0 text-ink-soft">Category</dt>
-                        <dd class="font-semibold text-ink">{{ product.get_category_display }}</dd>
-                    </div>
-                    {% if product.sample_type %}
-                    <div class="flex gap-4">
-                        <dt class="w-28 shrink-0 text-ink-soft">Sample</dt>
-                        <dd class="font-semibold text-ink">{{ product.get_sample_type_display }}</dd>
-                    </div>
-                    {% endif %}
-                    <div class="flex gap-4">
-                        <dt class="w-28 shrink-0 text-ink-soft">Collected at</dt>
-                        <dd class="font-semibold text-ink">
-                            {% if product.needs_clinical_collection %}
-                            Clinical collection partner
-                            {% else %}
-                            Our Lahore office
-                            {% endif %}
-                        </dd>
-                    </div>
-                    <div class="flex gap-4">
-                        <dt class="w-28 shrink-0 text-ink-soft">Tested at</dt>
-                        <dd class="font-semibold text-ink">
-                            {% if product.partner_lab %}
-                            <a href="{% url 'partners' %}#{{ product.partner_lab.slug }}"
-                                class="text-teal link-underline">
-                                {{ product.partner_lab.name }}
-                            </a>
-                            <span class="block font-normal text-ink-soft mt-0.5">
-                                {{ product.partner_lab.get_country_display }}
-                            </span>
-                            {% else %}
-                            A partner laboratory abroad
-                            {% endif %}
-                        </dd>
-                    </div>
-                    <div class="flex gap-4 pt-4 border-t border-line">
-                        <dt class="w-28 shrink-0 text-ink-soft">Transit</dt>
-                        <dd class="text-ink">
-                            3&ndash;5 working days by courier, before laboratory processing begins
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-
-            <!-- Name, price, ordering -->
-            <div class="lg:col-span-7">
-
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl mb-5">{{ product.name }}</h1>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-                    {% if product.sample_type %}
-                    <span class="accred-chip">{{ product.get_sample_type_display }}</span>
-                    {% endif %}
-                    {% if product.partner_lab %}
-                    <span class="lab-flag">{{ product.partner_lab.get_country_display }}</span>
-                    {% endif %}
-                    {% if product.partner_lab.handles_legal_tests %}
-                    <span class="accred-chip">Legal &amp; immigration reports</span>
-                    {% endif %}
-                </div>
-
-                <!-- Price -->
-                <div class="flex items-end flex-wrap gap-x-4 gap-y-1 mb-2">
-                    {% if product.discounted_price %}
-                    <span class="text-4xl font-semibold text-ink leading-none">
-                        PKR {{ product.discounted_price|intcomma }}
-                    </span>
-                    <span class="text-lg text-ink-soft line-through">PKR {{ product.price|intcomma }}</span>
-                    <span class="text-sm font-semibold text-amber">
-                        Save PKR {{ product.discount_amount|intcomma }} ({{ product.discount_percentage }}%)
-                    </span>
-                    {% else %}
-                    <span class="text-4xl font-semibold text-ink leading-none">
-                        PKR {{ product.price|intcomma }}
-                    </span>
-                    {% endif %}
-                </div>
-                <p class="text-sm text-ink-soft mb-8">
-                    Covers collection, documentation, international courier, and the laboratory's testing and report.
-                </p>
-
-                {% if product.needs_clinical_collection %}
-                <div class="notice mb-8">
-                    <p class="text-sm font-semibold text-ink mb-1">This test needs a blood or tissue sample</p>
-                    <p class="text-sm text-ink-soft leading-relaxed measure">
-                        Our Lahore office collects cheek swabs. Collection for this test is arranged separately
-                        through a clinical partner, so please talk to us before ordering.
-                    </p>
-                </div>
-                {% endif %}
-
-                {% if product.is_health_related %}
-                <div class="notice-quiet mb-8">
-                    <p class="text-sm text-ink-soft leading-relaxed measure">
-                        This result carries health meaning. It is produced and interpreted by the laboratory and
-                        should be discussed with a qualified clinician. We do not provide genetic or medical advice.
-                    </p>
-                </div>
-                {% endif %}
-
-                <!-- Ordering -->
+                <!-- Add to Cart Section with Addons -->
                 {% if product.available and cart_product_form %}
-                <form action="{% url 'cart_add_with_addons' product.id %}" method="post" id="order-form"
-                    class="panel p-6 lg:p-8">
-                    {% csrf_token %}
+                <div class="cart-summary rounded-3xl p-8 shadow-lg floating-cart">
+                    <form action="{% url 'cart_add_with_addons' product.id %}" method="post" id="cartForm">
+                        {% csrf_token %}
 
-                    <h2 class="text-xl mb-6">Order this test</h2>
-
-                    <div class="flex flex-wrap items-end gap-6 mb-7">
-                        <div>
-                            <label for="{{ cart_product_form.quantity.id_for_label }}"
-                                class="block text-sm font-semibold text-ink mb-2">Quantity</label>
-                            <div class="qty-field">{{ cart_product_form.quantity }}</div>
+                        <!-- Quantity Selector -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Quantity</label>
+                            <div class="quantity-selector w-fit">
+                                <button type="button" class="quantity-btn minus" onclick="decreaseQuantity()">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                {{ cart_product_form.quantity }}
+                                <button type="button" class="quantity-btn plus" onclick="increaseQuantity()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    {{ cart_product_form.override }}
 
-                    {% if addon_options %}
-                    <fieldset class="mb-7">
-                        <legend class="text-sm font-semibold text-ink mb-3">Add to this order</legend>
-                        <div class="space-y-2">
-                            {% for addon in addon_options %}
-                            <label class="addon-row">
-                                <input type="checkbox" name="addons" value="{{ addon.id }}"
-                                    data-addon-price="{{ addon.price }}" class="mt-1">
-                                <input type="hidden" name="addon_price_{{ addon.id }}" value="{{ addon.price }}">
-                                <span class="flex-grow">
-                                    <span class="block font-semibold text-ink text-sm">{{ addon.name }}</span>
-                                    <span class="block text-xs text-ink-soft leading-relaxed mt-0.5">
-                                        {{ addon.description }}
-                                    </span>
-                                </span>
-                                <span class="code text-ink whitespace-nowrap">
-                                    +{{ addon.price|intcomma }}
-                                </span>
-                            </label>
-                            {% endfor %}
-                        </div>
-                    </fieldset>
-                    {% endif %}
+                        {{ cart_product_form.override }}
 
-                    <div class="panel-wash p-5 mb-6">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-ink-soft">Test</span>
-                            <span class="code text-ink" data-base-price="{{ product.effective_price }}">
-                                PKR {{ product.effective_price|intcomma }}
-                            </span>
-                        </div>
-                        <div class="flex justify-between text-sm mb-3" data-addons-row hidden>
-                            <span class="text-ink-soft">Add-ons</span>
-                            <span class="code text-ink" data-addons-total>PKR 0</span>
-                        </div>
-                        <div class="flex justify-between items-baseline pt-3 border-t border-line">
-                            <span class="font-semibold text-ink">Total</span>
-                            <span class="text-xl font-semibold text-ink" data-order-total>
-                                PKR {{ product.effective_price|intcomma }}
-                            </span>
-                        </div>
-                    </div>
 
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <button type="submit" class="btn btn-primary flex-grow">Add to order</button>
-                        <a href="tel:+923074561958" class="btn btn-secondary">Ask a question</a>
-                    </div>
-                </form>
 
+                        <!-- Order Summary -->
+                        <div class="bg-gray-50 rounded-2xl p-4 mb-6">
+                            <h4 class="font-semibold text-gray-700 mb-3">Order Summary</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Base Test</span>
+                                    <span id="basePrice">PKR {{ product.effective_price|intcomma }}</span>
+                                </div>
+                                <div id="addonsList"></div>
+                                <div class="border-t pt-2 mt-2">
+                                    <div class="flex justify-between font-bold text-lg">
+                                        <span>Total</span>
+                                        <span id="totalPrice">PKR {{ product.effective_price|intcomma }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-4">
+                            <button type="submit" class="w-full bg-phthalo text-white py-4 rounded-2xl font-bold text-lg hover:bg-phthalo-light transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                            </button>
+
+                            <button type="button" onclick="buyNow()" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                <i class="fas fa-bolt mr-2"></i>Buy Now
+                            </button>
+                        </div>
+                    </form>
+                </div>
                 {% elif product.available %}
-                {# Cart app not installed — still take the order by phone rather
-                   than claiming the test is unavailable, which is untrue. #}
-                <div class="panel p-6 lg:p-8">
-                    <h2 class="text-xl mb-3">Book this test</h2>
-                    <p class="text-sm text-ink-soft leading-relaxed measure mb-6">
-                        Call or email the Lahore office to confirm who needs to attend, which documents to bring,
-                        and an appointment time. We confirm the price in writing before you pay.
+                {# Cart app not installed — still let the customer order by phone
+                   rather than telling them the test is unavailable, which would
+                   be untrue and would lose the enquiry. #}
+                <div class="panel p-8">
+                    <h3 class="text-xl mb-3">Book this test</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed mb-6">
+                        Call or email the Pakistan office to confirm the participants, the documents to bring, and an
+                        appointment time. We confirm the price in writing before you pay.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="tel:+923074561958" class="btn btn-primary">Call +92 307 456 1958</a>
                         <a href="{% url 'contact' %}" class="btn btn-secondary">Send an enquiry</a>
                     </div>
                 </div>
-
                 {% else %}
-                <div class="panel p-6 lg:p-8">
-                    <h2 class="text-xl mb-3">Arranged case by case</h2>
-                    <p class="text-sm text-ink-soft leading-relaxed measure mb-6">
-                        Tell us what the result is for and we will confirm whether this test fits, which laboratory
-                        it goes to, and what it costs.
+                <div class="panel p-8">
+                    <h3 class="text-xl mb-3">Not bookable online right now</h3>
+                    <p class="text-sm text-ink-soft leading-relaxed mb-6">
+                        This test is arranged case by case. Tell us what the result is for and we will confirm whether
+                        it fits, which laboratory it goes to, and what it costs.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="tel:+923074561958" class="btn btn-primary">Call +92 307 456 1958</a>
@@ -243,101 +272,169 @@
                 {% endif %}
             </div>
         </div>
-    </div>
-</section>
 
-<!-- ======================= DESCRIPTION ======================= -->
-{% if product.description %}
-<section class="bg-paper border-b border-line">
-    <div class="max-w-6xl mx-auto px-6 py-14 lg:py-16">
-        <div class="grid lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-4">
-                <h2 class="text-2xl lg:text-3xl">About this test</h2>
-            </div>
-            <div class="lg:col-span-8">
-                <div class="text-ink-soft leading-relaxed measure prose-dts">
-                    {{ product.description|safe }}
-                </div>
+        <!-- Product Description -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg mb-20">
+            <h2 class="text-3xl font-bold text-phthalo mb-6">Product Description</h2>
+            <div class="prose prose-lg max-w-none text-gray-700">
+                {{ product.description|safe }}
             </div>
         </div>
-    </div>
-</section>
-{% endif %}
 
-<!-- ======================= WHO TESTS IT ======================= -->
-<section class="bg-white border-b border-line">
-    <div class="max-w-6xl mx-auto px-6 py-14 lg:py-16">
-        {% include 'partials/_disclaimer.html' %}
-    </div>
-</section>
+        <!-- Similar Products -->
+        {% if recommended_products %}
+        <div class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-phthalo mb-4">Similar Products</h2>
+                <p class="text-xl text-gray-600">You might also be interested in these DNA tests</p>
+            </div>
 
-<!-- ======================= RELATED ======================= -->
-{% if recommended_products %}
-<section class="bg-paper">
-    <div class="max-w-6xl mx-auto px-6 py-14 lg:py-16">
-        <div class="flex items-baseline gap-4 mb-8">
-            <h2 class="text-2xl lg:text-3xl">Related tests</h2>
-            <span class="h-px flex-grow bg-line"></span>
-            <a href="{% url 'services' %}" class="text-sm font-semibold text-teal link-underline shrink-0">
-                All tests
-            </a>
-        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for similar_product in recommended_products %}
+                <div class="bg-white rounded-3xl p-6 shadow-lg hover-lift">
+                    <a href="{% url 'product_detail' similar_product.slug %}" class="block">
+                        {% if similar_product.image %}
+                            <img src="{{ similar_product.image.url }}"
+                                 alt="{{ similar_product.name }}"
+                                 class="w-full h-48 object-cover rounded-2xl mb-4">
+                        {% else %}
+                            <div class="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-4">
+                                <i class="fas fa-dna text-gray-400 text-3xl"></i>
+                            </div>
+                        {% endif %}
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {% for item in recommended_products %}
-            <a href="{% url 'product_detail' item.slug %}" class="panel overflow-hidden flex flex-col group">
-                <div class="aspect-square bg-teal-wash border-b border-line p-4 flex items-center justify-center">
-                    {% if item.image %}
-                    <img src="{{ item.image.url }}" alt="{{ item.name }}"
-                        class="w-full h-full object-contain mix-blend-multiply" loading="lazy">
-                    {% endif %}
+                        <h3 class="text-lg font-bold text-gray-800 mb-2 line-clamp-2">{{ similar_product.name }}</h3>
+
+                        <div class="mb-4">
+                            {% if similar_product.discounted_price %}
+                                <div class="flex items-baseline space-x-2">
+                                    <span class="text-xl font-bold text-phthalo">PKR {{ similar_product.discounted_price|intcomma }}</span>
+                                    <span class="text-sm text-gray-400 line-through">PKR {{ similar_product.price|intcomma }}</span>
+                                </div>
+                            {% else %}
+                                <span class="text-xl font-bold text-phthalo">PKR {{ similar_product.price|intcomma }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="text-center">
+                            <span class="inline-flex items-center px-4 py-2 bg-phthalo text-white rounded-xl font-semibold hover:bg-phthalo-light transition-colors">
+                                View Details
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
                 </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-sm font-semibold leading-snug mb-2 group-hover:text-teal">{{ item.name }}</h3>
-                    <p class="text-sm text-ink mt-auto">PKR {{ item.effective_price|intcomma }}</p>
-                </div>
-            </a>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
+        {% endif %}
     </div>
-</section>
-{% endif %}
+</div>
+
+<script>
+// Product configuration
+const basePrice = {{ product.effective_price }};
+let selectedAddons = {};
+
+function increaseQuantity() {
+    const input = document.getElementById('id_quantity');
+    const currentValue = parseInt(input.value) || 1;
+    input.value = currentValue + 1;
+    updateTotal();
+}
+
+function decreaseQuantity() {
+    const input = document.getElementById('id_quantity');
+    const currentValue = parseInt(input.value) || 1;
+    if (currentValue > 1) {
+        input.value = currentValue - 1;
+        updateTotal();
+    }
+}
+
+function toggleAddon(addonId, price) {
+    const checkbox = document.querySelector(`input[value="${addonId}"]`);
+    const addonCard = checkbox.closest('.addon-card');
+
+    if (checkbox.checked) {
+        selectedAddons[addonId] = {
+            name: addonCard.querySelector('h4').textContent,
+            price: price
+        };
+        addonCard.classList.add('selected');
+    } else {
+        delete selectedAddons[addonId];
+        addonCard.classList.remove('selected');
+    }
+
+    updateTotal();
+}
+
+function updateTotal() {
+    const quantity = parseInt(document.getElementById('id_quantity').value) || 1;
+    let addonTotal = 0;
+
+    // Calculate addon total
+    Object.values(selectedAddons).forEach(addon => {
+        addonTotal += addon.price;
+    });
+
+    // Update displays
+    const total = (basePrice + addonTotal) * quantity;
+    document.getElementById('totalPrice').textContent = `PKR ${total.toLocaleString()}`;
+
+    // Update addons list
+    const addonsList = document.getElementById('addonsList');
+    addonsList.innerHTML = '';
+
+    Object.values(selectedAddons).forEach(addon => {
+        const addonDiv = document.createElement('div');
+        addonDiv.className = 'flex justify-between text-dts-primary';
+        addonDiv.innerHTML = `
+            <span>${addon.name}</span>
+            <span>+PKR ${addon.price.toLocaleString()}</span>
+        `;
+        addonsList.appendChild(addonDiv);
+    });
+}
+
+function buyNow() {
+    // Add to cart and redirect to checkout
+    const form = document.getElementById('cartForm');
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        }
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = '{{ checkout_url|default:"/order/checkout/" }}';
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    const quantityInput = document.getElementById('id_quantity');
+    if (!quantityInput.value || quantityInput.value == '0') {
+        quantityInput.value = '1';
+    }
+
+    // Style the quantity input
+    quantityInput.className = 'quantity-input';
+    quantityInput.setAttribute('min', '1');
+    quantityInput.setAttribute('max', '10');
+
+    // Add change listener to quantity input
+    quantityInput.addEventListener('change', updateTotal);
+
+    updateTotal();
+});
+</script>
 
 {% endblock content %}
-
-{% block extra_js %}
-<script>
-    // Live order total. Reads prices off the inputs rather than re-templating
-    // them into JS, so there is one source of truth for every figure.
-    (function () {
-        var form = document.getElementById('order-form');
-        if (!form) return;
-
-        var baseEl = form.querySelector('[data-base-price]');
-        var base = parseInt(baseEl.getAttribute('data-base-price'), 10) || 0;
-        var qtyInput = form.querySelector('input[type="number"], select');
-        var addonsRow = form.querySelector('[data-addons-row]');
-        var addonsOut = form.querySelector('[data-addons-total]');
-        var totalOut = form.querySelector('[data-order-total]');
-
-        function money(n) {
-            return 'PKR ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-
-        function update() {
-            var qty = parseInt(qtyInput && qtyInput.value, 10) || 1;
-            var addons = 0;
-            form.querySelectorAll('input[name="addons"]:checked').forEach(function (box) {
-                addons += parseInt(box.getAttribute('data-addon-price'), 10) || 0;
-            });
-            addonsRow.hidden = addons === 0;
-            addonsOut.textContent = money(addons);
-            totalOut.textContent = money(base * qty + addons);
-        }
-
-        form.addEventListener('change', update);
-        form.addEventListener('input', update);
-        update();
-    })();
-</script>
-{% endblock extra_js %}

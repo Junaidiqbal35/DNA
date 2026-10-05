@@ -358,12 +358,12 @@ class Command(BaseCommand):
                     f'  - {len(self.no_sample_type)} product(s) have no sample '
                     f'type set: {", ".join(self.no_sample_type)}. The site uses '
                     f'this to warn customers when a test cannot be collected at '
-                    f'the Lahore office.'
+                    f'the Pakistan office.'
                 ))
             if self.needs_clinic:
                 self.stdout.write(self.style.WARNING(
                     f'  - {len(self.needs_clinic)} product(s) need a blood or '
-                    f'tissue sample, which your Lahore office does not collect. '
+                    f'tissue sample, which your Pakistan office does not collect. '
                     f'Confirm your clinical collection arrangement before making '
                     f'these available.'
                 ))
